@@ -14,10 +14,9 @@ import java.util.NoSuchElementException;
 
 public class LineIterator implements Iterator<List<String>> {
 	
-	//private final static String DefaultSeperator_ = "\\s+";
-	private final static String DefaultSeperator_ = "\\t";
-	private BufferedReader reader_;
-	private String seperator_;
+	private final static String DefaultSeperator_ = "\\s+";
+	protected BufferedReader reader_;
+	protected String seperator_;
 	
 	public LineIterator(String filename){
 		this(filename, DefaultSeperator_);
@@ -64,26 +63,7 @@ public class LineIterator implements Iterator<List<String>> {
 		
 		try {
 			String line = reader_.readLine();
-			if (line.length() > 1 && line.charAt(0) == '#') { 
-				//System.out.println(line);
-				ArrayList<String> list = new ArrayList<String>(1);
-				list.add(line);
-				return list;
-			}
 			String[] tokens = line.split(seperator_);
-			if(tokens[0].contains(".")) {
-				ArrayList<String> list = new ArrayList<String>(1);
-				String[] idxTok = tokens[0].split(".");
-				list.add("$|$" + idxTok[0] + "$|$" + line);
-				list.add(line);
-				return list;
-			} else if(tokens[0].contains("-")) {
-				String[] idxTok = tokens[0].split("-");
-				ArrayList<String> list = new ArrayList<String>(1);
-				list.add("|$|" + idxTok[0] + "|$|" + line);
-				list.add(line);
-				return list;
-			}
 			ArrayList<String> list = new ArrayList<String>(tokens.length);
 			for (int i=0;i<tokens.length;i++){
 				if (!tokens[i].isEmpty()){

@@ -12,6 +12,7 @@ import java.util.Hashtable;
 import marmot.core.Sequence;
 import marmot.morph.Sentence;
 import marmot.morph.Word;
+import marmot.util.ConllLineIterator;
 import marmot.util.Converter;
 import marmot.util.LineIterator;
 
@@ -32,7 +33,7 @@ public class SentenceReader implements Iterable<Sequence> {
 		return new Iterator<Sequence>() {
 
 			int number_ = 0;
-			LineIterator line_iterator_ = new LineIterator(
+			LineIterator line_iterator_ = new ConllLineIterator(
 					options_.getInputStream());
 
 			@Override

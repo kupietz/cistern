@@ -6,6 +6,7 @@ package marmot.morph.mapper;
 import java.util.Iterator;
 import java.util.List;
 
+import marmot.util.ConllLineIterator;
 import marmot.util.LineIterator;
 
 public class SyntaxTreeIterator implements Iterator<SyntaxTree> {
@@ -28,7 +29,7 @@ public class SyntaxTreeIterator implements Iterator<SyntaxTree> {
 		feat_index_ = feat_index;
 		head_index_ = head_index;
 		deprel_index_ = deprel_index;
-		iterator_ = new LineIterator(filename);
+		iterator_ = new ConllLineIterator(filename);
 		lowercase_ = lowercase;
 	}
 
