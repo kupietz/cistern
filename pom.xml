@@ -3,9 +3,9 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.example</groupId>
-    <artifactId>my-project</artifactId>
-    <version>1.0.0</version>
+    <groupId>cistern</groupId>
+    <artifactId>cistern</artifactId>
+    <version>1.0.1</version>
 
     <build>
         <plugins>
@@ -41,9 +41,9 @@
                             <goal>install-file</goal>
                         </goals>
                         <configuration>
-                            <file>${project.basedir}/marmot/marmot-snapshot.jar</file>
+                            <file>${project.basedir}/marmot/cistern-snapshot.jar</file>
                             <groupId>cistern</groupId>
-                            <artifactId>marmot</artifactId>
+                            <artifactId>cistern</artifactId>
                             <version>snapshot</version>
                             <packaging>jar</packaging>
                         </configuration>

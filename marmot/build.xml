@@ -13,7 +13,7 @@
 
   <target name="compile" depends="clean,timestamp">
     <mkdir dir="${classes}"/> 	
-  	<javac srcdir="${src}" destdir="${classes}" debug="on" classpathref="classpath" includeAntRuntime="false" includes="**/*.java" excludes="lemming/test/**,experimental/test/**,chipmunk/test/**,marmot/test/**,marmot/morph/mapper/**">
+  	<javac source="8" target="17" srcdir="${src}" destdir="${classes}" debug="on" classpathref="classpath" includeAntRuntime="false" includes="**/*.java" excludes="lemming/test/**,experimental/test/**,chipmunk/test/**,marmot/test/**,marmot/morph/mapper/**">
     </javac>
   </target>
 
@@ -22,7 +22,7 @@
   	     <format property="version" pattern="yyyy-MM-dd" />
   	</tstamp>
   	
-  	<property name="jarfile" value="${basedir}/marmot-snapshot.jar"/>
+  	<property name="jarfile" value="${basedir}/cistern-snapshot.jar"/>
   	
     <jar jarfile="${jarfile}">
       <fileset dir="${classes}" includes="**/*.class"/>
