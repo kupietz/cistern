@@ -32,7 +32,7 @@ public class CollectableDouble implements Collectable {
 
 	@Override
 	public int sum() {
-		return new Double(d_).intValue();
+		return (int) d_;
 	}
 
 	@Override
