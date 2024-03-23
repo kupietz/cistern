@@ -3,8 +3,6 @@
 
 package marmot.util;
 
-import cc.mallet.util.CommandOption;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -34,30 +32,30 @@ public class ConllLineIterator extends LineIterator {
 			String line = super.reader_.readLine();
 			if (line.length() > 1 && line.charAt(0) == '#') {
 				//System.out.println(line);
-				ArrayList<String> list = new ArrayList<String>(1);
+				ArrayList<String> list = new ArrayList<>(1);
 				list.add(line);
 				return list;
 			}
 			String[] tokens = line.split(super.seperator_);
 			if(tokens[0].contains(".")) {
-				ArrayList<String> list = new ArrayList<String>(1);
+				ArrayList<String> list = new ArrayList<>(1);
 				String[] idxTok = tokens[0].split(".");
 				list.add("$|$" + idxTok[0] + "$|$" + line);
 				list.add(line);
 				return list;
 			} else if(tokens[0].contains("-")) {
 				String[] idxTok = tokens[0].split("-");
-				ArrayList<String> list = new ArrayList<String>(1);
+				ArrayList<String> list = new ArrayList<>(1);
 				list.add("|$|" + idxTok[0] + "|$|" + line);
 				list.add(line);
 				return list;
 			}
-			ArrayList<String> list = new ArrayList<String>(tokens.length);
-			for (int i=0;i<tokens.length;i++){
-				if (!tokens[i].isEmpty()){
-					list.add(tokens[i]);
-				}
-			}
+			ArrayList<String> list = new ArrayList<>(tokens.length);
+            for (String token : tokens) {
+                if (!token.isEmpty()) {
+                    list.add(token);
+                }
+            }
 			return list;
 		}
 		catch (IOException e){

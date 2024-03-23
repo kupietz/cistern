@@ -178,7 +178,7 @@ public class ZeroOrderNbestDecoder implements NbestDecoder {
 	}
 
 	public List<Result> backtrace() {
-		List<Result> list = new LinkedList<Result>();
+		List<Result> list = new LinkedList<>();
 		HashableIntArray signature = new HashableIntArray(
 				new int[input_length_]);
 		result_queue_.clear();

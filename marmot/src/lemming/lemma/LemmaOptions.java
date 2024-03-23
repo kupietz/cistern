@@ -176,12 +176,10 @@ public abstract class LemmaOptions implements Serializable {
 	public Object toInstance(Class<?> klass) {
 		try {
 			return klass.newInstance();
-		} catch (InstantiationException e) {
-			throw new RuntimeException(e);
-		} catch (IllegalAccessException e) {
+		} catch (InstantiationException | IllegalAccessException e) {
 			throw new RuntimeException(e);
 		}
-	}
+    }
 	
 	public Object getInstance(String name) {
 		Class<?> klass = (Class<?>) getOption(name);

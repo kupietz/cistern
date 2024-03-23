@@ -84,11 +84,11 @@ public class Result {
 				toString(morph_oov_errors, num_oovs)));
 		sb.append(String.format("Sentence : %s",
 				toString(sentence_errors, num_sentences)));
-		for (int i = 0; i < rank.length; i++) {
-			sb.append(' ');
-			sb.append(nf2.format(rank[i] * 100. / num_sentences));
-			sb.append('%');
-		}
+        for (int j : rank) {
+            sb.append(' ');
+            sb.append(nf2.format(j * 100. / num_sentences));
+            sb.append('%');
+        }
 		sb.append('\n');
 
 		if (num_unreachable_sentences > 0) {

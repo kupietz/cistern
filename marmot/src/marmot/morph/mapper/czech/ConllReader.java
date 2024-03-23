@@ -72,7 +72,7 @@ public class ConllReader {
 	}
 
 	public static Map<String, Counter<String>> getDict(String ptb_file) {
-		Map<String, Counter<String>> map = new HashMap<String, Counter<String>>();
+		Map<String, Counter<String>> map = new HashMap<>();
 
 		SyntaxTreeIterator iterator = new SyntaxTreeIterator(ptb_file, 1, 2, 4,
 				6, 8, 10, false);
@@ -90,14 +90,9 @@ public class ConllReader {
 				PdtMorphTag tag = parse(pos, feats);
 				MsdTag new_tag = mapper.map(tag);
 
-				Counter<String> counter = map.get(node.getForm());
+                Counter<String> counter = map.computeIfAbsent(node.getForm(), k -> new Counter<>());
 
-				if (counter == null) {
-					counter = new Counter<String>();
-					map.put(node.getForm(), counter);
-				}
-
-				counter.increment(new_tag.toHumanString(), 1.);
+                counter.increment(new_tag.toHumanString(), 1.);
 			}
 		}
 

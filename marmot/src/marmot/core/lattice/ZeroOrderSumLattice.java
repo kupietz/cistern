@@ -55,8 +55,8 @@ public class ZeroOrderSumLattice implements SumLattice {
 		
 	public List<List<State>> prune(double log_threshold) {
 		init();
-		List<List<State>> candidates = new ArrayList<List<State>>(
-				candidates_.size());
+		List<List<State>> candidates = new ArrayList<>(
+                candidates_.size());
 
 		for (int index = 0; index < candidates_.size(); index++) {
 			int num_states = candidates_.get(index).size();
@@ -64,7 +64,7 @@ public class ZeroOrderSumLattice implements SumLattice {
 			
 			double score_sum = score_sums_[index];
 
-			List<State> states = new ArrayList<State>(num_states);
+			List<State> states = new ArrayList<>(num_states);
 
 			State max_state = null;
 			double max_score = Double.NEGATIVE_INFINITY;

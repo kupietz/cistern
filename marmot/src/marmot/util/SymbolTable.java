@@ -21,9 +21,9 @@ public class SymbolTable<T> implements Serializable {
 	private boolean bidirectional_;
 
 	public SymbolTable(boolean bidirectional, int capacity) {
-		toIndex = new HashMap<T, Integer>(capacity);
+		toIndex = new HashMap<>(capacity);
 		if (bidirectional) {
-			fromIndex = new HashMap<Integer, T>(capacity);
+			fromIndex = new HashMap<>(capacity);
 		}
 		bidirectional_ = bidirectional;
 	}
@@ -37,12 +37,12 @@ public class SymbolTable<T> implements Serializable {
 	}
 
 	public SymbolTable(SymbolTable<T> symbol_table) {
-		toIndex = new HashMap<T, Integer>(
-				(HashMap<T, Integer>) symbol_table.toIndex);
+		toIndex = new HashMap<>(
+                (HashMap<T, Integer>) symbol_table.toIndex);
 		bidirectional_ = symbol_table.bidirectional_;
 		if (bidirectional_) {
-			fromIndex = new HashMap<Integer, T>(
-					(HashMap<Integer, T>) symbol_table.fromIndex);
+			fromIndex = new HashMap<>(
+                    (HashMap<Integer, T>) symbol_table.fromIndex);
 		}
 	}
 
@@ -51,7 +51,7 @@ public class SymbolTable<T> implements Serializable {
 	}
 
 	public List<Integer> toIndexes(Collection<T> symbols) {
-		List<Integer> indexes = new ArrayList<Integer>(symbols.size());
+		List<Integer> indexes = new ArrayList<>(symbols.size());
 		for (T symbol : symbols) {
 			indexes.add(toIndex(symbol));
 		}
@@ -59,7 +59,7 @@ public class SymbolTable<T> implements Serializable {
 	}
 
 	public List<T> toSymbols(Collection<Integer> indexes) {		
-		List<T> symbols = new ArrayList<T>(indexes.size());
+		List<T> symbols = new ArrayList<>(indexes.size());
 		for (Integer i : indexes) {
 			symbols.add(toSymbol(i));
 		}
@@ -138,7 +138,7 @@ public class SymbolTable<T> implements Serializable {
 		if (bidirectional_ != bidirectional) {
 			
 			if (!bidirectional_) {
-				fromIndex = new HashMap<Integer, T>((int)(toIndex.size() * 1.25));
+				fromIndex = new HashMap<>((int) (toIndex.size() * 1.25));
 				for (Map.Entry<T, Integer> entry : toIndex.entrySet()) {
 					fromIndex.put(entry.getValue(), entry.getKey());
 				}

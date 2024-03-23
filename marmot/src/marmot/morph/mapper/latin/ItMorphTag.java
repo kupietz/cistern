@@ -221,15 +221,20 @@ public class ItMorphTag implements MorphTag {
 	}
 
 	private ParticipialsDegree participialsDegreeToString(String string) {
-		if (string.equals("1")) {
-			return ParticipialsDegree.One;
-		} else if (string.equals("2")) {
-			return ParticipialsDegree.Two;
-		} else if (string.equals("3")) {
-			return ParticipialsDegree.Three;
-		} else if (string.equals(".")) {
-			return ParticipialsDegree.Undef;
-		}
+        switch (string) {
+            case "1" -> {
+                return ParticipialsDegree.One;
+            }
+            case "2" -> {
+                return ParticipialsDegree.Two;
+            }
+            case "3" -> {
+                return ParticipialsDegree.Three;
+            }
+            case "." -> {
+                return ParticipialsDegree.Undef;
+            }
+        }
 
 		if (VERBOSE) System.err.println("Unknown participals degree value: " + string);
 		return ParticipialsDegree.Undef;
@@ -248,21 +253,29 @@ public class ItMorphTag implements MorphTag {
 	}
 
 	private Tense tenseToString(String string) {
-		if (string.equals("1")) {
-			return Tense.One;
-		} else if (string.equals("2")) {
-			return Tense.Two;
-		} else if (string.equals("3")) {
-			return Tense.Three;
-		} else if (string.equals("4")) {
-			return Tense.Four;
-		} else if (string.equals("5")) {
-			return Tense.Five;
-		} else if (string.equals("6")) {
-			return Tense.Six;
-		} else if (string.equals(".")) {
-			return Tense.Undef;
-		}
+        switch (string) {
+            case "1" -> {
+                return Tense.One;
+            }
+            case "2" -> {
+                return Tense.Two;
+            }
+            case "3" -> {
+                return Tense.Three;
+            }
+            case "4" -> {
+                return Tense.Four;
+            }
+            case "5" -> {
+                return Tense.Five;
+            }
+            case "6" -> {
+                return Tense.Six;
+            }
+            case "." -> {
+                return Tense.Undef;
+            }
+        }
 
 		if (VERBOSE) System.err.println("Unknown tense value: " + string);
 		return Tense.Undef;
@@ -293,34 +306,46 @@ public class ItMorphTag implements MorphTag {
 	}
 
 	private NominalsDegree nominalsDegreeToString(String string) {
-		if (string.equals("1")) {
-			return NominalsDegree.One;
-		} else if (string.equals("2")) {
-			return NominalsDegree.Two;
-		} else if (string.equals("3")) {
-			return NominalsDegree.Three;
-		} else if (string.equals("4")) {
-			return NominalsDegree.Four;
-		} else if (string.equals(".")) {
-			return NominalsDegree.Undef;
-		}
+        switch (string) {
+            case "1" -> {
+                return NominalsDegree.One;
+            }
+            case "2" -> {
+                return NominalsDegree.Two;
+            }
+            case "3" -> {
+                return NominalsDegree.Three;
+            }
+            case "4" -> {
+                return NominalsDegree.Four;
+            }
+            case "." -> {
+                return NominalsDegree.Undef;
+            }
+        }
 
 		if (VERBOSE) System.err.println("Unknown nominals degree: " + string);
 		return NominalsDegree.Undef;
 	}
 
 	private GraphicalVariation graphicalVariationToString(String string) {
-		if (string.equals("1")) {
-			return GraphicalVariation.One;
-		} else if (string.equals("2")) {
-			return GraphicalVariation.Two;
-		} else if (string.equals("3")) {
-			return GraphicalVariation.Three;
-		} else if (string.equals("4")) {
-			return GraphicalVariation.Four;
-		} else if (string.equals(".")) {
-			return GraphicalVariation.Undef;
-		}
+        switch (string) {
+            case "1" -> {
+                return GraphicalVariation.One;
+            }
+            case "2" -> {
+                return GraphicalVariation.Two;
+            }
+            case "3" -> {
+                return GraphicalVariation.Three;
+            }
+            case "4" -> {
+                return GraphicalVariation.Four;
+            }
+            case "." -> {
+                return GraphicalVariation.Undef;
+            }
+        }
 
 		if (VERBOSE) System.err.println("Unknown graphical variation value: " + string);
 		return GraphicalVariation.Undef;
@@ -328,27 +353,38 @@ public class ItMorphTag implements MorphTag {
 	}
 
 	private GenderNumberPerson genderFeatureToString(String string) {
-		if (string.equals("1")) {
-			return GenderNumberPerson.One;
-		} else if (string.equals("2")) {
-			return GenderNumberPerson.Two;
-		} else if (string.equals("3")) {
-			return GenderNumberPerson.Three;
-		} else if (string.equals("4")) {
-			return GenderNumberPerson.Four;
-		} else if (string.equals("5")) {
-			return GenderNumberPerson.Five;
-		} else if (string.equals("6")) {
-			return GenderNumberPerson.Six;
-		} else if (string.equals("7")) {
-			return GenderNumberPerson.Seven;
-		} else if (string.equals("8")) {
-			return GenderNumberPerson.Eight;
-		} else if (string.equals("9")) {
-			return GenderNumberPerson.Nine;
-		} else if (string.equals(".")) {
-			return GenderNumberPerson.Undef;
-		}
+        switch (string) {
+            case "1" -> {
+                return GenderNumberPerson.One;
+            }
+            case "2" -> {
+                return GenderNumberPerson.Two;
+            }
+            case "3" -> {
+                return GenderNumberPerson.Three;
+            }
+            case "4" -> {
+                return GenderNumberPerson.Four;
+            }
+            case "5" -> {
+                return GenderNumberPerson.Five;
+            }
+            case "6" -> {
+                return GenderNumberPerson.Six;
+            }
+            case "7" -> {
+                return GenderNumberPerson.Seven;
+            }
+            case "8" -> {
+                return GenderNumberPerson.Eight;
+            }
+            case "9" -> {
+                return GenderNumberPerson.Nine;
+            }
+            case "." -> {
+                return GenderNumberPerson.Undef;
+            }
+        }
 
 		if (VERBOSE) System.err.println("Unknown gender value: " + string);
 		return GenderNumberPerson.Undef;

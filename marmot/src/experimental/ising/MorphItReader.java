@@ -31,8 +31,8 @@ public class MorphItReader extends DataReader {
 	            	        
 	            	// add word
 	            	if (!this.word2Tags.containsKey(word)) {
-	            		this.word2Tags.put(word, new HashSet<String>());
-	            		this.word2LemmaTag.put(word, new HashSet<Pair<String, String>>());
+	            		this.word2Tags.put(word, new HashSet<>());
+	            		this.word2LemmaTag.put(word, new HashSet<>());
 	            	}
 	            	
 	            	this.word2Tags.get(word).add(tag);
@@ -86,8 +86,8 @@ public class MorphItReader extends DataReader {
 		// add data
 		// TODO redundant with the above (can collapse the data structures)
 		for (String word : this.word2LemmaTag.keySet()) {
-			ArrayList<String> lemmas = new ArrayList<String>();
-			ArrayList<Integer> tags = new ArrayList<Integer>();
+			ArrayList<String> lemmas = new ArrayList<>();
+			ArrayList<Integer> tags = new ArrayList<>();
 			
 			for (Pair<String, String> p : this.word2LemmaTag.get(word)) {
 				String lemma = p.getValue0();

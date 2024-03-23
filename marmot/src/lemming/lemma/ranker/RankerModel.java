@@ -279,7 +279,7 @@ public class RankerModel implements Serializable {
 				String value = argument.substring(index + 1);
 
 				if (argname.equalsIgnoreCase("min-count")) {
-					min_count = Integer.valueOf(value);
+					min_count = Integer.parseInt(value);
 				} else {
 					throw new RuntimeException(String.format(
 							"Unknown option: %s", argname));

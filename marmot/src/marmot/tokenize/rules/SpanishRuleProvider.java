@@ -12,7 +12,7 @@ public class SpanishRuleProvider extends RuleProvider {
 
 	@Override
 	public Collection<Rule> getTokRules() {
-		List<Rule> rules = new LinkedList<Rule>();
+		List<Rule> rules = new LinkedList<>();
 		rules.add(new Rule(Pattern.compile("\\S( Fz)") ,""));
 		rules.add(new Rule(Pattern.compile("\\S(_)\\S") ," "));
 		rules.add(new Rule(Pattern.compile("( ̃)") , ""));
@@ -21,7 +21,7 @@ public class SpanishRuleProvider extends RuleProvider {
 
 	@Override
 	public Collection<Rule> getUnTokRules() {
-		List<Rule> rules = new LinkedList<Rule>();	
+		List<Rule> rules = new LinkedList<>();
 		addSimpleRule("del", "de el", rules);
 		addSimpleRule("al", "a el", rules); // Al-razir?
 		//rules.add(new Rule(Pattern.compile("\\w+(dole)\\W") , "(do le)"));

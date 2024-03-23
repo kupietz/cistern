@@ -57,10 +57,9 @@ public class SegmenterTrainer {
 				optimizer.optimize(1);
 			}
 
-		} catch (IllegalArgumentException e) {
-		} catch (OptimizationException e) {
+		} catch (IllegalArgumentException | OptimizationException e) {
 		}
-	}
+    }
 
 	private void run_perceptron(SegmenterModel model, Collection<Word> words) {
 		DynamicWeights weights = new DynamicWeights(null);

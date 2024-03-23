@@ -48,7 +48,7 @@ public class AnalyzerResult {
 	private int label_total_;
 	
 	public AnalyzerResult() {
-		this(0, 0, 0., 0., new LinkedList<Error>(), 0, 0);
+		this(0, 0, 0., 0., new LinkedList<>(), 0, 0);
 	}
 	
 	public AnalyzerResult(int num_errors, int total, double macro_pre, double macro_rec, Collection<Error> errors, int label_correct, int label_total) {
@@ -163,7 +163,7 @@ public class AnalyzerResult {
 	private void logSubList(Collection<Error> errors, int first) {
 		Logger logger = Logger.getLogger(getClass().getName());
 		if (errors.size() > first) {
-			errors = new LinkedList<Error>(errors).subList(0, first);
+			errors = new LinkedList<>(errors).subList(0, first);
 		}
 		
 		StringBuilder sb = new StringBuilder("Errors:\n");

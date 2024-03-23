@@ -1,7 +1,6 @@
 package experimental.igel;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class BinaryFactor extends Factor {
 	
@@ -9,9 +8,9 @@ public class BinaryFactor extends Factor {
 	protected double[][] potential;
 	
 	public BinaryFactor() {
-		this.setMessages(new ArrayList<Message>());
-		this.setNeighbors(new ArrayList<SegmentVariable>());
-		this.setMessageIds(new ArrayList<Integer>());
+		this.setMessages(new ArrayList<>());
+		this.setNeighbors(new ArrayList<>());
+		this.setMessageIds(new ArrayList<>());
 		
 		this.setPotential(new double[2][2]);
 	}

@@ -109,27 +109,27 @@ public class MorphModel extends Model {
 
 		init(options, extractCategories(sentences));
 
-		subtag_tables_ = new ArrayList<SymbolTable<String>>();
+		subtag_tables_ = new ArrayList<>();
 		subtag_tables_.add(null);
 		subtag_tables_.add(null);
 
 		if (split_pos_) {
-			subtag_tables_.set(POS_INDEX_, new SymbolTable<String>());
+			subtag_tables_.set(POS_INDEX_, new SymbolTable<>());
 		}
 
 		if (tag_morph_ && split_morphs_) {
-			subtag_tables_.set(MORPH_INDEX_, new SymbolTable<String>());
+			subtag_tables_.set(MORPH_INDEX_, new SymbolTable<>());
 		}
 
-		word_table_ = new SymbolTable<String>(true);
-		char_table_ = new SymbolTable<Character>();
+		word_table_ = new SymbolTable<>(true);
+		char_table_ = new SymbolTable<>();
 		if (shape_) {
-			shape_table_ = new SymbolTable<String>();
+			shape_table_ = new SymbolTable<>();
 		}
-		signature_cache = new HashMap<String, Integer>();
+		signature_cache = new HashMap<>();
 
-		token_feature_table_ = new SymbolTable<String>();
-		weighted_token_feature_table_ = new SymbolTable<String>();
+		token_feature_table_ = new SymbolTable<>();
+		weighted_token_feature_table_ = new SymbolTable<>();
 
 		String internal_analyzer = options.getInternalAnalyzer();
 		if (internal_analyzer != null) {
@@ -365,13 +365,13 @@ public class MorphModel extends Model {
 	private List<Set<Integer>> extractObservedSets(
 			Collection<Sequence> sentences) {
 		List<SymbolTable<String>> tag_tables = getTagTables();
-		List<Set<Integer>> observed_sets = new ArrayList<Set<Integer>>(
-				tag_tables.size());
+		List<Set<Integer>> observed_sets = new ArrayList<>(
+                tag_tables.size());
 
-		List<Map<Integer, Set<Integer>>> wordform_to_candidates = new ArrayList<Map<Integer, Set<Integer>>>();
+		List<Map<Integer, Set<Integer>>> wordform_to_candidates = new ArrayList<>();
 
 		for (int level = 0; level < tag_tables.size(); level++) {
-			wordform_to_candidates.add(new HashMap<Integer, Set<Integer>>());
+			wordform_to_candidates.add(new HashMap<>());
 		}
 
 		for (Sequence sentence : sentences) {
@@ -385,13 +385,9 @@ public class MorphModel extends Model {
 					tag_index *= tag_tables.get(level).size();
 					tag_index += token.getTagIndexes()[level];
 
-					Set<Integer> tags = wordform_to_candidates.get(level).get(
-							word_index);
-					if (tags == null) {
-						tags = new HashSet<Integer>();
-						wordform_to_candidates.get(level).put(word_index, tags);
-					}
-					tags.add(tag_index);
+                    Set<Integer> tags = wordform_to_candidates.get(level).computeIfAbsent(
+                            word_index, k -> new HashSet<>());
+                    tags.add(tag_index);
 				}
 
 			}
@@ -418,7 +414,7 @@ public class MorphModel extends Model {
 				sentences, num_folds_, tag_tables);
 
 		for (int level = 0; level < tag_tables.size(); level++) {
-			Set<Integer> observed_set = new HashSet<Integer>();
+			Set<Integer> observed_set = new HashSet<>();
 			observed_sets.add(observed_set);
 
 			List<Integer> open_tag_classes = open_tag_classes_per_level
@@ -458,12 +454,12 @@ public class MorphModel extends Model {
 		if (sentences_per_fold == 0)
 			sentences_per_fold = 1;
 
-		Set<Integer> known = new HashSet<Integer>();
-		List<Counter<Integer>> counters = new ArrayList<Counter<Integer>>(
-				tag_tables.size());
+		Set<Integer> known = new HashSet<>();
+		List<Counter<Integer>> counters = new ArrayList<>(
+                tag_tables.size());
 
 		for (int level = 0; level < tag_tables.size(); level++) {
-			counters.add(new Counter<Integer>());
+			counters.add(new Counter<>());
 		}
 
 		int start_index = 0;
@@ -508,12 +504,12 @@ public class MorphModel extends Model {
 			start_index = end_index;
 		}
 
-		List<List<Integer>> list = new ArrayList<List<Integer>>(
-				tag_tables.size());
+		List<List<Integer>> list = new ArrayList<>(
+                tag_tables.size());
 		for (int level = 0; level < tag_tables.size(); level++) {
 			Counter<Integer> counter = counters.get(level);
 			double total_count = counter.totalCount();
-			List<Integer> open_tag_classes = new LinkedList<Integer>();
+			List<Integer> open_tag_classes = new LinkedList<>();
 			for (Map.Entry<Integer, Double> entry : counter.entrySet()) {
 				if (entry.getValue() / total_count > 0.0001) {
 					open_tag_classes.add(entry.getKey());
@@ -528,7 +524,7 @@ public class MorphModel extends Model {
 	private int[] extractVocabulary(MorphOptions options,
 			Collection<Sequence> sentences) {
 
-		Counter<Integer> vocab_counter = new Counter<Integer>();
+		Counter<Integer> vocab_counter = new Counter<>();
 
 		for (Sequence sentence : sentences) {
 			for (Token token : sentence) {
@@ -551,18 +547,14 @@ public class MorphModel extends Model {
 		if (!(options.getRestricTransitions() && tag_morph_))
 			return null;
 
-		Map<Integer, Set<Integer>> tag_to_morph = new HashMap<Integer, Set<Integer>>();
+		Map<Integer, Set<Integer>> tag_to_morph = new HashMap<>();
 
 		for (Sequence sentence : sentences) {
 			for (Token token : sentence) {
 				int from_index = token.getTagIndexes()[POS_INDEX_];
 				int to_index = token.getTagIndexes()[MORPH_INDEX_];
-				Set<Integer> tags = tag_to_morph.get(from_index);
-				if (tags == null) {
-					tags = new HashSet<Integer>();
-					tag_to_morph.put(from_index, tags);
-				}
-				tags.add(to_index);
+                Set<Integer> tags = tag_to_morph.computeIfAbsent(from_index, k -> new HashSet<>());
+                tags.add(to_index);
 			}
 		}
 
@@ -587,7 +579,7 @@ public class MorphModel extends Model {
 	}
 
 	private SymbolTable<String> extractCategories(Collection<Sequence> sentences) {
-		SymbolTable<String> catgegory_table = new SymbolTable<String>(true);
+		SymbolTable<String> catgegory_table = new SymbolTable<>(true);
 		catgegory_table.toIndex(POS_NAME_, true);
 		if (tag_morph_) {
 			catgegory_table.toIndex(MORPH_NAME_, true);
@@ -618,7 +610,7 @@ public class MorphModel extends Model {
 			if (char_indexes[index] < 0) {
 				if (verbose_) {
 					if (unseen_char_set_ == null) {
-						unseen_char_set_ = new HashSet<Character>();
+						unseen_char_set_ = new HashSet<>();
 					}
 					if (!unseen_char_set_.contains(c)) {
 						System.err
@@ -633,7 +625,7 @@ public class MorphModel extends Model {
 
 	private void addSignature(Word word, String form, boolean insert) {
 		if (signature_cache == null) {
-			signature_cache = new HashMap<String, Integer>();
+			signature_cache = new HashMap<>();
 		}
 
 		Integer signature = signature_cache.get(form);
@@ -833,7 +825,7 @@ public class MorphModel extends Model {
 			return null;
 		}
 
-		List<Integer> indexes = new LinkedList<Integer>();
+		List<Integer> indexes = new LinkedList<>();
 		for (String sub_tag : sub_tags) {
 
 			if (sub_tag.length() > 0) {
@@ -927,8 +919,8 @@ public class MorphModel extends Model {
 					parameters.get(0), values_list.get(0), results);
 		}
 
-		parameters = new LinkedList<String>(parameters);
-		values_list = new LinkedList<List<String>>(values_list);
+		parameters = new LinkedList<>(parameters);
+		values_list = new LinkedList<>(values_list);
 
 		Tagger best_tagger = null;
 
@@ -1020,7 +1012,7 @@ public class MorphModel extends Model {
 
 		List<String> parameters = Arrays.asList(Options.ORDER, Options.SEED,
 				Options.PENALTY);
-		List<MorphEntry> results = new LinkedList<MorphEntry>();
+		List<MorphEntry> results = new LinkedList<>();
 		List<List<String>> values_list = Arrays.asList(
 				Arrays.asList("1", "3", "5"), Arrays.asList("41", "42", "43"),
 				Arrays.asList("0.0", "0.05", "0.1", "0.5"));

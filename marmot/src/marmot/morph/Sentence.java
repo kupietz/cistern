@@ -22,7 +22,7 @@ public class Sentence extends AbstractList<Token> implements Sequence {
 	private Hashtable<Integer, String> empty_nodes_;
 
 	public Sentence(List<Word> tokens) {
-		tokens_ = new ArrayList<Word>(tokens);
+		tokens_ = new ArrayList<>(tokens);
 	}
 
 	@Override
@@ -76,13 +76,11 @@ public class Sentence extends AbstractList<Token> implements Sequence {
 			return false;
 		}
 		
-		if (!(other instanceof Sequence)) {
+		if (!(other instanceof Sequence other_sentence)) {
 			return false;
 		}
-		
-		Sequence other_sentence = (Sequence) other;
-		
-		if (other_sentence.size() != size()) {
+
+        if (other_sentence.size() != size()) {
 			return false;
 		}
 		

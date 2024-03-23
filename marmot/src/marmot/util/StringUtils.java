@@ -22,7 +22,7 @@ public class StringUtils {
 		double[] array = new double[element_strings.length];
 
 		for (int index = 0; index < element_strings.length; index++) {
-			double element = Double.valueOf(element_strings[index]);
+			double element = Double.parseDouble(element_strings[index]);
 			array[index] = element;
 		}
 
@@ -52,7 +52,7 @@ public class StringUtils {
 		return new StringBuilder(form).reverse().toString();
 	}
 
-	static final Map<String, Character> BRACKET_MAP = new HashMap<String, Character>();
+	static final Map<String, Character> BRACKET_MAP = new HashMap<>();
 	static {
 		BRACKET_MAP.put("-LRB-", '(');
 		BRACKET_MAP.put("-RRB-", ')');

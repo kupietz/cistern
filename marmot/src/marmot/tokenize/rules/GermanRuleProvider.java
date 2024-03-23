@@ -12,7 +12,7 @@ public class GermanRuleProvider extends RuleProvider {
 
 	@Override
 	public Collection<Rule> getTokRules() {
-		List<Rule> rules = new LinkedList<Rule>();
+		List<Rule> rules = new LinkedList<>();
 		rules.add(new Rule(Pattern.compile("(ÿ)") ,"")); // annotation error..
 		rules.add(new Rule(Pattern.compile("(\\. \\.)") ,"."));
 		return rules;
@@ -20,7 +20,7 @@ public class GermanRuleProvider extends RuleProvider {
 
 	@Override
 	public Collection<Rule> getUnTokRules() {
-		List<Rule> rules = new LinkedList<Rule>();
+		List<Rule> rules = new LinkedList<>();
 		rules.add(new Rule(Pattern.compile("(ð)") ,"")); // annotation error..
 		rules.add(new Rule(Pattern.compile("(>)") ,"")); // annotation error..
 		return rules;

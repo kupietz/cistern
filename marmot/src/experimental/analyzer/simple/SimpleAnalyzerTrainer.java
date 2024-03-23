@@ -65,14 +65,14 @@ public class SimpleAnalyzerTrainer extends AnalyzerTrainer {
 		}
 		
 		if (options_.containsKey(PAIR_CONSTRAINT_THRESHOLD)) {
-			pair_constraint_threshold_ = Double.valueOf(options_.get(PAIR_CONSTRAINT_THRESHOLD));
+			pair_constraint_threshold_ = Double.parseDouble(options_.get(PAIR_CONSTRAINT_THRESHOLD));
 		}
 		
 		System.err.format("Modes: %s / %s\n", tag_mode_, train_mode_);
 
 		penalty_ = 1.0;
 		if (options_.containsKey(PENALTY)) {
-			penalty_ = Double.valueOf(options_.get(PENALTY));
+			penalty_ = Double.parseDouble(options_.get(PENALTY));
 		}
 		System.err.format("Penalty: %g\n", penalty_);
 
@@ -145,7 +145,7 @@ public class SimpleAnalyzerTrainer extends AnalyzerTrainer {
 			AnalyzerTag tag = entry.getKey();
 			Map<AnalyzerTag, Mutable<Double>> map = entry.getValue();
 			
-			map.put(tag, new Mutable<Double>(1.0));
+			map.put(tag, new Mutable<>(1.0));
 			
 			double sum = 0.0;
 			for (Mutable<Double> count : map.values()) {
@@ -168,14 +168,10 @@ public class SimpleAnalyzerTrainer extends AnalyzerTrainer {
 		double prob = tag_tag_count / tag_count;
 
 		if (prob > pair_constraint_threshold_) {
-			Map<AnalyzerTag, Mutable<Double>> map = relative_counts.get(tag);
-			if (map == null) {
-				map = new HashMap<>();
-				relative_counts.put(tag, map);
-			}
+            Map<AnalyzerTag, Mutable<Double>> map = relative_counts.computeIfAbsent(tag, k -> new HashMap<>());
 
-			assert !map.containsKey(other_tag);
-			map.put(other_tag, new Mutable<Double>(prob));
+            assert !map.containsKey(other_tag);
+			map.put(other_tag, new Mutable<>(prob));
 		}
 	}
 
@@ -231,11 +227,10 @@ public class SimpleAnalyzerTrainer extends AnalyzerTrainer {
 
 			}
 
-		} catch (IllegalArgumentException e) {
-		} catch (OptimizationException e) {
+		} catch (IllegalArgumentException | OptimizationException e) {
 		}
 
-	}
+    }
 
 	private static class TagStats {
 

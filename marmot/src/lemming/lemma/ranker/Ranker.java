@@ -58,13 +58,7 @@ public class Ranker implements LemmatizerGenerator {
 			
 			List<Double> scores = model_.scores(rinstance);
 			
-			Collections.sort(scores, new Comparator<Double>() {
-
-				@Override
-				public int compare(Double o1, Double o2) {
-					return - Double.compare(o1, o2);
-				}
-			});
+			scores.sort((o1, o2) -> -Double.compare(o1, o2));
 			
 			double lowest_score = scores.get(num_candidates_ - 1);
 			

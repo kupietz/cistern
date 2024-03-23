@@ -51,8 +51,8 @@ public class Trie implements Serializable {
 
 	public Trie(Set<String> no_signature, boolean verbose) {
 		entropy_ = null;
-		words_ = new ArrayList<String>();
-		tags_ = new ArrayList<List<List<Integer>>>();
+		words_ = new ArrayList<>();
+		tags_ = new ArrayList<>();
 		child_index_ = -1;
 		parent_ = null;
 		no_signature_ = no_signature;
@@ -68,11 +68,11 @@ public class Trie implements Serializable {
 		children_ = null;
 		List<Feature> features = getFeatures(vocab);
 		int num_leaves = 1;
-		PriorityQueue<Split> splits = new PriorityQueue<Split>();
+		PriorityQueue<Split> splits = new PriorityQueue<>();
 		feature_map_ = new boolean[features.size()];
 		Arrays.fill(feature_map_, true);
 
-		List<Trie> tries = new LinkedList<Trie>();
+		List<Trie> tries = new LinkedList<>();
 		tries.add(this);
 
 		while (num_leaves < limit && !tries.isEmpty()) {
@@ -117,7 +117,7 @@ public class Trie implements Serializable {
 			num_leaves += 1;
 		}
 
-		List<Trie> leaves = new LinkedList<Trie>();
+		List<Trie> leaves = new LinkedList<>();
 		this.getLeafes(leaves);
 
 		int words = 0;
@@ -129,7 +129,7 @@ public class Trie implements Serializable {
 	}
 
 	private List<Feature> getFeatures(Set<String> vocab) {
-		List<Feature> features = new ArrayList<Feature>();
+		List<Feature> features = new ArrayList<>();
 
 		features.add(new Feature() {
 			private static final long serialVersionUID = 1L;
@@ -236,7 +236,7 @@ public class Trie implements Serializable {
 
 		}
 
-		Counter<Character> alphabet = new Counter<Character>();
+		Counter<Character> alphabet = new Counter<>();
 		for (String word : words_) {
 			for (int index = 0; index < word.length(); index++) {
 				char c = Character.toLowerCase(word.charAt(index));
@@ -338,7 +338,7 @@ public class Trie implements Serializable {
 			}
 		}
 
-		final Set<String> known_lowercase_words = new HashSet<String>();
+		final Set<String> known_lowercase_words = new HashSet<>();
 		for (String word : vocab) {
 			if (word.toLowerCase().equals(word)) {
 				known_lowercase_words.add(word);
@@ -386,7 +386,7 @@ public class Trie implements Serializable {
 
 				double entropy = 0.;
 
-				Counter<Integer> counter = new Counter<Integer>();
+				Counter<Integer> counter = new Counter<>();
 
 				assert !tags_.get(k).isEmpty();
 
@@ -503,7 +503,7 @@ public class Trie implements Serializable {
 	}
 	
 	public static Trie train(String trainfile, boolean verbose, int num_folds, int K) {
-		List<Sequence> sentences = new LinkedList<Sequence>();
+		List<Sequence> sentences = new LinkedList<>();
 		for (Sequence sentence : new SentenceReader(trainfile)) {
 			sentences.add(sentence);
 		}
@@ -522,11 +522,11 @@ public class Trie implements Serializable {
 			throw new RuntimeException("Training set is to small: |sentences| = " + sentences.size() + " num folds =" + num_folds);
 		}
 		
-		Set<String> known = new HashSet<String>();
-		Map<String, List<List<Integer>>> map = new HashMap<String, List<List<Integer>>>();
+		Set<String> known = new HashSet<>();
+		Map<String, List<List<Integer>>> map = new HashMap<>();
 
-		SymbolTable<String> tags = new SymbolTable<String>();
-		Set<String> vocab = new HashSet<String>();
+		SymbolTable<String> tags = new SymbolTable<>();
+		Set<String> vocab = new HashSet<>();
 		for (Sequence sentence : sentences) {
 			for (Token token : sentence) {
 				Word word = (Word) token;
@@ -569,10 +569,10 @@ public class Trie implements Serializable {
 					List<List<Integer>> tag_list = map.get(form);
 
 					if (tag_list == null) {
-						tag_list = new LinkedList<List<Integer>>();
+						tag_list = new LinkedList<>();
 						map.put(form, tag_list);
 						for (int k = 0; k < K; k++) {
-							tag_list.add(new LinkedList<Integer>());
+							tag_list.add(new LinkedList<>());
 						}
 					}
 

@@ -24,7 +24,7 @@ public class WikiReaderTest {
 		List<String> content_;
 
 		FakeReader() {
-			content_ = new ArrayList<String>();
+			content_ = new ArrayList<>();
 		}
 
 		@Override

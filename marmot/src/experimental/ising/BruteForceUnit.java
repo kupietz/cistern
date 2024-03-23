@@ -1,7 +1,6 @@
 package experimental.ising;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
@@ -27,13 +26,13 @@ public class BruteForceUnit {
 	public static boolean test(int numVariables) {
 		Random rand = new Random();
 
-		List<String> tagNames = new LinkedList<String>();
+		List<String> tagNames = new LinkedList<>();
 		for (int i = 0; i < numVariables; ++i) {
 			tagNames.add("");
 		}
 		
 		// adjust tree as seen fit
-		List<Pair<Integer,Integer>> pairs = new LinkedList<Pair<Integer,Integer>>();
+		List<Pair<Integer,Integer>> pairs = new LinkedList<>();
 		pairs.add(new Pair<>(0,1));
 		pairs.add(new Pair<>(1,2));
 		pairs.add(new Pair<>(0,2));
@@ -45,7 +44,7 @@ public class BruteForceUnit {
 
 
 		// golden
-		List<Integer> golden = new ArrayList<Integer>();
+		List<Integer> golden = new ArrayList<>();
 		/*
 		for (int i = 0; i < numVariables; ++i) {
 			if (rand.nextBoolean()) {

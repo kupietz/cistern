@@ -73,7 +73,7 @@ public class Viewer {
 			prev = b;
 		}
 		
-		List<String> ret = new LinkedList<String>();
+		List<String> ret = new LinkedList<>();
 		ret.add(tokenized);
 		ret.add(untokenized);
 		

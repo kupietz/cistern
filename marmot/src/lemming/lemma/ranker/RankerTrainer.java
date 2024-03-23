@@ -314,11 +314,10 @@ public class RankerTrainer implements LemmatizerGeneratorTrainer {
 				logger.info(String.format("Iteration: %3d / %3d", i + 1, 200));
 			}
 
-		} catch (IllegalArgumentException e) {
-		} catch (OptimizationException e) {
+		} catch (IllegalArgumentException | OptimizationException e) {
 		}
 
-		logger.info("Finished optimization");
+        logger.info("Finished optimization");
 	}
 
 	private void runPerceptron(RankerModel model, List<RankerInstance> instances) {

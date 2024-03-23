@@ -14,23 +14,21 @@ public class CollectableSet implements Collectable {
 	private Set<Object> set_;
 	
 	public CollectableSet(Set<?> set) {
-		set_ = new HashSet<Object>(set);
+		set_ = new HashSet<>(set);
 	}
 	
 	public CollectableSet(Object object) {
-		set_ = new HashSet<Object>();
+		set_ = new HashSet<>();
 		set_.add(object);
 	}
 	
 	@Override
 	public void add(Collectable other) {
-		if (! (other instanceof CollectableSet)) {
+		if (! (other instanceof CollectableSet other_set)) {
 			throw new InvalidParameterException();
 		}
-		
-		CollectableSet other_set = (CollectableSet) other;
-		
-		set_.addAll(other_set.set_);
+
+        set_.addAll(other_set.set_);
 	}
 	
 	public Set<Object> getValue() {

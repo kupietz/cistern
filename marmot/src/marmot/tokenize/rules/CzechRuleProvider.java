@@ -11,7 +11,7 @@ public class CzechRuleProvider extends RuleProvider {
 
 	@Override
 	public Collection<Rule> getTokRules() {
-		List<Rule> rules = new LinkedList<Rule>();	
+		List<Rule> rules = new LinkedList<>();
 		addSimpleRule("&quot;", "\"", rules);
 		addSimpleRule("&apos;", "'", rules);
 		//addSimpleRule(" &#8206;", "", rules);
@@ -22,7 +22,7 @@ public class CzechRuleProvider extends RuleProvider {
 
 	@Override
 	public Collection<Rule> getUnTokRules() {
-		List<Rule> rules = new LinkedList<Rule>();
+		List<Rule> rules = new LinkedList<>();
 
 		return rules;
 	}

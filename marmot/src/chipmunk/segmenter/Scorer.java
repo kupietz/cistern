@@ -50,30 +50,24 @@ public class Scorer {
 	private Set<Boundary> getBrackets(SegmentationReading reading, int length) {
 		Set<Boundary> brackets = new HashSet<>();
 		int start = 0;
-		Iterator<String> segment_iterator = reading.getSegments().iterator();
-		while (segment_iterator.hasNext()) {
-			String segment = segment_iterator.next();
-			
-			int end = start + segment.length();
-			
-			if (end < length)
-				brackets.add(new Boundary(end));
-			
-			start = end;
-		}
+        for (String segment : reading.getSegments()) {
+            int end = start + segment.length();
+
+            if (end < length)
+                brackets.add(new Boundary(end));
+
+            start = end;
+        }
 		return brackets;
 	}
 	
 	private static Set<Boundary> getBoundary(SegmentationResult candidate, int length) {
 		Set<Boundary> brackets = new HashSet<>();
-		Iterator<Integer> index_iterator = candidate.getInputIndexes().iterator();
-		while (index_iterator.hasNext()) {
-			
-			int end = index_iterator.next();
-			
-			if (end < length)
-				brackets.add(new Boundary(end));
-		}
+        for (int end : candidate.getInputIndexes()) {
+
+            if (end < length)
+                brackets.add(new Boundary(end));
+        }
 		return brackets;
 	}
 	

@@ -27,7 +27,7 @@ public class CompoundSplitter implements Serializable, Splitter {
 	private static final long serialVersionUID = 1L;
 
 	public CompoundSplitter(boolean normalize) {
-		trie_ = new Trie<CollectableDouble>();
+		trie_ = new Trie<>();
 		normalize_ = normalize;
 	}
 	

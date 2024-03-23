@@ -47,9 +47,9 @@ public class ViterbiDecoder implements Serializable {
 	}
 
 	private void readSymbols(String probsfile) {
-		tag_ids_ = new HashMap<String, Integer>();
-		List<String> tag_names = new LinkedList<String>();
-		morph_ids_ = new HashMap<String, Integer>();
+		tag_ids_ = new HashMap<>();
+		List<String> tag_names = new LinkedList<>();
+		morph_ids_ = new HashMap<>();
 
 		try {
 			BufferedReader reader = FileUtils.openFile(probsfile);
@@ -203,7 +203,7 @@ public class ViterbiDecoder implements Serializable {
 		String[][][] psi_asterisk = new String[word.length() + 1][word.length() + 1][tag_ids_
 				.size()];
 
-		List<String> morphs = new ArrayList<String>();
+		List<String> morphs = new ArrayList<>();
 
 		for (int position = 1; position <= word.length(); position++) {
 			for (int length = 1; length <= position; length++) {
@@ -350,7 +350,7 @@ public class ViterbiDecoder implements Serializable {
 					+ Morpheme.NON_MORPHEME));
 		}
 
-		List<Morpheme> morpheme_list = new LinkedList<Morpheme>();
+		List<Morpheme> morpheme_list = new LinkedList<>();
 
 		// Trace back
 

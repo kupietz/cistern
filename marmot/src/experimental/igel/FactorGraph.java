@@ -19,9 +19,9 @@ public class FactorGraph {
 		
 		this.numVariables = 0;
 		
-		variables = new ArrayList<SegmentVariable>();
-		unaryFactors = new ArrayList<UnaryFactor>();
-		binaryFactors = new ArrayList<BinaryFactor>();
+		variables = new ArrayList<>();
+		unaryFactors = new ArrayList<>();
+		binaryFactors = new ArrayList<>();
 		
 		// create the factor graph
 		for (Pair<Integer,Integer> key : word.getPos2String().keySet()){

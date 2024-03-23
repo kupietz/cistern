@@ -23,14 +23,14 @@ public class CharEncoder implements Serializable {
 
 	public CharEncoder(Map<Character, Character> encode_map) {
 		encode_map_ = encode_map;
-		decode_map_ = new HashMap<Character, Character>();
+		decode_map_ = new HashMap<>();
 		for (Map.Entry<Character, Character> entry : encode_map.entrySet()) {
 			decode_map_.put(entry.getValue(), entry.getKey());
 		}
 	}
 	
 	public static CharEncoder loadFromFile(String filename) {
-				Map<Character, Character> encode_map = new HashMap<Character, Character>();
+				Map<Character, Character> encode_map = new HashMap<>();
 				try {
 					BufferedReader reader = FileUtils.openFile(filename);
 		
@@ -69,7 +69,7 @@ public class CharEncoder implements Serializable {
 
 		assert length == current;
 
-		Counter<Character> counter = new Counter<Character>();
+		Counter<Character> counter = new Counter<>();
 		for (Entry<String, Double> entry : vocab.entrySet()) {
 			for (int index = 0; index < entry.getKey().length(); index++) {
 				counter.increment(entry.getKey().charAt(index),

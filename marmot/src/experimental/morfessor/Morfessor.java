@@ -50,7 +50,7 @@ public class Morfessor implements Serializable, Splitter {
 	}
 
 	public List<String> split(String word, int length_limit) {
-		List<String> list = new LinkedList<String>();
+		List<String> list = new LinkedList<>();
 
 		for (String token : Vocab.tokenize(word)) {
 			if (Vocab.isSpecial(token)) {

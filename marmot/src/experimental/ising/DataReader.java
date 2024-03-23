@@ -29,15 +29,15 @@ public class DataReader {
 	
 	public DataReader() {
 		this.numVariables = 0;
-		this.tag2Integer = new HashMap<String,Integer>();
-		this.integer2Tag = new HashMap<Integer,String>();
+		this.tag2Integer = new HashMap<>();
+		this.integer2Tag = new HashMap<>();
 		
-		this.word2Tags = new HashMap<String,Set<String>>();
-		this.word2LemmaTag = new HashMap<String,Set<Pair<String,String>>>();
+		this.word2Tags = new HashMap<>();
+		this.word2LemmaTag = new HashMap<>();
 
-		this.data = new ArrayList<Datum>();
-		this.pairs = new HashSet<Pair<Integer, Integer>>();
-		this.tagNames = new ArrayList<String>();
+		this.data = new ArrayList<>();
+		this.pairs = new HashSet<>();
+		this.tagNames = new ArrayList<>();
 		
 	}
 }

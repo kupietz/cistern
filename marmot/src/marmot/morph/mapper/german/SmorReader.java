@@ -49,8 +49,8 @@ public class SmorReader {
 		int candidates = 0;
 		int covered = 0;
 
-		Counter<String> candidate_counter = new Counter<String>();
-		Counter<String> total_counter = new Counter<String>();
+		Counter<String> candidate_counter = new Counter<>();
+		Counter<String> total_counter = new Counter<>();
 
 		while (iterator.hasNext()) {
 			SyntaxTree tree = iterator.next();
@@ -162,7 +162,7 @@ public class SmorReader {
 
 	private static Set<SttsTag> mergeSets(Set<SttsTag> pos_set,
 			Set<SttsTag> form_set) {
-		Set<SttsTag> set = new HashSet<SttsTag>();
+		Set<SttsTag> set = new HashSet<>();
 
 		for (SttsTag tag : pos_set) {
 
@@ -195,7 +195,7 @@ public class SmorReader {
 	}
 
 	private Map<String, Set<SttsTag>> readPosFile(String string) {
-		Map<String, Set<SttsTag>> map = new HashMap<String, Set<SttsTag>>();
+		Map<String, Set<SttsTag>> map = new HashMap<>();
 
 		SyntaxTreeIterator iterator = new SyntaxTreeIterator(string, 1, 2, 4,
 				6, 8, 10, false);
@@ -205,14 +205,9 @@ public class SmorReader {
 
 			for (Node node : tree.getNodes()) {
 
-				Set<SttsTag> set = map.get(node.getPos());
+                Set<SttsTag> set = map.computeIfAbsent(node.getPos(), k -> new HashSet<>());
 
-				if (set == null) {
-					set = new HashSet<SttsTag>();
-					map.put(node.getPos(), set);
-				}
-
-				set.add(parseSeekerTag(node.getFeats()));
+                set.add(parseSeekerTag(node.getFeats()));
 
 			}
 
@@ -314,7 +309,7 @@ public class SmorReader {
 	}
 
 	public Map<String, Set<SttsTag>> readFile(String filename) {
-		Map<String, Set<SttsTag>> dict = new HashMap<String, Set<SttsTag>>();
+		Map<String, Set<SttsTag>> dict = new HashMap<>();
 
 		LineIterator iterator = new LineIterator(filename);
 
@@ -325,13 +320,9 @@ public class SmorReader {
 
 				String form = line.get(0);
 
-				Set<SttsTag> readings = dict.get(form);
-				if (readings == null) {
-					readings = new HashSet<SttsTag>();
-					dict.put(form, readings);
-				}
+                Set<SttsTag> readings = dict.computeIfAbsent(form, k -> new HashSet<>());
 
-				SttsTag tag = parseMorphTagString(line.get(2), line.get(3));
+                SttsTag tag = parseMorphTagString(line.get(2), line.get(3));
 				readings.add(tag);
 
 			}

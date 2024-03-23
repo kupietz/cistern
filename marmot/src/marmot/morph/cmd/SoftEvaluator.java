@@ -32,7 +32,7 @@ public class SoftEvaluator {
 		}
 
 		protected Map<String, Double> toVector(String pos, String morph) {
-			Map<String, Double> map = new HashMap<String, Double>();
+			Map<String, Double> map = new HashMap<>();
 
 			map.put(pos, 1.0);
 			if (morph != null && !morph.equals("_")) {
@@ -66,7 +66,7 @@ public class SoftEvaluator {
 		}
 		
 		private double fscore(Set<String> set, Set<String> set2) {
-			Set<String> intersection = new HashSet<String>(set);
+			Set<String> intersection = new HashSet<>(set);
 			intersection.retainAll(set2);
 			
 			
@@ -94,10 +94,10 @@ public class SoftEvaluator {
 		}
 		
 		private double jaccard(Set<String> set, Set<String> set2) {
-			Set<String> intersection = new HashSet<String>(set);
+			Set<String> intersection = new HashSet<>(set);
 			intersection.retainAll(set2);
 			
-			Set<String> union = new HashSet<String>(set);
+			Set<String> union = new HashSet<>(set);
 			union.addAll(set2);
 			
 			double score = intersection.size() / (double) union.size();
@@ -110,7 +110,7 @@ public class SoftEvaluator {
 		}
 
 		private Set<String> toSet(String pos, String morph) {
-			Set<String> set = new HashSet<String>();
+			Set<String> set = new HashSet<>();
 
 			set.add("POS=" + pos);
 			if (morph != null && !morph.equals("_")) {

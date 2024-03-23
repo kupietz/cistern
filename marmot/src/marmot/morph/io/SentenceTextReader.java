@@ -25,44 +25,44 @@ public class SentenceTextReader implements Iterable<Sequence> {
 		
 		final LineIterator iterator = new LineIterator(filename_);
 		
-		return new Iterator<Sequence>() {
+		return new Iterator<>() {
 
-			@Override
-			public boolean hasNext() {
-				return iterator.hasNext();
-			}
+            @Override
+            public boolean hasNext() {
+                return iterator.hasNext();
+            }
 
-			@Override
-			public Sequence next() {
-				List<Word> tokens = new LinkedList<Word>();
-							
-				while (iterator.hasNext()) {
-					
-					List<String> fields = iterator.next();
-					
-					if (fields.isEmpty()) {					
-						if (!tokens.isEmpty()) {
-							break;
-						}
-					} else {
-						
-						for (String field : fields) {
-							Word word = new Word(field);
-							tokens.add(word);
-						}
-						
-					}
-					
-				}
-								
-				return new Sentence(tokens);
-			}
+            @Override
+            public Sequence next() {
+                List<Word> tokens = new LinkedList<>();
 
-			@Override
-			public void remove() {
-				throw new UnsupportedOperationException();
-			}
-		};
+                while (iterator.hasNext()) {
+
+                    List<String> fields = iterator.next();
+
+                    if (fields.isEmpty()) {
+                        if (!tokens.isEmpty()) {
+                            break;
+                        }
+                    } else {
+
+                        for (String field : fields) {
+                            Word word = new Word(field);
+                            tokens.add(word);
+                        }
+
+                    }
+
+                }
+
+                return new Sentence(tokens);
+            }
+
+            @Override
+            public void remove() {
+                throw new UnsupportedOperationException();
+            }
+        };
 	}
 
 }

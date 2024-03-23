@@ -53,7 +53,7 @@ public class RuleBasedTokenizerTest {
 	public void testTokenizer(){		
 		try {
 			String untok_1 = examples_.readLine();
-			List<String> result_1 = new ArrayList<String>();
+			List<String> result_1 = new ArrayList<>();
 			for(String token : examples_.readLine().split(" ")) {
 				result_1.add(token);
 			}
@@ -61,7 +61,7 @@ public class RuleBasedTokenizerTest {
 			assertEquals(prediction_1, result_1);
 			
 			String untok_2 = examples_.readLine();
-			List<String> result_2 = new ArrayList<String>();
+			List<String> result_2 = new ArrayList<>();
 			for(String token : examples_.readLine().split(" ")) {
 				result_2.add(token);
 			}
@@ -69,7 +69,7 @@ public class RuleBasedTokenizerTest {
 			assertEquals(prediction_2, result_2);
 			
 			String untok_3 = examples_.readLine();
-			List<String> result_3 = new ArrayList<String>();
+			List<String> result_3 = new ArrayList<>();
 			for(String token : examples_.readLine().split(" ")) {
 				result_3.add(token);
 			}
@@ -77,7 +77,7 @@ public class RuleBasedTokenizerTest {
 			assertEquals(prediction_3, result_3);
 			
 			String untok_4 = examples_.readLine();
-			List<String> result_4 = new ArrayList<String>();
+			List<String> result_4 = new ArrayList<>();
 			for(String token : examples_.readLine().split(" ")) {
 				result_4.add(token);
 			}
@@ -85,8 +85,6 @@ public class RuleBasedTokenizerTest {
 			assertEquals(prediction_4, result_4);
 			
 			examples_.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

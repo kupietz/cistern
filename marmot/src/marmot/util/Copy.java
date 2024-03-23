@@ -28,11 +28,9 @@ public class Copy {
 		try {
 			ObjectInputStream ois = new ObjectInputStream(bais);
 			return (T) ois.readObject();
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		} catch (ClassNotFoundException e) {
+		} catch (IOException | ClassNotFoundException e) {
 			throw new RuntimeException(e);
 		}
-	}
+    }
 
 }

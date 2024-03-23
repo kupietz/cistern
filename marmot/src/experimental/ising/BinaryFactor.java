@@ -27,7 +27,7 @@ public class BinaryFactor extends Factor {
 		this.setPotential(new double[this.size1][this.size2]);
 		this.setFactorBelief(new double[this.size1][this.size2]);
 		
-		this.setFeatures(new LinkedList<Integer>());
+		this.setFeatures(new LinkedList<>());
 		
 		for (int n = 0; n < this.size1; ++n) {
 			for (int m = 0; m < this.size2; ++m) {
@@ -39,10 +39,10 @@ public class BinaryFactor extends Factor {
 		this.setI(i);
 		this.setJ(j);
 		
-		this.setNeighbors(new ArrayList<Variable>());
+		this.setNeighbors(new ArrayList<>());
 		
-		this.setMessageIds(new ArrayList<Integer>());
-		this.setMessages(new ArrayList<Message>());
+		this.setMessageIds(new ArrayList<>());
+		this.setMessages(new ArrayList<>());
 		
 		
 		for (int one = 0; one < this.size1; ++one) {

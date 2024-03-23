@@ -11,7 +11,7 @@ public class BufferedIterable<T> implements Iterable<T> {
 	List<T> buffer_;
 	
 	public BufferedIterable(Iterable<T> iterable) {
-		buffer_ = new LinkedList<T>();
+		buffer_ = new LinkedList<>();
 		for (T item : iterable) {
 			buffer_.add(item);
 		}

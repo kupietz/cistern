@@ -14,12 +14,12 @@ import marmot.util.LineIterator;
 
 public class Mapping {
 
-	Map<String, Map<String, Set<PdtMorphTag>>> map_ = new HashMap<String, Map<String, Set<PdtMorphTag>>>();
+	Map<String, Map<String, Set<PdtMorphTag>>> map_ = new HashMap<>();
 	
 	public void init_fst_map(String filename) {
 		LineIterator iterator = new LineIterator(filename);
 		
-		map_ = new HashMap<String, Map<String, Set<PdtMorphTag>>>();
+		map_ = new HashMap<>();
 		
 		while (iterator.hasNext()) {
 			
@@ -28,25 +28,15 @@ public class Mapping {
 			if (!line.isEmpty()) {
 				
 					String form = line.get(0);
-					
-					Map<String, Set<PdtMorphTag>> lemmas = map_.get(form);
-					
-					if (lemmas == null) {
-						lemmas = new HashMap<String, Set<PdtMorphTag>>();
-						map_.put(form, lemmas);
-					}
-				
-					String lemma = line.get(1);
-					
-					Set<PdtMorphTag> tags = lemmas.get(lemma);
-					
-					if (tags == null) {
-						tags = new HashSet<PdtMorphTag>();
-						lemmas.put(lemma, tags);
-					}
-					
-					
-					String tag = line.get(2);
+
+                Map<String, Set<PdtMorphTag>> lemmas = map_.computeIfAbsent(form, k -> new HashMap<>());
+
+                String lemma = line.get(1);
+
+                Set<PdtMorphTag> tags = lemmas.computeIfAbsent(lemma, k -> new HashSet<>());
+
+
+                String tag = line.get(2);
 					String feat = line.get(3);
 					
 					PdtMorphTagReader reader = new PdtMorphTagReader();
@@ -135,7 +125,7 @@ public class Mapping {
 			return set;
 		}
 		
-		set = new HashSet<PdtMorphTag>();
+		set = new HashSet<>();
 		
 		for (Set<PdtMorphTag> current_set : map.values()) {
 			set.addAll(current_set);

@@ -157,28 +157,16 @@ public class LdtMorphTag implements MorphTag {
 			char c = string.charAt(index);
 
 			
-			String c_string;
-			
-			
-			switch (c) {
-				case '-':
-					c_string = "Undef";
-					break;
-				case '1':
-					c_string = "first";
-					break;
-				case '2':
-					c_string = "second";
-					break;
-				case '3':
-					c_string = "third";
-					break;
-				default:
-					c_string = Character.toString(c);
-					break;
-			}
-			
-			switch (index) {
+			String c_string = switch (c) {
+                case '-' -> "Undef";
+                case '1' -> "first";
+                case '2' -> "second";
+                case '3' -> "third";
+                default -> Character.toString(c);
+            };
+
+
+            switch (index) {
 			case PosIndex:
 				tag.pos_ = Pos.valueOf(c_string);
 				break;
@@ -216,19 +204,15 @@ public class LdtMorphTag implements MorphTag {
 	}
 
 	private String convertHuman(int position, String string) {
-		
-		switch (string) {
-		case "first":
-			return "1";
-		case "second":
-			return "2";
-		case "third":
-			return "3";
-		}
-		
-		return string;
 
-//		switch (string) {
+        return switch (string) {
+            case "first" -> "1";
+            case "second" -> "2";
+            case "third" -> "3";
+            default -> string;
+        };
+
+        //		switch (string) {
 //		case "-":
 //			return "-";
 //		case "n":

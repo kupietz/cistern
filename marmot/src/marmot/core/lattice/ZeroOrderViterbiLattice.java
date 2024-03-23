@@ -37,7 +37,7 @@ public class ZeroOrderViterbiLattice implements ViterbiLattice {
 		initilized_ = true;
 
 		lattice_ = new LatticeEntry[candidates_.size()][];
-		PriorityQueue<LatticeEntry> queue = new PriorityQueue<LatticeEntry>();
+		PriorityQueue<LatticeEntry> queue = new PriorityQueue<>();
 
 		int index = 0;
 		for (List<State> states : candidates_) {
@@ -82,7 +82,7 @@ public class ZeroOrderViterbiLattice implements ViterbiLattice {
 
 	public Hypothesis getSequenceBySignature(HashableIntArray signature) {
 		init();
-		List<Integer> list = new LinkedList<Integer>();
+		List<Integer> list = new LinkedList<>();
 		double score = 0.;
 
 		int[] signature_array = signature.getArray();
@@ -134,12 +134,12 @@ public class ZeroOrderViterbiLattice implements ViterbiLattice {
 
 	public List<List<State>> prune() {
 		init();
-		List<List<State>> candidates = new ArrayList<List<State>>(
-				candidates_.size());
+		List<List<State>> candidates = new ArrayList<>(
+                candidates_.size());
 
 		for (int index = 0; index < candidates_.size(); index++) {
 
-			List<State> states = new ArrayList<State>(lattice_[index].length);
+			List<State> states = new ArrayList<>(lattice_[index].length);
 
 			for (int rank = 0; rank < lattice_[index].length; rank++) {
 				LatticeEntry entry = lattice_[index][rank];
@@ -157,11 +157,11 @@ public class ZeroOrderViterbiLattice implements ViterbiLattice {
 
 	public List<Hypothesis> getNbestSequences() {
 		init();
-		List<Hypothesis> list = new LinkedList<Hypothesis>();
+		List<Hypothesis> list = new LinkedList<>();
 
 		int[] signature_array = new int[candidates_.size()];
 		HashableIntArray signature = new HashableIntArray(signature_array);
-		PriorityQueue<Hypothesis> queue = new PriorityQueue<Hypothesis>();
+		PriorityQueue<Hypothesis> queue = new PriorityQueue<>();
 		Set<HashableIntArray> used_signatures = new HashSet<>();
 		queue.add(getSequenceBySignature(signature));
 		used_signatures.add(signature);

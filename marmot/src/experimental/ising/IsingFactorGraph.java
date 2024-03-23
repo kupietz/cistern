@@ -1,7 +1,6 @@
 package experimental.ising;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -25,9 +24,9 @@ public class IsingFactorGraph {
 	public IsingFactorGraph(String word, UnaryFeatureExtractor ufe, int inferenceIterations, int numVariables, List<Pair<Integer,Integer>> pairwise, List<Integer> golden, List<String> tagNames) {
 		this.numVariables = numVariables;
 		
-		this.variables = new ArrayList<Variable>();
-		this.unaryFactors = new ArrayList<UnaryFactor>();
-		this.binaryFactors = new ArrayList<BinaryFactor>();
+		this.variables = new ArrayList<>();
+		this.unaryFactors = new ArrayList<>();
+		this.binaryFactors = new ArrayList<>();
 		this.word = word;
 		this.ufe = ufe;
 		this.inferenceIterations = inferenceIterations;
@@ -108,7 +107,7 @@ public class IsingFactorGraph {
 			
 			 String format="%0"+this.numVariables+"d";
 			 String newString = String.format(format,Integer.valueOf(Integer.toBinaryString(i)));
-			 List<Integer> configuration = new ArrayList<Integer>();
+			 List<Integer> configuration = new ArrayList<>();
 			 for (int n = 0; n < this.numVariables; ++n) {
 				 configuration.add(Character.getNumericValue(newString.charAt(n)));
 			 }
@@ -241,7 +240,7 @@ public class IsingFactorGraph {
 	 */
 	public List<String> posteriorDecode() {
 		
-		List<String> tags = new LinkedList<String>();
+		List<String> tags = new LinkedList<>();
 		this.inference(this.inferenceIterations, 0.01);
 		
 		for (Variable v: this.variables) {

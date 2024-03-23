@@ -34,55 +34,55 @@ public class WikiSelector implements Iterable<Pair> {
 		
 		final WikiReader reader_ = new WikiReader(untokenized_file_, tokenized_file_, expand_);
 		
-		return new Iterator<Pair>() {
+		return new Iterator<>() {
 
-			Pair pair_ = null;
-			int num_selected_sentences_ = 0;
+            Pair pair_ = null;
+            int num_selected_sentences_ = 0;
 
-			
-			@Override
-			public boolean hasNext() {
-				return next_();
-			}
 
-			private boolean next_() {
-				if (pair_ != null) {
-					return true;
-				}
-				
-				if (num_sentences_ > 0 && num_selected_sentences_ >= num_sentences_) {
-					return false;
-				}
-				
-				Pair pair = reader_.next();
-				
-				int num_tokens = pair.tokenized.split("\\s+").length;
+            @Override
+            public boolean hasNext() {
+                return next_();
+            }
 
-				if (num_tokens > token_threshold_ && pair.score > score_threshold_) {
-					num_selected_sentences_ += 1;
-					pair_ = pair;
-					
-					return true;
-					
-				}
-			
-				return next_();
-			}
+            private boolean next_() {
+                if (pair_ != null) {
+                    return true;
+                }
 
-			@Override
-			public Pair next() {
-				next_();
-				Pair pair = pair_;
-				pair_ = null;
-				return pair;
-			}
+                if (num_sentences_ > 0 && num_selected_sentences_ >= num_sentences_) {
+                    return false;
+                }
 
-			@Override
-			public void remove() {
-				throw new UnsupportedOperationException();
-			}
-			
-		};
+                Pair pair = reader_.next();
+
+                int num_tokens = pair.tokenized.split("\\s+").length;
+
+                if (num_tokens > token_threshold_ && pair.score > score_threshold_) {
+                    num_selected_sentences_ += 1;
+                    pair_ = pair;
+
+                    return true;
+
+                }
+
+                return next_();
+            }
+
+            @Override
+            public Pair next() {
+                next_();
+                Pair pair = pair_;
+                pair_ = null;
+                return pair;
+            }
+
+            @Override
+            public void remove() {
+                throw new UnsupportedOperationException();
+            }
+
+        };
 			
 	}
 }

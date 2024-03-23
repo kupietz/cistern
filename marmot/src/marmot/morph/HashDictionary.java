@@ -31,7 +31,7 @@ public class HashDictionary extends MorphDictionary {
 
 		LineIterator iterator = new LineIterator(options.getFilename());
 
-		Map<String, Set<Integer>> map = new HashMap<String, Set<Integer>>();
+		Map<String, Set<Integer>> map = new HashMap<>();
 		int[] row_indexes = options.getIndexes();
 
 		SymbolTable<String> table = getTable();
@@ -44,14 +44,9 @@ public class HashDictionary extends MorphDictionary {
 
 				form = StringUtils.normalize(form, options.getNormalize());
 
-				Set<Integer> indexes = map.get(form);
+                Set<Integer> indexes = map.computeIfAbsent(form, k -> new HashSet<>());
 
-				if (indexes == null) {
-					indexes = new HashSet<Integer>();
-					map.put(form, indexes);
-				}
-
-				for (int row_index : row_indexes) {
+                for (int row_index : row_indexes) {
 					if (row_index > 0 && row_index < line.size()) {
 						String tag = line.get(row_index);
 						int index = table.toIndex(tag, true);
@@ -61,7 +56,7 @@ public class HashDictionary extends MorphDictionary {
 			}
 		}
 
-		index_map_ = new HashMap<String, int[]>();
+		index_map_ = new HashMap<>();
 
 		for (Map.Entry<String, Set<Integer>> entry : map.entrySet()) {
 			String form = entry.getKey();

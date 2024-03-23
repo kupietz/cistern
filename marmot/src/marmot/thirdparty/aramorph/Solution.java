@@ -42,8 +42,8 @@ public class Solution {
 		return features_;
 	}
 	
-	private final static List<String> prefix_features_ = new ArrayList<String>();
-	private final static List<String> suffix_features_ = new ArrayList<String>();
+	private final static List<String> prefix_features_ = new ArrayList<>();
+	private final static List<String> suffix_features_ = new ArrayList<>();
 	static {
 		prefix_features_.add("CONJ"); //TODO : approve
 		prefix_features_.add("EMPHATIC_PARTICLE"); //TODO : approve
@@ -173,9 +173,9 @@ public class Solution {
 	 */
 	
 	protected Solution(DictionaryEntry prefix, DictionaryEntry stem, DictionaryEntry suffix) {
-		LinkedList<String> prefixes = new LinkedList<String>(Arrays.asList(prefix.getPOS()));
-		LinkedList<String> stems = new LinkedList<String>(Arrays.asList(stem.getPOS()));
-		LinkedList<String> suffixes = new LinkedList<String>(Arrays.asList(suffix.getPOS()));
+		LinkedList<String> prefixes = new LinkedList<>(Arrays.asList(prefix.getPOS()));
+		LinkedList<String> stems = new LinkedList<>(Arrays.asList(stem.getPOS()));
+		LinkedList<String> suffixes = new LinkedList<>(Arrays.asList(suffix.getPOS()));
 		
 			
 		//Normalize stems since some of them can contain prefixes		
@@ -214,7 +214,7 @@ public class Solution {
 				break;
 		}
 		
-		features_ = new ArrayList<String>();
+		features_ = new ArrayList<>();
 		features_.addAll(prefixes);
 		if (stems.isEmpty()) {
 			features_.add("NOSTEM");
@@ -222,10 +222,8 @@ public class Solution {
 			features_.add(stems.getFirst());
 		}
 		features_.addAll(suffixes);
-		
-		for (int i=0; i<features_.size(); i++) {
-			features_.set(i, simplify(features_.get(i)));
-		}
+
+        features_.replaceAll(this::simplify);
 	}
 	
 	public String simplify(String string) {

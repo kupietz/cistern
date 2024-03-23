@@ -139,14 +139,10 @@ public class LemmaInstance {
 				number ++;
 				
 				LemmaInstance instance = LemmaInstance.getInstance((Word) token, use_postag, use_mtag);
-				
-				Mutable<Integer> mi = map.get(instance);
-				if (mi == null) {
-					mi = new Mutable<Integer>(0);
-					map.put(instance, mi);
-				}
-				
-				mi.set(mi.get() + 1);
+
+                Mutable<Integer> mi = map.computeIfAbsent(instance, k -> new Mutable<>(0));
+
+                mi.set(mi.get() + 1);
 			}
 			
 			if (limit >= 0 && number > limit)
@@ -154,7 +150,7 @@ public class LemmaInstance {
 			
 		}
 		
-		List<LemmaInstance> instances = new LinkedList<LemmaInstance>();
+		List<LemmaInstance> instances = new LinkedList<>();
 		for (Map.Entry<LemmaInstance, Mutable<Integer>> entry : map.entrySet()) {
 
 			LemmaInstance instance = entry.getKey();

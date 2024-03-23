@@ -19,7 +19,7 @@ public class Split implements Comparable<Split> {
 		trie_ = trie;
 		Feature feature = features.get(feature_index);
 
-		children_ = new ArrayList<Trie>(2);
+		children_ = new ArrayList<>(2);
 		children_.add(new Trie(trie, feature_index, 0));
 		children_.add(new Trie(trie, feature_index, 1));
 

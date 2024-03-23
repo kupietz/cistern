@@ -77,9 +77,8 @@ public class TreebankAnnotator {
 
 	public static void test(Analyzer analyzer, String test_file) {
 		TreebankAnalyzerResult.logResult(analyzer, test_file);
-		if (analyzer instanceof SimpleAnalyzer) {
-			SimpleAnalyzer sanalyzer = (SimpleAnalyzer) analyzer;
-			SimpleEvaluator evaluator = new SimpleEvaluator();
+		if (analyzer instanceof SimpleAnalyzer sanalyzer) {
+            SimpleEvaluator evaluator = new SimpleEvaluator();
 			evaluator.eval(sanalyzer, AnalyzerInstance.getTreebankInstances(test_file), Arrays.asList(1.0, 1.5, 2.0, 2.5, 5.0));
 		}
 	}

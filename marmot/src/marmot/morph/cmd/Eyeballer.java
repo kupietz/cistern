@@ -37,7 +37,7 @@ public class Eyeballer {
 			}
 			if (!command_line.equals("")) {
 				
-				List<Word> words = new LinkedList<Word>();
+				List<Word> words = new LinkedList<>();
 				
 				for (String form : command_line.split("\\s")) {
 					words.add(new Word(form));

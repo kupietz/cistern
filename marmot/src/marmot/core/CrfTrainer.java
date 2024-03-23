@@ -39,7 +39,7 @@ public class CrfTrainer implements Trainer {
 			}
 		}
 		
-		List<Sequence> sequences = new ArrayList<Sequence>(in_sequences);
+		List<Sequence> sequences = new ArrayList<>(in_sequences);
 
 		int fraction = Math.max(sequences.size() / 4, 1);
 		int smaller_fraction = Math.max(sequences.size() / 4000, 1);

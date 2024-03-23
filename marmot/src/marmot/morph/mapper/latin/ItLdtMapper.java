@@ -97,7 +97,7 @@ public class ItLdtMapper {
 	}
 
 	public Set<Pos> getPosCandidates(LdtMorphTag ldt_tag, ItMorphTag it_tag) {
-		Set<Pos> candidates = new HashSet<Pos>();
+		Set<Pos> candidates = new HashSet<>();
 
 		if (it_tag.case_number == CaseNumber.G) {
 			candidates.add(Pos.d);
@@ -327,9 +327,9 @@ public class ItLdtMapper {
 	public static void main(String[] args) throws IOException {
 		BufferedReader reader = FileUtils.openFile("/mount/projekte/sfb-732/d4/users/muellets/treebanks/latin/ldt-1.5/tagwords.txt");
 
-		Map<String, Set<String>> ldt_word_map = new HashMap<String, Set<String>>();
-		Map<String, Integer> ldt_tag_vocab = new HashMap<String, Integer>();
-		Map<String, Set<String>> ldt_morph_pos_map = new HashMap<String, Set<String>>();
+		Map<String, Set<String>> ldt_word_map = new HashMap<>();
+		Map<String, Integer> ldt_tag_vocab = new HashMap<>();
+		Map<String, Set<String>> ldt_morph_pos_map = new HashMap<>();
 
 		while (reader.ready()) {
 			String line = reader.readLine().trim();
@@ -340,19 +340,11 @@ public class ItLdtMapper {
 				String pos = tokens[2];
 				String morph = tokens[3];
 
-				Set<String> tags = ldt_morph_pos_map.get(morph);
-				if (tags == null) {
-					tags = new HashSet<String>();
-					ldt_morph_pos_map.put(morph, tags);
-				}
-				tags.add(pos);
+                Set<String> tags = ldt_morph_pos_map.computeIfAbsent(morph, k -> new HashSet<>());
+                tags.add(pos);
 
-				tags = ldt_word_map.get(morph);
-				if (tags == null) {
-					tags = new HashSet<String>();
-					ldt_word_map.put(morph, tags);
-				}
-				tags.add(form);
+                tags = ldt_word_map.computeIfAbsent(morph, k -> new HashSet<>());
+                tags.add(form);
 
 				Integer word_count = ldt_tag_vocab.get(morph);
 				if (word_count == null)
@@ -369,8 +361,8 @@ public class ItLdtMapper {
 
 		ItMorphTag.VERBOSE = false;
 
-		Map<String, Set<String>> it_word_map = new HashMap<String, Set<String>>();
-		Set<String> set = new HashSet<String>();
+		Map<String, Set<String>> it_word_map = new HashMap<>();
+		Set<String> set = new HashSet<>();
 
 		while (reader.ready()) {
 			String line = reader.readLine().trim();
@@ -389,12 +381,8 @@ public class ItLdtMapper {
 
 				String tag = ldt_tag.toString().substring(1);
 
-				Set<String> tags = it_word_map.get(form);
-				if (tags == null) {
-					tags = new HashSet<String>();
-					it_word_map.put(form, tags);
-				}
-				tags.add(tag + "#" + tokens[4]);
+                Set<String> tags = it_word_map.computeIfAbsent(form, k -> new HashSet<>());
+                tags.add(tag + "#" + tokens[4]);
 
 				set.add(tag);
 
@@ -406,7 +394,7 @@ public class ItLdtMapper {
 		int total = 0;
 		int unseen = 0;
 
-		Map<String, Integer> confusion_map = new HashMap<String, Integer>();
+		Map<String, Integer> confusion_map = new HashMap<>();
 
 		for (Map.Entry<String, Set<String>> entry : ldt_word_map.entrySet()) {
 			String tag = entry.getKey();
@@ -417,7 +405,7 @@ public class ItLdtMapper {
 
 			if (!set.contains(tag)) {
 
-				Set<String> tag_set = new HashSet<String>();
+				Set<String> tag_set = new HashSet<>();
 				for (String form : entry.getValue()) {
 					Set<String> tags = it_word_map.get(form);
 					if (tags != null) {

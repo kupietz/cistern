@@ -26,10 +26,10 @@ public class Variable {
 		this.setI(i);
 		this.setTagName(tagName);
 		
-		this.setNeighbors(new ArrayList<Factor>());
-		this.setMessageIds(new ArrayList<Integer>());
+		this.setNeighbors(new ArrayList<>());
+		this.setMessageIds(new ArrayList<>());
 		
-		this.setMessages(new ArrayList<Message>());
+		this.setMessages(new ArrayList<>());
 	}
 	
 	public void computeBelief() {

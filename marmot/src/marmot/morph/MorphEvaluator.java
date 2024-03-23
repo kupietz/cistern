@@ -71,10 +71,10 @@ public class MorphEvaluator implements Evaluator {
 
 		List<Integer> candidate_indexes = h.getStates();
 
-		List<int[]> expected_indexes = new ArrayList<int[]>();
-		for (int index = 0; index < sentence.size(); index++) {
-			expected_indexes.add(sentence.get(index).getTagIndexes());
-		}
+		List<int[]> expected_indexes = new ArrayList<>();
+        for (Token token : sentence) {
+            expected_indexes.add(token.getTagIndexes());
+        }
 
 		int rank = getRankOfSequence(tagger, sentence, lattice, candidates);
 
@@ -210,7 +210,7 @@ public class MorphEvaluator implements Evaluator {
 
 			Tagger tagger = Trainer.train(opts);
 			
-			List<Sequence> sentences = new LinkedList<Sequence>();
+			List<Sequence> sentences = new LinkedList<>();
 			for (Sequence sentence : new SentenceReader(opts.getTestFile())) {
 				sentences.add(sentence);
 			}

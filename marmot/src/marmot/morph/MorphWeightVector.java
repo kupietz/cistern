@@ -99,23 +99,16 @@ public class MorphWeightVector implements WeightVector, FloatWeights {
 			use_bigrams_ = false;
 
 			for (String feat : feature_template.toLowerCase().split(",")) {
-				if (feat.equals("form")) {
-					use_form_feature_ = true;
-				} else if (feat.equals("affix")) {
-					use_affix_features_ = true;
-				} else if (feat.equals("rare")) {
-					use_rare_feature_ = true;
-				} else if (feat.equals("context")) {
-					use_lexical_context_feature_ = true;
-				} else if (feat.equals("sig")) {
-					use_signature_features_ = true;
-				} else if (feat.equals("bigrams")) {
-					use_bigrams_ = true;
-				} else if (feat.equals("infix")) {
-					use_infix_features_ = true;
-				} else {
-					throw new RuntimeException("Unknown value: " + feat);
-				}
+                switch (feat) {
+                    case "form" -> use_form_feature_ = true;
+                    case "affix" -> use_affix_features_ = true;
+                    case "rare" -> use_rare_feature_ = true;
+                    case "context" -> use_lexical_context_feature_ = true;
+                    case "sig" -> use_signature_features_ = true;
+                    case "bigrams" -> use_bigrams_ = true;
+                    case "infix" -> use_infix_features_ = true;
+                    default -> throw new RuntimeException("Unknown value: " + feat);
+                }
 			}
 
 		}

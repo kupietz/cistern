@@ -20,54 +20,54 @@ public class RandomIterable<T> implements Iterable<T> {
 	
 	@Override
 	public Iterator<T> iterator() {
-		return new Iterator<T>() {
-			Iterator<T> iterator_ = iterable_.iterator();
-			T next_ = null;
-			boolean has_next_ = false;
-			
-			private boolean test() {
-				return rng_.nextDouble() <= prob_;
-			}
-			
-			private void SetNext() {
-				assert (!has_next_);
-				while (iterator_.hasNext()) {
-					T current = iterator_.next();
-					if (test()) {
-						next_ = current;
-						has_next_ = true;
-						return;
-					}
-				}
-				throw new NoSuchElementException();
-			}
-			
-			@Override
-			public boolean hasNext() {
-				if (has_next_) {
-					return true;
-				}
-				try {
-					SetNext();
-				} catch (NoSuchElementException e) {
-					return false;
-				}
-				return true;
-			}
+		return new Iterator<>() {
+            Iterator<T> iterator_ = iterable_.iterator();
+            T next_ = null;
+            boolean has_next_ = false;
 
-			@Override
-			public T next() {
-				if (!has_next_) {
-					SetNext();
-				}
-				has_next_ = false;
-				return next_;
-			}
+            private boolean test() {
+                return rng_.nextDouble() <= prob_;
+            }
 
-			@Override
-			public void remove() {
-				throw new UnsupportedOperationException();
-			}
-		};
+            private void SetNext() {
+                assert (!has_next_);
+                while (iterator_.hasNext()) {
+                    T current = iterator_.next();
+                    if (test()) {
+                        next_ = current;
+                        has_next_ = true;
+                        return;
+                    }
+                }
+                throw new NoSuchElementException();
+            }
+
+            @Override
+            public boolean hasNext() {
+                if (has_next_) {
+                    return true;
+                }
+                try {
+                    SetNext();
+                } catch (NoSuchElementException e) {
+                    return false;
+                }
+                return true;
+            }
+
+            @Override
+            public T next() {
+                if (!has_next_) {
+                    SetNext();
+                }
+                has_next_ = false;
+                return next_;
+            }
+
+            @Override
+            public void remove() {
+                throw new UnsupportedOperationException();
+            }
+        };
 	}
 }

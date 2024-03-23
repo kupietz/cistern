@@ -19,7 +19,7 @@ import marmot.util.LineIterator;
 public class MsdReader {
 
 	public static Map<String, Counter<String>> getDict(String filename) {
-		Map<String, Counter<String>> map = new HashMap<String, Counter<String>>();
+		Map<String, Counter<String>> map = new HashMap<>();
 
 		LineIterator iterator = new LineIterator(filename);
 
@@ -32,14 +32,9 @@ public class MsdReader {
 				String msd_tag = line.get(2);
 				MsdTag tag = reader.parse(msd_tag);
 
-				Counter<String> counter = map.get(line.get(1));
+                Counter<String> counter = map.computeIfAbsent(line.get(1), k -> new Counter<>());
 
-				if (counter == null) {
-					counter = new Counter<String>();
-					map.put(line.get(1), counter);
-				}
-
-				counter.increment(tag.toHumanString(), 1.);
+                counter.increment(tag.toHumanString(), 1.);
 			}
 		}
 

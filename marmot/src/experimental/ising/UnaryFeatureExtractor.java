@@ -1,6 +1,5 @@
 package experimental.ising;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -28,10 +27,10 @@ public class UnaryFeatureExtractor extends FeatureExtractor {
 		this.setMaxPrefix(maxPrefix);
 		this.setMaxSuffix(maxSuffix);
 		
-		this.prefixFeatures = new HashMap<Pair<Integer,String>,Integer>();
-		this.suffixFeatures = new HashMap<Pair<Integer,String>,Integer>();
+		this.prefixFeatures = new HashMap<>();
+		this.suffixFeatures = new HashMap<>();
 		
-		this.int2Features = new HashMap<Integer,String>();
+		this.int2Features = new HashMap<>();
 
 		
 		setNumFeatures(0);
@@ -81,8 +80,8 @@ public class UnaryFeatureExtractor extends FeatureExtractor {
 	}
 	
 	public Pair<List<Integer>, List<Integer>> getFeatures(int variableId, String word) {
-		List<Integer> featuresPos = new LinkedList<Integer>();
-		List<Integer> featuresNeg = new LinkedList<Integer>();
+		List<Integer> featuresPos = new LinkedList<>();
+		List<Integer> featuresNeg = new LinkedList<>();
 		
 		for (int i = 0; i < this.maxPrefix; ++i) {
 			if (i <= word.length()) {

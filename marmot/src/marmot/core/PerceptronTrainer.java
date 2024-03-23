@@ -37,7 +37,7 @@ public class PerceptronTrainer implements Trainer {
 			}
 		}
 		
-		List<Sequence> sequences = new ArrayList<Sequence>(in_sequences);
+		List<Sequence> sequences = new ArrayList<>(in_sequences);
 
 		int fraction = Math.max(sequences.size() / 4, 1);
 		WeightVector weights = tagger.getWeightVector();

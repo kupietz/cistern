@@ -19,8 +19,8 @@ public class TwoPhaseSegmenter extends Segmenter {
 		
 		SegmentationReading reading = segmenter.segment(word);
 		
-		List<String> segments = new LinkedList<String>();
-		List<String> tags = new LinkedList<String>();
+		List<String> segments = new LinkedList<>();
+		List<String> tags = new LinkedList<>();
 		
 		Iterator<String> segment_it = reading.getSegments().iterator();
 		Iterator<String> tags_it = reading.getTags().iterator();

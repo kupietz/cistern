@@ -7,7 +7,6 @@ import lemming.lemma.BackupLemmatizerTrainer;
 import lemming.lemma.LemmaCandidateGenerator;
 import lemming.lemma.LemmaCandidateGeneratorTrainer;
 import lemming.lemma.LemmaInstance;
-import lemming.lemma.LemmaResult;
 import lemming.lemma.SimpleLemmatizerTrainer;
 import lemming.lemma.BackupLemmatizerTrainer.BackupLemmatizerTrainerOptions;
 import lemming.lemma.edit.EditTreeGeneratorTrainer;

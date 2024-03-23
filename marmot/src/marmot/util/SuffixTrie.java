@@ -20,8 +20,8 @@ public class SuffixTrie implements Serializable {
 
 	public SuffixTrie(Character c) {
 		c_ = c;
-		child_map_ = new TreeMap<Character, SuffixTrie>();
-		tag_map_ = new TreeMap<String, Integer>();
+		child_map_ = new TreeMap<>();
+		tag_map_ = new TreeMap<>();
 	}
 
 	public void add(String form, int limit, String tag) {
@@ -61,7 +61,7 @@ public class SuffixTrie implements Serializable {
 			return false;
 		}
 
-		Map<Character, SuffixTrie> new_child_map = new TreeMap<Character, SuffixTrie>();
+		Map<Character, SuffixTrie> new_child_map = new TreeMap<>();
 		for (SuffixTrie trie : child_map_.values()) {
 			if (!trie.prune(entropy_threshold, count_threshold)) {
 				new_child_map.put(trie.c_, trie);
@@ -123,7 +123,7 @@ public class SuffixTrie implements Serializable {
 	}
 	
 	public List<String> extractSuffixes() {
-		List<String> suffixes = new LinkedList<String>();
+		List<String> suffixes = new LinkedList<>();
 		extractSuffixes("", suffixes);
 		return suffixes;
 	}

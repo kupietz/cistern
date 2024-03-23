@@ -48,7 +48,7 @@ public class MorphDictionaryOptions implements Serializable {
 			options.setDefaultOptions();
 		}
 		
-		Mutable<Integer> index = new Mutable<Integer>(0);
+		Mutable<Integer> index = new Mutable<>(0);
 		
 		while (index.get() < option_string.length()) {
 			KeyType key = readKey(index, option_string);
@@ -98,7 +98,7 @@ public class MorphDictionaryOptions implements Serializable {
 
 	private static int readIntValue(Mutable<Integer> index, String option_string) {
 		String type = readStringValue(index, option_string);
-		return Integer.valueOf(type);
+		return Integer.parseInt(type);
 	}
 
 	private void setDefaultOptions() {
@@ -114,7 +114,7 @@ public class MorphDictionaryOptions implements Serializable {
 	private static boolean readBooleanValue(Mutable<Integer> index,
 			String option_string) {
 		String type = readStringValue(index, option_string);
-		return Boolean.valueOf(type);
+		return Boolean.parseBoolean(type);
 	}
 
 	private static int[] readArrayValue(Mutable<Integer> index,

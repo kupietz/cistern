@@ -70,14 +70,10 @@ public class EditTreeBuilderTrainerTest {
 
 			String p_output = tree.apply(input, 0, input.length());
 			assertEquals(output, p_output);
-			
-			List<LemmaInstance> list = map.get(tree);
-			if (list == null) {
-				list = new LinkedList<>();
-				map.put(tree, list);
-			}
-			
-			list.add(instance);
+
+            List<LemmaInstance> list = map.computeIfAbsent(tree, k -> new LinkedList<>());
+
+            list.add(instance);
 		}
 
 		applyTest(map, instances, false, 0.0);

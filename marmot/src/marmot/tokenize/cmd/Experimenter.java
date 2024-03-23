@@ -89,16 +89,16 @@ public class Experimenter {
 		
 		boolean expand = lang.equalsIgnoreCase("de") || lang.equalsIgnoreCase("es");
 		
-		List<Pair> pairs = new LinkedList<Pair>(); 
+		List<Pair> pairs = new LinkedList<>();
 		for (Pair pair : new WikiSelector(untok_file, tok_file,
 				expand, num_sentences)) {
 			pairs.add(pair);
 		}
 		Collections.shuffle(pairs, random);
 		
-		List<Pair> trnset = new LinkedList<Pair>();
-		List<Pair> devset = new LinkedList<Pair>();
-		List<Pair> tstset = new LinkedList<Pair>();
+		List<Pair> trnset = new LinkedList<>();
+		List<Pair> devset = new LinkedList<>();
+		List<Pair> tstset = new LinkedList<>();
 		
 		int index = 0;
 		for (Pair pair : pairs) {
@@ -184,7 +184,7 @@ public class Experimenter {
 			character_total +=	actual_string.length();
 
 			// Character Accuracy
-			GeneralLevenshteinLattice<String> glattice = new GeneralLevenshteinLattice<String>(actual_tokens, predicted_tokens);
+			GeneralLevenshteinLattice<String> glattice = new GeneralLevenshteinLattice<>(actual_tokens, predicted_tokens);
 			word_errors += glattice.getDistance();
 			word_total += actual_tokens.size();
 		}

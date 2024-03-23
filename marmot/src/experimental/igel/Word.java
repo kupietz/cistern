@@ -18,7 +18,7 @@ public class Word {
 	public Word(String word) {
 		this.word = word;
 		this.paddedWord = BOS + word + EOS;		
-		this.pos2String = new HashMap<Pair<Integer,Integer>,String>();
+		this.pos2String = new HashMap<>();
 		this.extractSubstrings();
 
 	}

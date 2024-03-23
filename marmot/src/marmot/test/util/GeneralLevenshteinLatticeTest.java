@@ -21,27 +21,27 @@ public class GeneralLevenshteinLatticeTest {
 		
 		input = Arrays.asList("A", "C", "B");
 		output = Arrays.asList("A", "D", "B");
-		lattice = new GeneralLevenshteinLattice<String>(input, output, 2, 2, 3);
+		lattice = new GeneralLevenshteinLattice<>(input, output, 2, 2, 3);
 		assertEquals(3, lattice.getDistance());
 		
 		input = Arrays.asList("A", "C", "B");
 		output = Arrays.asList("A", "D", "D", "B");
-		lattice = new GeneralLevenshteinLattice<String>(input, output, 2, 2, 3);
+		lattice = new GeneralLevenshteinLattice<>(input, output, 2, 2, 3);
 		assertEquals(5, lattice.getDistance());
 		
 		input = Arrays.asList("A", "C", "B");
 		output = Arrays.asList("A","D", "D", "D", "D", "B");
-		lattice = new GeneralLevenshteinLattice<String>(input, output, 2, 2, 3);
+		lattice = new GeneralLevenshteinLattice<>(input, output, 2, 2, 3);
 		assertEquals(9, lattice.getDistance());
 		
 		input = Arrays.asList("A", "C", "B");
 		output = Arrays.asList("A","D", "D", "D", "D", "D", "B");
-		lattice = new GeneralLevenshteinLattice<String>(input, output, 2, 2, 3);
+		lattice = new GeneralLevenshteinLattice<>(input, output, 2, 2, 3);
 		assertEquals(11, lattice.getDistance());
 		
 		input = Arrays.asList("A", "C", "B");
 		output = Arrays.asList("A","D", "D", "D", "D", "D", "D", "B");
-		lattice = new GeneralLevenshteinLattice<String>(input, output, 2, 2, 3);
+		lattice = new GeneralLevenshteinLattice<>(input, output, 2, 2, 3);
 		assertEquals(13, lattice.getDistance());
 	
 	}

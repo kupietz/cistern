@@ -28,12 +28,10 @@ public class FileUtils {
 		try {
 			return new BufferedWriter(new OutputStreamWriter(
 					new FileOutputStream(filename), "UTF-8"));
-		} catch (UnsupportedEncodingException e) {
-			throw new RuntimeException(e);
-		} catch (FileNotFoundException e) {
+		} catch (UnsupportedEncodingException | FileNotFoundException e) {
 			throw new RuntimeException(e);
 		}
-	}
+    }
 
 	public static InputStream openFileInputStream(String filename_) {
 
@@ -60,8 +58,6 @@ public class FileUtils {
 				input_stream = new GZIPInputStream(input_stream);
 			}
 
-		} catch (FileNotFoundException e) {
-			throw new RuntimeException(e);
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
@@ -105,14 +101,10 @@ public class FileUtils {
 			}
 
 			return new_object;
-		} catch (FileNotFoundException e) {
-			throw new RuntimeException(e);
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		} catch (ClassNotFoundException e) {
+		} catch (ClassNotFoundException | IOException e) {
 			throw new RuntimeException(e);
 		}
-	}
+    }
 
 	public static BufferedReader openFileReader(String filename) throws IOException {
 		InputStream stream = openFileInputStream(filename);
@@ -138,8 +130,6 @@ public class FileUtils {
 			ObjectOutputStream stream = new ObjectOutputStream(ostream);
 			stream.writeObject(object);
 			stream.close();
-		} catch (FileNotFoundException e) {
-			throw new RuntimeException(e);
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}

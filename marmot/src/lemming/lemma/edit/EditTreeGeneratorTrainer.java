@@ -71,8 +71,8 @@ public class EditTreeGeneratorTrainer implements LemmaCandidateGeneratorTrainer 
 		EditTreeBuilder builder = new EditTreeBuilderTrainer(
 				options_.getRandom(), options_.getNumSteps(), options_.getMaxDepth()).train(instances);
 
-		Map<String, Counter<EditTree>> map = new HashMap<String, Counter<EditTree>>();
-		map.put(options_.getUnknown(), new Counter<EditTree>());
+		Map<String, Counter<EditTree>> map = new HashMap<>();
+		map.put(options_.getUnknown(), new Counter<>());
 
 		for (LemmaInstance instance : instances) {
 			String form = instance.getForm();
@@ -85,12 +85,8 @@ public class EditTreeGeneratorTrainer implements LemmaCandidateGeneratorTrainer 
 			if (options_.getIsTagDependent()) {
 				String tag = instance.getPosTag();
 				if (tag != null) {
-					counter = map.get(tag);
-					if (counter == null) {
-						counter = new Counter<>();
-						map.put(tag, counter);
-					}
-					counter.increment(tree, 1.0);
+                    counter = map.computeIfAbsent(tag, k -> new Counter<>());
+                    counter.increment(tree, 1.0);
 				}
 			}
 		}

@@ -74,7 +74,7 @@ public class Morpheme {
 	
 	public static List<Morpheme> split(String morphemes) {
 		String[] tokens = morphemes.split(" \\+ ");
-		List<Morpheme> morpheme_list = new ArrayList<Morpheme>(tokens.length);
+		List<Morpheme> morpheme_list = new ArrayList<>(tokens.length);
 		for (String token : tokens) {
 			morpheme_list.add(new Morpheme(token));
 		}
@@ -103,13 +103,11 @@ public class Morpheme {
 			return false;
 		}
 		
-		if (!(other instanceof Morpheme)) {
+		if (!(other instanceof Morpheme morph)) {
 			return false;
 		}
-		
-		Morpheme morph = (Morpheme) other;
-		
-		if (!morph.morpheme_.equals(morpheme_)) {
+
+        if (!morph.morpheme_.equals(morpheme_)) {
 			return false;
 		}
 		

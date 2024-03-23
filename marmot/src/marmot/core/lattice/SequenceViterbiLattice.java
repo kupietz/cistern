@@ -43,7 +43,7 @@ public class SequenceViterbiLattice implements ViterbiLattice {
 		initilized_ = true;
 		
 		lattice_ = new LatticeEntry[candidates_.size()][][];
-		PriorityQueue<LatticeEntry> queue = new PriorityQueue<LatticeEntry>();
+		PriorityQueue<LatticeEntry> queue = new PriorityQueue<>();
 		List<State> previous_states = Collections.singletonList(boundary_);
 		for (int index = 0; index < candidates_.size(); index++) {
 			List<State> states = candidates_.get(index);
@@ -109,7 +109,7 @@ public class SequenceViterbiLattice implements ViterbiLattice {
 
 	public Hypothesis getSequenceBySignature(HashableIntArray signature) {
 		init();
-		List<Integer> list = new LinkedList<Integer>();
+		List<Integer> list = new LinkedList<>();
 		int index = candidates_.size() - 1;
 		int state_index = 0;
 		list.add(0);
@@ -153,10 +153,10 @@ public class SequenceViterbiLattice implements ViterbiLattice {
 
 	public List<Hypothesis> getNbestSequences() {
 		init();
-		List<Hypothesis> list = new LinkedList<Hypothesis>();
+		List<Hypothesis> list = new LinkedList<>();
 
 		HashableIntArray signature = new HashableIntArray(new int[candidates_.size() - 1]);
-		PriorityQueue<Hypothesis> queue = new PriorityQueue<Hypothesis>();
+		PriorityQueue<Hypothesis> queue = new PriorityQueue<>();
 		Set<HashableIntArray> used_signatures = new HashSet<>();
 		queue.add(getSequenceBySignature(signature));
 		used_signatures.add(signature);
@@ -226,10 +226,10 @@ public class SequenceViterbiLattice implements ViterbiLattice {
 		init();
 		List<List<State>> candidates = getCandidates();
 
-		List<Set<Integer>> candidate_sets = new ArrayList<Set<Integer>>(
-				candidates.size());
+		List<Set<Integer>> candidate_sets = new ArrayList<>(
+                candidates.size());
 		for (int index = 0; index < candidates.size(); index++) {
-			candidate_sets.add(new HashSet<Integer>());
+			candidate_sets.add(new HashSet<>());
 		}
 
 		for (Hypothesis h : getNbestSequences()) {
@@ -246,8 +246,8 @@ public class SequenceViterbiLattice implements ViterbiLattice {
 			}
 		}
 
-		List<List<State>> new_candidates = new ArrayList<List<State>>(
-				candidates.size());
+		List<List<State>> new_candidates = new ArrayList<>(
+                candidates.size());
 
 		int[] index_map = null;
 
@@ -256,7 +256,7 @@ public class SequenceViterbiLattice implements ViterbiLattice {
 			int[] new_index_map = new int[candidates.get(index).size()];
 			Arrays.fill(new_index_map, -1);
 			
-			List<State> states = new ArrayList<State>(candidate_set.size());
+			List<State> states = new ArrayList<>(candidate_set.size());
 			for (int encoded_indexes : candidate_set) {
 
 				int previous_num_candidates = (index - 1 >= 0) ? candidates

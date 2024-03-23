@@ -39,8 +39,6 @@ public class LineIterator implements Iterator<List<String>> {
 		seperator_ = seperator;
 		try {
 			reader_ = FileUtils.openFile(filename);
-		} catch(FileNotFoundException e){
-			throw new RuntimeException(e);			
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
@@ -64,12 +62,12 @@ public class LineIterator implements Iterator<List<String>> {
 		try {
 			String line = reader_.readLine();
 			String[] tokens = line.split(seperator_);
-			ArrayList<String> list = new ArrayList<String>(tokens.length);
-			for (int i=0;i<tokens.length;i++){
-				if (!tokens[i].isEmpty()){
-					list.add(tokens[i]);
-				}
-			}
+			ArrayList<String> list = new ArrayList<>(tokens.length);
+            for (String token : tokens) {
+                if (!token.isEmpty()) {
+                    list.add(token);
+                }
+            }
 			return list;
 		}
 		catch (IOException e){

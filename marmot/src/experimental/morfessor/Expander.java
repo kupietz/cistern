@@ -32,7 +32,7 @@ public class Expander implements Serializable {
 	}
 
 	private void init(String segmentation_file) {
-		sub_morphs_ = new HashMap<String, List<Morpheme>>();
+		sub_morphs_ = new HashMap<>();
 		try {
 			BufferedReader reader = FileUtils.openFile(segmentation_file);
 			while (reader.ready()) {
@@ -55,7 +55,7 @@ public class Expander implements Serializable {
 	}
 	
 	public List<Morpheme> expand(List<Morpheme> morphs, boolean split_all ) {
-		List<Morpheme> morph_list = new LinkedList<Morpheme>();
+		List<Morpheme> morph_list = new LinkedList<>();
 		for (Morpheme morph : morphs) {
 			morph_list.addAll(expand(morph, split_all));
 		}
@@ -97,7 +97,7 @@ public class Expander implements Serializable {
 			return Collections.singletonList(morph);
 		}
 
-		List<Morpheme> morph_list = new LinkedList<Morpheme>();
+		List<Morpheme> morph_list = new LinkedList<>();
 		for (Morpheme sub_morph : sub_morphs) {
 			if (sub_morph.isNonMorpheme() && (!split_all)) {
 				// Don't expand to non-morphemes!

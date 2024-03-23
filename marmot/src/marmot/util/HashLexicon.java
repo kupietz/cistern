@@ -55,7 +55,7 @@ public class HashLexicon implements Lexicon {
 			if (line.size() > 1) {
 				try {
 					String count_string = line.get(1);
-					count = Integer.valueOf(count_string);
+					count = Integer.parseInt(count_string);
 				} catch (NumberFormatException e) {
 					checkUnigramLine(false, path, line);
 				}
@@ -71,13 +71,9 @@ public class HashLexicon implements Lexicon {
 
 	public void addEntry(String word, Integer value) {
 		String key = StringUtils.normalize(word, mode_);
-		int[] current_value = map_.get(key);
-		if (current_value == null) {
-			current_value = new int[ARRAY_LENGTH];
-			map_.put(key, current_value);
-		}
+        int[] current_value = map_.computeIfAbsent(key, k -> new int[ARRAY_LENGTH]);
 
-		Shape shape = StringUtils.getShape(word);
+        Shape shape = StringUtils.getShape(word);
 		current_value[shape.ordinal()] += value;
 		current_value[ARRAY_LENGTH - 1] += value;
 	}

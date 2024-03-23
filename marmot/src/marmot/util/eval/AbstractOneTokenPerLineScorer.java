@@ -20,7 +20,7 @@ public abstract class AbstractOneTokenPerLineScorer implements Scorer {
 		KeyValueOptions actual_option = new KeyValueOptions(actual);
 		KeyValueOptions prediction_option = new KeyValueOptions(prediction);
 		
-		List<Double> scores = new ArrayList<Double>();
+		List<Double> scores = new ArrayList<>();
 		
 		double score = 0.;
 		double number_of_tokens = 0;
@@ -73,8 +73,6 @@ public abstract class AbstractOneTokenPerLineScorer implements Scorer {
 			actual_reader.close();
 			prediction_reader.close();
 			
-		} catch (FileNotFoundException e) {
-			throw new RuntimeException(e);
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}

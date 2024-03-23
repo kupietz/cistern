@@ -37,7 +37,7 @@ public class FileOptions {
 		tag_index_ = -1;
 		morph_index_ = -1;
 		limit_ = -1;
-		token_feature_index_ = new LinkedList<Integer>();
+		token_feature_index_ = new LinkedList<>();
 		filename_ = null;
 
 		String[] args = option_string.split(",");
@@ -164,8 +164,6 @@ public class FileOptions {
 				input_stream = new GZIPInputStream(input_stream);
 			}
 
-		} catch (FileNotFoundException e) {
-			throw new RuntimeException(e);
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}

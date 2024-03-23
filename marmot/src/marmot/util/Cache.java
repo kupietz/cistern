@@ -36,7 +36,7 @@ public class Cache<K, V> {
 	
 	public Cache() {
 		current_time_ = 0;
-		storage_ = new HashMap<K, CacheEntry>();
+		storage_ = new HashMap<>();
 	}
 	
 	public void put(K key, V value) {
@@ -57,7 +57,7 @@ public class Cache<K, V> {
 	}
 	
 	public void cleanup(int delta) {
-		List<K> list = new LinkedList<K>();
+		List<K> list = new LinkedList<>();
 		
 		for (Entry<K, CacheEntry> entry : storage_.entrySet()) {
 			CacheEntry centry = entry.getValue();

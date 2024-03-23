@@ -74,14 +74,9 @@ public class SimpleLemmatizerTrainer implements LemmatizerGeneratorTrainer {
 
 	private void addToMap(String key, Map<String, Counter<String>> map,
 			LemmaInstance instance) {
-		Counter<String> lemmas = map.get(key);
-		
-		if (lemmas == null) {
-			lemmas = new Counter<>();
-			map.put(key, lemmas);
-		}
-		
-		lemmas.increment(instance.getLemma(), instance.getCount());
+        Counter<String> lemmas = map.computeIfAbsent(key, k -> new Counter<>());
+
+        lemmas.increment(instance.getLemma(), instance.getCount());
 	}
 
 	@Override

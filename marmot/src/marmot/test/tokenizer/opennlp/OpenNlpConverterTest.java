@@ -6,10 +6,8 @@ package marmot.test.tokenizer.opennlp;
 import static org.junit.Assert.assertEquals;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.ArrayList;
@@ -47,7 +45,7 @@ public class OpenNlpConverterTest {
 	
 	@Test
 	public void testConvert() throws IOException {		
-		List<Pair> pairs = new ArrayList<Pair>();
+		List<Pair> pairs = new ArrayList<>();
 		String dummy = "";
 		
 		writer_ = FileUtils.openFileWriter(tmp_.getAbsolutePath());

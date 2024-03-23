@@ -84,13 +84,11 @@ public interface Aligner extends Serializable {
 				return false;
 			}
 			
-			if (!(other instanceof Pair)) {
+			if (!(other instanceof Pair other_pair)) {
 				return false;
 			}
-			
-			Pair other_pair = (Pair) other;
-			
-			return input_segment_.equals(other_pair.input_segment_) && output_segment_.equals(other_pair.output_segment_);
+
+            return input_segment_.equals(other_pair.input_segment_) && output_segment_.equals(other_pair.output_segment_);
 		}
 	
 		public static List<Pair> toPairs(String input, String output, List<Integer> indexes) {

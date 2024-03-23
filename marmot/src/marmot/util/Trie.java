@@ -36,16 +36,12 @@ public class Trie<E extends Collectable> implements Serializable {
 		char c = word.charAt(index);
 
 		if (children_ == null) {
-			children_ = new HashMap<Character, Trie<E>>();
+			children_ = new HashMap<>();
 		}
 
-		Trie<E> trie = children_.get(c);
-		if (trie == null) {
-			trie = new Trie<E>();
-			children_.put(c, trie);
-		}
+        Trie<E> trie = children_.computeIfAbsent(c, k -> new Trie<>());
 
-		return trie.addWord(word, index + 1, content);
+        return trie.addWord(word, index + 1, content);
 	}
 
 	public Trie<E> getChild(char c) {

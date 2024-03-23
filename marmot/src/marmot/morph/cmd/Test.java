@@ -58,7 +58,7 @@ public class Test {
 			MorphModel model = (MorphModel) tagger.getModel();
 			model.setVerbose(false);
 
-			List<Sequence> test_sentences = new LinkedList<Sequence>();
+			List<Sequence> test_sentences = new LinkedList<>();
 			for (Sequence sequence : new SentenceReader(
 					config.getString("file"))) {
 				for (Token token : sequence) {

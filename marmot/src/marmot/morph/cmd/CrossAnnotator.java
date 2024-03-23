@@ -30,7 +30,7 @@ public class CrossAnnotator {
 
 	public static void annotate(MorphOptions options, String infile,
 			String outfile, int num_chunks) throws IOException {
-		List<Sequence> sequences = new LinkedList<Sequence>();
+		List<Sequence> sequences = new LinkedList<>();
 		for (Sequence sequence : new SentenceReader(infile)) {
 			sequences.add(sequence);
 		}

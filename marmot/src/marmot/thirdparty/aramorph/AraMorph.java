@@ -56,131 +56,76 @@ public class AraMorph {
 	}
 
 	public char romanizeChar(char c) {
-		
-		switch (c) {
-		
-		case '\u0621':
-			return '\''; // \u0621 : ARABIC LETTER HAMZA
-		case '\u0622':
-			return '|'; // \u0622 : ARABIC LETTER ALEF WITH MADDA ABOVE
-		case '\u0623':
-			return '>'; // \u0623 : ARABIC LETTER ALEF WITH HAMZA ABOVE
-		case '\u0624':
-			return '&'; // \u0624 : ARABIC LETTER WAW WITH HAMZA ABOVE
-		case '\u0625':
-			return '<'; // \u0625 : ARABIC LETTER 
-		case '\u0626':
-			return '}'; // \u0626 : ARABIC LETTER YEH WITH HAMZA ABOVE
-		case '\u0627':
-			return 'A'; // \u0627 : ARABIC LETTER ALEF
-		case '\u0628':
-			return 'b'; // \u0628 : ARABIC LETTER BEH
-		case '\u0629':
-			return 'p'; // \u0629 : ARABIC LETTER TEH MARBUTA
-		case '\u062A':
-			return 't'; // \u062A : ARABIC LETTER TEH
-		case '\u062B':
-			return 'v'; // \u062B : ARABIC LETTER THEH
-		case '\u062C':
-			return 'j'; // \u062C : ARABIC LETTER JEEM
-		case '\u062D':
-			return 'H'; // \u062D : ARABIC LETTER HAH
-		case '\u062E':
-			return 'x'; // \u062E : ARABIC LETTER KHAH
-		case '\u062F':
-			return 'd'; // \u062F : ARABIC LETTER DAL
-		case '\u0630':
-			return '*'; // \u0630 : ARABIC LETTER THAL
-		case '\u0631':
-			return 'r'; // \u0631 : ARABIC LETTER REH
-		case '\u0632':
-			return 'z'; // \u0632 : ARABIC LETTER ZAIN
-		case '\u0633':
-			return 's'; // \u0633 : ARABIC LETTER SEEN
-		case '\u0634':
-			return '$'; // \u0634 : ARABIC LETTER SHEEN
-		case '\u0635':
-			return 'S'; // \u0635 : ARABIC LETTER SAD
-		case '\u0636':
-			return 'D'; // \u0636 : ARABIC LETTER DAD
-		case '\u0637':
-			return 'T'; // \u0637 : ARABIC LETTER TAH
-		case '\u0638':
-			return 'Z'; // \u0638 : ARABIC LETTER ZAH
-		case '\u0639':
-			return 'E'; // \u0639 : ARABIC LETTER AIN
-		case '\u063A':
-			return 'g'; // \u063A : ARABIC LETTER GHAIN
-		case '\u0640':
-			return '_'; // \u0640 : ARABIC TATWEEL
-		case '\u0641':
-			return 'f'; // \u0641 : ARABIC LETTER FEH
-		case '\u0642':
-			return 'q'; // \u0642 : ARABIC LETTER QAF
-		case '\u0643':
-			return 'k'; // \u0643 : ARABIC LETTER KAF
-		case '\u0644':
-			return 'l'; // \u0644 : ARABIC LETTER LAM
-		case '\u0645':
-			return 'm'; // \u0645 : ARABIC LETTER MEEM
-		case '\u0646':
-			return 'n'; // \u0646 : ARABIC LETTER NOON
-		case '\u0647':
-			return 'h'; // \u0647 : ARABIC LETTER HEH
-		case '\u0648':
-			return 'w'; // \u0648 : ARABIC LETTER WAW
-		case '\u0649':
-			return 'Y'; // \u0649 : ARABIC LETTER ALEF MAKSURA
-		case '\u064A':
-			return 'y'; // \u064A : ARABIC LETTER YEH
-		case '\u064B':
-			return 'F'; // \u064B : ARABIC FATHATAN 
-		case '\u064C':
-			return 'N'; // \u064C : ARABIC DAMMATAN
-		case '\u064D':
-			return 'K'; // \u064D : ARABIC KASRATAN
-		case '\u064E':
-			return 'a'; // \u064E : ARABIC FATHA
-		case '\u064F':
-			return 'u'; // \u064F : ARABIC DAMMA
-		case '\u0650':
-			return 'i'; // \u0650 : ARABIC KASRA
-		case '\u0651':
-			return '~'; // \u0651 : ARABIC SHADDA
-		case '\u0652':
-			return 'o'; // \u0652 : ARABIC SUKUN
-		case '\u0670':
-			return '`'; // \u0670 : ARABIC LETTER SUPERSCRIPT ALEF
-		case '\u0671':
-			return '{'; // \u0671 : ARABIC LETTER ALEF WASLA
-		case '\u067E':
-			return 'P'; // \u067E : ARABIC LETTER PEH
-		case '\u0686':
-			return 'J'; // \u0686 : ARABIC LETTER TCHEH
-		case '\u06A4':
-			return 'V'; // \u06A4 : ARABIC LETTER VEH
-		case '\u06AF':
-			return 'G'; // \u06AF : ARABIC LETTER GAF
-		case '\u0698':
-			return 'R'; // \u0698 : ARABIC LETTER JEH (no more in Buckwalter system)
-		// Not in Buckwalter system \u0679 : ARABIC LETTER TTEH
-		// Not in Buckwalter system \u0688 : ARABIC LETTER DDAL
-		// Not in Buckwalter system \u06A9 : ARABIC LETTER KEHEH
-		// Not in Buckwalter system \u0691 : ARABIC LETTER RREH
-		// Not in Buckwalter system \u06BA : ARABIC LETTER NOON GHUNNA
-		// Not in Buckwalter system \u06BE : ARABIC LETTER HEH DOACHASHMEE
-		// Not in Buckwalter system \u06C1 : ARABIC LETTER HEH GOAL
-		// Not in Buckwalter system \u06D2 : ARABIC LETTER YEH BARREE
-		case '\u060C':
-			return ','; // \u060C : ARABIC COMMA
-		case '\u061B':
-			return ';'; // \u061B : ARABIC SEMICOLON
-		case '\u061F':
-			return '?'; // \u061F : ARABIC QUESTION MARK
-		}	
-				
-		return c;
-	}
+
+        return switch (c) {
+            case '\u0621' -> '\''; // \u0621 : ARABIC LETTER HAMZA
+            case '\u0622' -> '|'; // \u0622 : ARABIC LETTER ALEF WITH MADDA ABOVE
+            case '\u0623' -> '>'; // \u0623 : ARABIC LETTER ALEF WITH HAMZA ABOVE
+            case '\u0624' -> '&'; // \u0624 : ARABIC LETTER WAW WITH HAMZA ABOVE
+            case '\u0625' -> '<'; // \u0625 : ARABIC LETTER
+            case '\u0626' -> '}'; // \u0626 : ARABIC LETTER YEH WITH HAMZA ABOVE
+            case '\u0627' -> 'A'; // \u0627 : ARABIC LETTER ALEF
+            case '\u0628' -> 'b'; // \u0628 : ARABIC LETTER BEH
+            case '\u0629' -> 'p'; // \u0629 : ARABIC LETTER TEH MARBUTA
+            case '\u062A' -> 't'; // \u062A : ARABIC LETTER TEH
+            case '\u062B' -> 'v'; // \u062B : ARABIC LETTER THEH
+            case '\u062C' -> 'j'; // \u062C : ARABIC LETTER JEEM
+            case '\u062D' -> 'H'; // \u062D : ARABIC LETTER HAH
+            case '\u062E' -> 'x'; // \u062E : ARABIC LETTER KHAH
+            case '\u062F' -> 'd'; // \u062F : ARABIC LETTER DAL
+            case '\u0630' -> '*'; // \u0630 : ARABIC LETTER THAL
+            case '\u0631' -> 'r'; // \u0631 : ARABIC LETTER REH
+            case '\u0632' -> 'z'; // \u0632 : ARABIC LETTER ZAIN
+            case '\u0633' -> 's'; // \u0633 : ARABIC LETTER SEEN
+            case '\u0634' -> '$'; // \u0634 : ARABIC LETTER SHEEN
+            case '\u0635' -> 'S'; // \u0635 : ARABIC LETTER SAD
+            case '\u0636' -> 'D'; // \u0636 : ARABIC LETTER DAD
+            case '\u0637' -> 'T'; // \u0637 : ARABIC LETTER TAH
+            case '\u0638' -> 'Z'; // \u0638 : ARABIC LETTER ZAH
+            case '\u0639' -> 'E'; // \u0639 : ARABIC LETTER AIN
+            case '\u063A' -> 'g'; // \u063A : ARABIC LETTER GHAIN
+            case '\u0640' -> '_'; // \u0640 : ARABIC TATWEEL
+            case '\u0641' -> 'f'; // \u0641 : ARABIC LETTER FEH
+            case '\u0642' -> 'q'; // \u0642 : ARABIC LETTER QAF
+            case '\u0643' -> 'k'; // \u0643 : ARABIC LETTER KAF
+            case '\u0644' -> 'l'; // \u0644 : ARABIC LETTER LAM
+            case '\u0645' -> 'm'; // \u0645 : ARABIC LETTER MEEM
+            case '\u0646' -> 'n'; // \u0646 : ARABIC LETTER NOON
+            case '\u0647' -> 'h'; // \u0647 : ARABIC LETTER HEH
+            case '\u0648' -> 'w'; // \u0648 : ARABIC LETTER WAW
+            case '\u0649' -> 'Y'; // \u0649 : ARABIC LETTER ALEF MAKSURA
+            case '\u064A' -> 'y'; // \u064A : ARABIC LETTER YEH
+            case '\u064B' -> 'F'; // \u064B : ARABIC FATHATAN
+            case '\u064C' -> 'N'; // \u064C : ARABIC DAMMATAN
+            case '\u064D' -> 'K'; // \u064D : ARABIC KASRATAN
+            case '\u064E' -> 'a'; // \u064E : ARABIC FATHA
+            case '\u064F' -> 'u'; // \u064F : ARABIC DAMMA
+            case '\u0650' -> 'i'; // \u0650 : ARABIC KASRA
+            case '\u0651' -> '~'; // \u0651 : ARABIC SHADDA
+            case '\u0652' -> 'o'; // \u0652 : ARABIC SUKUN
+            case '\u0670' -> '`'; // \u0670 : ARABIC LETTER SUPERSCRIPT ALEF
+            case '\u0671' -> '{'; // \u0671 : ARABIC LETTER ALEF WASLA
+            case '\u067E' -> 'P'; // \u067E : ARABIC LETTER PEH
+            case '\u0686' -> 'J'; // \u0686 : ARABIC LETTER TCHEH
+            case '\u06A4' -> 'V'; // \u06A4 : ARABIC LETTER VEH
+            case '\u06AF' -> 'G'; // \u06AF : ARABIC LETTER GAF
+            case '\u0698' -> 'R'; // \u0698 : ARABIC LETTER JEH (no more in Buckwalter system)
+            // Not in Buckwalter system \u0679 : ARABIC LETTER TTEH
+            // Not in Buckwalter system \u0688 : ARABIC LETTER DDAL
+            // Not in Buckwalter system \u06A9 : ARABIC LETTER KEHEH
+            // Not in Buckwalter system \u0691 : ARABIC LETTER RREH
+            // Not in Buckwalter system \u06BA : ARABIC LETTER NOON GHUNNA
+            // Not in Buckwalter system \u06BE : ARABIC LETTER HEH DOACHASHMEE
+            // Not in Buckwalter system \u06C1 : ARABIC LETTER HEH GOAL
+            // Not in Buckwalter system \u06D2 : ARABIC LETTER YEH BARREE
+            case '\u060C' -> ','; // \u060C : ARABIC COMMA
+            case '\u061B' -> ';'; // \u061B : ARABIC SEMICOLON
+            case '\u061F' -> '?';
+            default -> // \u061F : ARABIC QUESTION MARK
+                    c;
+        };
+
+    }
 
 	/**
 	 * Returns a word in the Buckwalter transliteration system from a word in
@@ -293,7 +238,7 @@ public class AraMorph {
 	 *            romanizeWord} has been called before
 	 */
 	private Set<SegmentedWord> segmentWord(String translitered) {
-		Set<SegmentedWord> segmented = new HashSet<SegmentedWord>();
+		Set<SegmentedWord> segmented = new HashSet<>();
 		int prefix_len = 0;
 		int suffix_len = 0;
 		// TODO : why 4 ? The info could certainly be grabbed from
@@ -327,7 +272,7 @@ public class AraMorph {
 	 * @return Whether or not there are solutions for this word
 	 */
 	private Set<Solution> feedWordSolutions(String translitered) {
-		Set<Solution> wordSolutions = new HashSet<Solution>();
+		Set<Solution> wordSolutions = new HashSet<>();
 		
 		// get a list of valid segmentations
 		Set<SegmentedWord> segments = segmentWord(translitered);

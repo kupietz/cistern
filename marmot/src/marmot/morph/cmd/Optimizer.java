@@ -29,7 +29,7 @@ public class Optimizer {
 		options.dieIfPropertyIsEmpty(MorphOptions.MODEL_FILE);
 		
 		long time = System.currentTimeMillis();
-		List<Sequence> train_sentences = new LinkedList<Sequence>();
+		List<Sequence> train_sentences = new LinkedList<>();
 
 		SentenceReader reader = new SentenceReader(options.getTrainFile());
 		if (options.getTagMorph())
@@ -48,7 +48,7 @@ public class Optimizer {
 				reader.getFileOptions().dieIfPropertyIsEmpty(
 						FileOptions.MORPH_INDEX);
 
-			test_sentences = new LinkedList<Sequence>();
+			test_sentences = new LinkedList<>();
 			for (Sequence sentence : reader) {
 				test_sentences.add(sentence);
 			}
@@ -69,7 +69,7 @@ public class Optimizer {
 		options = (MorphOptions) model.getOptions();
 		
 		if (!options.getTestFile().isEmpty()) {
-			List<Sequence> sentences = new LinkedList<Sequence>();
+			List<Sequence> sentences = new LinkedList<>();
 			
 			reader = new SentenceReader(options.getTestFile());
 			if (options.getTagMorph())

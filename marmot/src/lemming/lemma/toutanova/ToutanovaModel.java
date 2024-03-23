@@ -190,11 +190,11 @@ public class ToutanovaModel implements Serializable {
 		}
 
 		int rare_output_symbols = 0;
-		for (int i = 0; i < count.length; i++) {
-			if (count[i] == 1) {
-				rare_output_symbols++;
-			}
-		}
+        for (int j : count) {
+            if (j == 1) {
+                rare_output_symbols++;
+            }
+        }
 		logger.info(String.format("Num rare output symbols (< %d): %d",
 				options.getFilterAlphabet(), rare_output_symbols));
 

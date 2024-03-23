@@ -130,8 +130,8 @@ class DictionaryHandler {
 	 * @throws RuntimeException If a problem occurs when reading the dictionary
 	 */
 	private Map<String, List<DictionaryEntry>> loadDictionary(String name, InputStream is) throws RuntimeException { //TODO : should be static
-		Map<String, List<DictionaryEntry>> set = new HashMap<String, List<DictionaryEntry>>();
-		Set<String> lemmas = new HashSet<String>();
+		Map<String, List<DictionaryEntry>> set = new HashMap<>();
+		Set<String> lemmas = new HashSet<>();
 		String lemmaID = "";
 		try {
 			LineNumberReader IN = new LineNumberReader(new InputStreamReader(is,"ISO8859_1"));
@@ -275,14 +275,10 @@ class DictionaryHandler {
 					// note that although we read 4 fields from the dict we now save 5 fields in the hash table
 					// because the info in last field, glossPOS, was split into two: gloss and POS
 					DictionaryEntry de = new DictionaryEntry(entry, lemmaID, vocalization, morphology, gloss, POS);
-					
-					List<DictionaryEntry> list = set.get(entry);
-					if (list == null) {
-						list = new LinkedList<DictionaryEntry>();
-						set.put(entry, list);
-					}
-					
-					list.add(de);
+
+                    List<DictionaryEntry> list = set.computeIfAbsent(entry, k -> new LinkedList<>());
+
+                    list.add(de);
 				}
 			}
 			IN.close();
@@ -301,7 +297,7 @@ class DictionaryHandler {
 	 * @throws RuntimeException If a problem occurs when reading the compatibility table
 	 */
 	private Set<String> loadCompatibilityTable(String name, InputStream is) throws RuntimeException {
-		Set<String> set = new HashSet<String>();
+		Set<String> set = new HashSet<>();
 		try {
 			LineNumberReader IN = new LineNumberReader(new InputStreamReader(is,"ISO8859_1"));
 			String line = null;

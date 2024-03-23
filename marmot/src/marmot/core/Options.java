@@ -45,8 +45,8 @@ public class Options extends java.util.Properties {
 
 
 
-	private static final Map<String, String> DEFALUT_VALUES_ = new HashMap<String, String>();
-	private static final Map<String, String> COMMENTS_ = new HashMap<String, String>();
+	private static final Map<String, String> DEFALUT_VALUES_ = new HashMap<>();
+	private static final Map<String, String> COMMENTS_ = new HashMap<>();
 
 	static {
 		DEFALUT_VALUES_.put(BEAM_SIZE, "1");
@@ -118,7 +118,7 @@ public class Options extends java.util.Properties {
 		String string = "";
 
 		Set<Object> key_set = keySet();
-		List<String> key_list = new ArrayList<String>(key_set.size());
+		List<String> key_list = new ArrayList<>(key_set.size());
 		for (Object key : keySet()) {
 			key_list.add((String) (key));
 		}
@@ -307,7 +307,7 @@ public class Options extends java.util.Properties {
 
 	public double[] getCandidatesPerState() {
 		double[] array = StringUtils
-				.parseDoubleArray(getProperty(CANDIDATES_PER_STATE), new Mutable<Integer>(0));
+				.parseDoubleArray(getProperty(CANDIDATES_PER_STATE), new Mutable<>(0));
 
 		for (double element : array) {
 

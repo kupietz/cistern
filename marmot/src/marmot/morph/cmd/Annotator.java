@@ -4,15 +4,10 @@
 package marmot.morph.cmd;
 
 import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
-import java.nio.charset.CharsetEncoder;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Hashtable;
+import java.util.*;
 
 import lemming.lemma.Lemmatizer;
 import marmot.core.Sequence;
@@ -98,11 +93,11 @@ public class Annotator {
 		
 		List<List<String>> lemma_tags;
 
-		List<String> comments = sentence.getComments(); 
+		List<String> comments = sentence.getComments();
 
-		for (int i = 0; i < comments.size(); i ++) {
-			writer.append(comments.get(i) + '\n');
-		}
+        for (String comment : comments) {
+            writer.append(comment + '\n');
+        }
 		
 		try {
 		
@@ -110,7 +105,7 @@ public class Annotator {
 		
 		} catch (OutOfMemoryError e) {
 			
-			lemma_tags = new ArrayList<List<String>>(sentence.size());
+			lemma_tags = new ArrayList<>(sentence.size());
 			
 			List<String> lemma_tag = Arrays.asList(EMPTY_, EMPTY_);
 			
@@ -152,20 +147,12 @@ public class Annotator {
 				String lemma = token_lemma_tags.get(0);
 				if(word.getLemma() != null) {			// 2
 					writer.append(word.getLemma());
-				} else if(lemma != null) {
-					writer.append(lemma);
-				} else {
-					writer.append(EMPTY_);
-				}
+				} else writer.append(Objects.requireNonNullElse(lemma, EMPTY_));
 				writer.append(SEPARATOR_);
 				String pos = token_lemma_tags.get(1);
 				if(word.getPosTag() != null) {			// 3
 					writer.append(word.getPosTag());
-				} else if(pos != null) {
-					writer.append(pos);
-				} else {
-					writer.append(EMPTY_);
-				}
+				} else writer.append(Objects.requireNonNullElse(pos, EMPTY_));
 				writer.append(SEPARATOR_);
 				writer.append(EMPTY_);				// 4
 				writer.append(SEPARATOR_);

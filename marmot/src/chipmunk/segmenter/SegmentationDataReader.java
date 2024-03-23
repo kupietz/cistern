@@ -39,7 +39,7 @@ public class SegmentationDataReader implements Iterable<Word> {
 	public List<Word> getData() {
 		if (words_ == null) {
 			vocab_ = new HashMap<>();
-			words_ = new LinkedList<Word>();
+			words_ = new LinkedList<>();
 			for (Word word : this) {
 				words_.add(word);
 			}
@@ -52,46 +52,46 @@ public class SegmentationDataReader implements Iterable<Word> {
 
 		final LineIterator iterator = new LineIterator(filepath_, "\t");
 
-		return new Iterator<Word>() {
+		return new Iterator<>() {
 
-			@Override
-			public boolean hasNext() {
-				return iterator.hasNext();
-			}
+            @Override
+            public boolean hasNext() {
+                return iterator.hasNext();
+            }
 
-			@Override
-			public Word next() {
+            @Override
+            public Word next() {
 
-				List<String> line = iterator.next();
-				assert line.size() == 2;
+                List<String> line = iterator.next();
+                assert line.size() == 2;
 
-				String word_string = line.get(0);
+                String word_string = line.get(0);
 
-				word_string = normalizer_.normalize(word_string);
+                word_string = normalizer_.normalize(word_string);
 
-				Word word = null;
-				if (vocab_ != null)
-					word = vocab_.get(word_string);
+                Word word = null;
+                if (vocab_ != null)
+                    word = vocab_.get(word_string);
 
-				if (word == null) {
-					word = new Word(word_string);
+                if (word == null) {
+                    word = new Word(word_string);
 
-					if (vocab_ != null)
-						vocab_.put(word_string, word);
-				}
+                    if (vocab_ != null)
+                        vocab_.put(word_string, word);
+                }
 
-				if (line.size() > 1) {
-					addReading(word, line.get(1));
-				}
+                if (line.size() > 1) {
+                    addReading(word, line.get(1));
+                }
 
-				return word;
-			}
+                return word;
+            }
 
-			@Override
-			public void remove() {
-				throw new UnsupportedOperationException();
-			}
-		};
+            @Override
+            public void remove() {
+                throw new UnsupportedOperationException();
+            }
+        };
 	}
 
 	private void addReading(Word word, String reading_string) {

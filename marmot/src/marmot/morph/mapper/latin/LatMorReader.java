@@ -27,7 +27,7 @@ public class LatMorReader {
 	Map<String, Map<String, Set<LdtMorphTag>>> dict_;
 
 	public LatMorReader() {
-		dict_ = new HashMap<String, Map<String, Set<LdtMorphTag>>>();
+		dict_ = new HashMap<>();
 	}
 
 	public LatMorReader(Map<String, Map<String, Set<LdtMorphTag>>> dict) {
@@ -54,7 +54,7 @@ public class LatMorReader {
 				boolean insert = false;
 				if (readings == null) {
 					insert = true;
-					readings = new HashMap<String, Set<LdtMorphTag>>();
+					readings = new HashMap<>();
 
 				}
 
@@ -81,7 +81,7 @@ public class LatMorReader {
 
 				String form = LatMorNormalizer.normalize(line.get(0));
 				
-				Set<LdtMorphTag> tags = new HashSet<LdtMorphTag>();
+				Set<LdtMorphTag> tags = new HashSet<>();
 				
 				for (String tag_string : line.subList(2, line.size())) {
 					LdtMorphTag tag = new LdtMorphTag();
@@ -110,12 +110,8 @@ public class LatMorReader {
 				}
 				
 				if (tags.size() > 0) {
-					Map<String, Set<LdtMorphTag>> readings = dict_.get(form);
-					if (readings == null) {
-						readings = new HashMap<String, Set<LdtMorphTag>>();
-						dict_.put(form, readings);
-					}					
-					readings.put("_", tags);
+                    Map<String, Set<LdtMorphTag>> readings = dict_.computeIfAbsent(form, k -> new HashMap<>());
+                    readings.put("_", tags);
 				} 
 			}
 
@@ -157,13 +153,9 @@ public class LatMorReader {
 				
 		String morph_tag_string = line.substring(morph_start);
 
-		Set<LdtMorphTag> set = readings.get(lemma);
-		if (set == null) {
-			set = new HashSet<LdtMorphTag>();
-			readings.put(lemma, set);
-		}
+        Set<LdtMorphTag> set = readings.computeIfAbsent(lemma, k -> new HashSet<>());
 
-		set.add(parseMorpTagString(morph_tag_string));
+        set.add(parseMorpTagString(morph_tag_string));
 
 	}
 
@@ -420,14 +412,14 @@ public class LatMorReader {
 
 	Set<Pos> getPosCandidates(String form, String lemma) {
 		Map<String, Set<LdtMorphTag>> lemmas = dict_.get(form);
-		Set<Pos> tags = new HashSet<Pos>();
+		Set<Pos> tags = new HashSet<>();
 
 		if (lemmas != null) {
 			Set<LdtMorphTag> ldt_tags;
 			if (lemma != null) {
 				ldt_tags = lemmas.get(lemma);
 			} else {
-				ldt_tags = new HashSet<LdtMorphTag>();
+				ldt_tags = new HashSet<>();
 				for (Set<LdtMorphTag> ldt_tag_set : lemmas.values()) {
 					ldt_tags.addAll(ldt_tag_set);
 				}
@@ -454,7 +446,7 @@ public class LatMorReader {
 
 				String form = LatMorNormalizer.normalize(line.get(1));
 				
-				Set<LdtMorphTag> tags = new HashSet<LdtMorphTag>();
+				Set<LdtMorphTag> tags = new HashSet<>();
 				
 				for (String tag_string : line.subList(3, line.size())) {
 					LdtMorphTag tag = new LdtMorphTag();
@@ -477,12 +469,8 @@ public class LatMorReader {
 				}
 				
 				if (tags.size() > 0) {
-					Map<String, Set<LdtMorphTag>> readings = dict_.get(form);
-					if (readings == null) {
-						readings = new HashMap<String, Set<LdtMorphTag>>();
-						dict_.put(form, readings);
-					}					
-					readings.put(line.get(2), tags);
+                    Map<String, Set<LdtMorphTag>> readings = dict_.computeIfAbsent(form, k -> new HashMap<>());
+                    readings.put(line.get(2), tags);
 				} 
 			}
 

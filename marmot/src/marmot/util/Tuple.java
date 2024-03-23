@@ -32,9 +32,8 @@ public class Tuple<T, D extends Comparable<D>> implements
 		if (o == null) {
 			return false;
 		}
-		if (o instanceof Tuple<?, ?>) {
-			Tuple<?, ?> tuple = (Tuple<?, ?>) o;
-			return tuple.x.equals(this.x) && tuple.y.equals(this.y);
+		if (o instanceof Tuple<?, ?> tuple) {
+            return tuple.x.equals(this.x) && tuple.y.equals(this.y);
 		}
 		return false;
 	}

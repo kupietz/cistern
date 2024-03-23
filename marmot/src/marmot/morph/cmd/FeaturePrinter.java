@@ -28,7 +28,7 @@ public class FeaturePrinter {
 		options.setProperty(MorphOptions.VECTOR_SIZE, "1");
 		
 		MorphModel model = new MorphModel();
-		List<Sequence> sentences = new LinkedList<Sequence>();
+		List<Sequence> sentences = new LinkedList<>();
 		for (Sequence sentence : new SentenceReader(options.getTrainFile())) {
 			sentences.add(sentence);
 		}

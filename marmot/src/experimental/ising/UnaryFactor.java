@@ -29,17 +29,17 @@ public class UnaryFactor extends Factor {
 		this.setSize(size);
 		this.setPotential(new double[this.size]);
 		
-		this.setFeaturesPositive(new LinkedList<Integer>());
-		this.setFeaturesNegative(new LinkedList<Integer>());
+		this.setFeaturesPositive(new LinkedList<>());
+		this.setFeaturesNegative(new LinkedList<>());
 
 		for (int n = 0; n < this.size; ++n) {
 			this.potential[n] = 1.0;
 		}
 		
 		this.setI(i);
-		this.setNeighbors(new ArrayList<Variable>());
-		this.setMessageIds(new ArrayList<Integer>());
-		this.setMessages(new ArrayList<Message>());
+		this.setNeighbors(new ArrayList<>());
+		this.setMessageIds(new ArrayList<>());
+		this.setMessages(new ArrayList<>());
 		
 		this.ufe = ufe;
 		Pair<List<Integer>, List<Integer>> p = this.ufe.getFeatures(i, word);

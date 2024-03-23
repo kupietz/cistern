@@ -21,10 +21,10 @@ public abstract class Measure {
 	 */
 	public void renormalize() {
 		double Z = 0.0;
-		
-		for (int i = 0; i < this.measure.length; ++i) {
-			Z += this.measure[i];
-		}
+
+        for (double v : this.measure) {
+            Z += v;
+        }
 		for (int i = 0; i < this.measure.length; ++i) {
 			this.measure[i] /= Z;
 		}

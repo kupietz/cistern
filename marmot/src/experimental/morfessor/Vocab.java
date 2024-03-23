@@ -23,7 +23,7 @@ public class Vocab {
 
 	public Vocab(String filename) {
 
-		counter_ = new Counter<String>();
+		counter_ = new Counter<>();
 
 		init(filename, -1);
 
@@ -32,7 +32,7 @@ public class Vocab {
 	}
 
 	public static List<String> tokenize(String word) {
-		List<String> list = new LinkedList<String>();
+		List<String> list = new LinkedList<>();
 		StringBuilder sb = new StringBuilder(word.length());
 		for (int index = 0; index < word.length(); index++) {
 

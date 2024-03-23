@@ -26,7 +26,7 @@ public class Counter<T> implements Serializable {
 	}
 
 	public Counter(Double defaultValue, int initialCapacity) {
-		storage_ = new HashMap<T, Double>(initialCapacity);
+		storage_ = new HashMap<>(initialCapacity);
 		this.default_value_ = defaultValue;
 		total_count_ = 0.;
 	}
@@ -96,16 +96,10 @@ public class Counter<T> implements Serializable {
 	}
 
 	public List<Entry<T, Double>> sortedEntries() {
-		List<Entry<T, Double>> list = new ArrayList<Entry<T, Double>>(
-				storage_.entrySet());
+		List<Entry<T, Double>> list = new ArrayList<>(
+                storage_.entrySet());
 
-		Collections.sort(list, new Comparator<Entry<T, Double>>() {
-
-			@Override
-			public int compare(Entry<T, Double> o1, Entry<T, Double> o2) {
-				return -Double.compare(o1.getValue(), o2.getValue());
-			}
-		});
+		list.sort((o1, o2) -> -Double.compare(o1.getValue(), o2.getValue()));
 		
 		return list;
 	}

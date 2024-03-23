@@ -21,9 +21,9 @@ public class SegmentVariable extends Measure {
 		this.setStartPos(startPos);
 		this.setEndPos(endPos);
 		
-		this.setNeighbors(new ArrayList<Factor>());
-		this.setMessageIds(new ArrayList<Integer>());
-		this.setMessages(new ArrayList<Message>());
+		this.setNeighbors(new ArrayList<>());
+		this.setMessageIds(new ArrayList<>());
+		this.setMessages(new ArrayList<>());
 		
 		this.setBelief(new Belief(2));
 	}

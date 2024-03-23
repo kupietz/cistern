@@ -67,8 +67,8 @@ public class SequenceSumLattice implements SumLattice {
 		assert Check.isNormal(backward_.partitionFunction());
 		assert Numerics.approximatelyEqual(score_sum_forward, backward_.partitionFunction());
 
-		List<List<State>> candidates = new ArrayList<List<State>>(
-				candidates_.size());
+		List<List<State>> candidates = new ArrayList<>(
+                candidates_.size());
 
 		int[] index_map = null;
 		int num_previous_states = 1;
@@ -79,7 +79,7 @@ public class SequenceSumLattice implements SumLattice {
 			Arrays.fill(new_index_map, -1);
 			double score_sum = Double.NEGATIVE_INFINITY;
 
-			List<State> states = new ArrayList<State>(num_states);
+			List<State> states = new ArrayList<>(num_states);
 			int max_state_index = -1;
 			double max_score = Double.NEGATIVE_INFINITY;
 
@@ -279,10 +279,10 @@ public class SequenceSumLattice implements SumLattice {
 	}
 
 	public static List<List<State>> getZeroOrderCandidates(List<List<State>> candidates, int boundary_index) {
-		List<List<State>> new_candidates = new ArrayList<List<State>>(candidates.size());
+		List<List<State>> new_candidates = new ArrayList<>(candidates.size());
 		boolean found_boundary = false;
 		for (List<State> states : candidates) {
-			List<State> new_states = new ArrayList<State>();
+			List<State> new_states = new ArrayList<>();
 			
 
 			for (State state : states) {
@@ -344,10 +344,10 @@ public class SequenceSumLattice implements SumLattice {
 			candidates = candidates_;
 		}
 		
-		List<List<State>> new_candidates = new ArrayList<List<State>>(candidates.size());
+		List<List<State>> new_candidates = new ArrayList<>(candidates.size());
 		boolean found_boundary = false;
 		for (List<State> states : candidates) {
-			List<State> new_states = new ArrayList<State>();
+			List<State> new_states = new ArrayList<>();
 			
 
 			for (State state : states) {

@@ -12,9 +12,9 @@ public class UnaryFactor extends Factor {
 	private double[] potential;
 	
 	public UnaryFactor() {
-		this.setNeighbors(new ArrayList<SegmentVariable>());
-		this.setMessageIds(new ArrayList<Integer>());
-		this.setMessages(new ArrayList<Message>());
+		this.setNeighbors(new ArrayList<>());
+		this.setMessageIds(new ArrayList<>());
+		this.setMessages(new ArrayList<>());
 		
 		this.setPotential(new double[2]);
 		

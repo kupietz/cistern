@@ -59,7 +59,7 @@ public class RandomizationTest implements SignificanceTest {
 
 	public static List<Double> getDifferences(List<Double> scores1,
 			List<Double> scores2, boolean remove_zeroes) {	
-		List<Double> list = new ArrayList<Double>(scores1.size());
+		List<Double> list = new ArrayList<>(scores1.size());
 		for (int index = 0; index < scores1.size(); index++) {
 			double diff = scores1.get(index) - scores2.get(index);
 			
@@ -90,15 +90,11 @@ public class RandomizationTest implements SignificanceTest {
 		Scorer scorer;
 		try {
 			scorer = (Scorer)(Class.forName(scorer_string).newInstance());
-		} catch (InstantiationException e) {
-			throw new RuntimeException(e);
-		} catch (IllegalAccessException e) {
-			throw new RuntimeException(e);
-		} catch (ClassNotFoundException e) {
+		} catch (InstantiationException | ClassNotFoundException | IllegalAccessException e) {
 			throw new RuntimeException(e);
 		}
-		
-		String actual = args[1];
+
+        String actual = args[1];
 		String prediction1 = args[2];
 		String prediction2 = args[3];
 		

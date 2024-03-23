@@ -1,12 +1,9 @@
 package experimental.ising;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-
-import marmot.util.Numerics;
 
 public class Analyzer {
 	
@@ -25,9 +22,9 @@ public class Analyzer {
 		this.drTrain = drTrain;
 		this.drDev = drDev;
 		
-		this.data = new LinkedList<Datum>();
-		this.trainingFactorGraphs = new LinkedList<IsingFactorGraph>();
-		this.devFactorGraphs = new LinkedList<IsingFactorGraph>();
+		this.data = new LinkedList<>();
+		this.trainingFactorGraphs = new LinkedList<>();
+		this.devFactorGraphs = new LinkedList<>();
 
 		this.ufe = new UnaryFeatureExtractor(0,5);
 		
@@ -52,7 +49,7 @@ public class Analyzer {
 		for (Datum d : drTrain.data) {
 			System.out.println(counter + "\t" + d.getWord() + "\t" + d.getTag().size());
 			
-			ArrayList<Integer> golden = new ArrayList<Integer>();
+			ArrayList<Integer> golden = new ArrayList<>();
 			for (int i = 0; i < drTrain.numVariables; ++i) {
 				golden.add(0);
 			}
@@ -136,7 +133,7 @@ public class Analyzer {
 			ig.updatePotentials(this.parameters);
 			ig.inference(1, 0.01);
 			List<String> decoded = ig.posteriorDecode();
-			List<String> golden = new LinkedList<String>();
+			List<String> golden = new LinkedList<>();
 			
 			int counter = 0;
 			for (Integer g : ig.golden) {

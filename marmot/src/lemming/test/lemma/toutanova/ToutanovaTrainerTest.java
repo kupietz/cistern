@@ -14,7 +14,6 @@ import lemming.lemma.LemmatizerTrainer;
 import lemming.lemma.SimpleLemmatizerTrainer;
 import lemming.lemma.BackupLemmatizerTrainer.BackupLemmatizerTrainerOptions;
 import lemming.lemma.SimpleLemmatizerTrainer.SimpleLemmatizerTrainerOptions;
-import lemming.lemma.toutanova.EditTreeAlignerTrainer;
 import lemming.lemma.toutanova.FirstOrderDecoder;
 import lemming.lemma.toutanova.ToutanovaTrainer;
 import lemming.lemma.toutanova.ToutanovaTrainer.ToutanovaOptions;

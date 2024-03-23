@@ -55,8 +55,8 @@ public class MorphOptions extends Options {
 	public static final String RESTRICT_POS_TAGS_TO_SEEN_COMBINATIONS = "restrict-pos-tags-to-seen-combinations";
 	public static final String OUTPUT_FORMAT_CONLLU = "conllu-format" ; 
 
-	private static final Map<String, String> DEFALUT_VALUES_ = new HashMap<String, String>();
-	private static final Map<String, String> COMMENTS_ = new HashMap<String, String>();
+	private static final Map<String, String> DEFALUT_VALUES_ = new HashMap<>();
+	private static final Map<String, String> COMMENTS_ = new HashMap<>();
 
 	static {
 		DEFALUT_VALUES_.put(TRAIN_FILE, "");
@@ -168,7 +168,7 @@ public class MorphOptions extends Options {
 	}
 	
 	public boolean getTagMorph() {
-		return Boolean.valueOf(getProperty(TAG_MORPH));
+		return Boolean.parseBoolean(getProperty(TAG_MORPH));
 	}
 	
 	public String getPredFile() {
@@ -227,7 +227,7 @@ public class MorphOptions extends Options {
 	}
 
 	public boolean getSpecialSignature() {
-		return Boolean.valueOf(getProperty(SPECIAL_SIGNATURE));
+		return Boolean.parseBoolean(getProperty(SPECIAL_SIGNATURE));
 	}
 	
 	public String getInternalAnalyzer() {
@@ -261,11 +261,11 @@ public class MorphOptions extends Options {
 	}
 
 	public int getMaxAffixLength() {
-		return Integer.valueOf(getProperty(MAX_AFFIX_LENGTH));
+		return Integer.parseInt(getProperty(MAX_AFFIX_LENGTH));
 	}
 	
 	public boolean getLemmatizer() {
-		return Boolean.valueOf(getProperty(LEMMATIZE));
+		return Boolean.parseBoolean(getProperty(LEMMATIZE));
 	}
 	
 	public String getLemmaUnigramFile() {
@@ -273,15 +273,15 @@ public class MorphOptions extends Options {
 	}
 	
 	public boolean getGoldLemma() {
-		return Boolean.valueOf(getProperty(GOLD_LEMMA));
+		return Boolean.parseBoolean(getProperty(GOLD_LEMMA));
 	}
 
 	public boolean getLemmaPretraining() {
-		return Boolean.valueOf(getProperty(LEMMA_PRETRAINING));
+		return Boolean.parseBoolean(getProperty(LEMMA_PRETRAINING));
 	}
 
 	public boolean getMarginalizeLemmas() {
-		return Boolean.valueOf(getProperty(MARGINALIZE_LEMMAS));
+		return Boolean.parseBoolean(getProperty(MARGINALIZE_LEMMAS));
 	}
 
 	public String getLemmaIgnoreFeatures() {
@@ -309,7 +309,7 @@ public class MorphOptions extends Options {
 	}
 
 	public boolean getUseHashFeatureTable() {
-		return Boolean.valueOf(getProperty(USE_HASH_FEATURE_TABLE));
+		return Boolean.parseBoolean(getProperty(USE_HASH_FEATURE_TABLE));
 	}
 
 	public String getLemmaClusterFile() {
@@ -317,19 +317,19 @@ public class MorphOptions extends Options {
 	}
 
 	public boolean getLemmaPrePruningExtraction() {
-		return Boolean.valueOf(getProperty(LEMMA_PREPRUNING_EXTRACTION_));
+		return Boolean.parseBoolean(getProperty(LEMMA_PREPRUNING_EXTRACTION_));
 	}
 
 	public boolean getLemmaTagDependent() {
-		return Boolean.valueOf(getProperty(LEMMA_TAG_DEPENDENT));
+		return Boolean.parseBoolean(getProperty(LEMMA_TAG_DEPENDENT));
 	}
 
 	public int getLemmaUseLemmingGenerator() {
-		return Integer.valueOf(getProperty(LEMMA_LEMMING_GENERATOR ));
+		return Integer.parseInt(getProperty(LEMMA_LEMMING_GENERATOR ));
 	}
 
 	public boolean getRestrictPosTagsToSeenCombinations() {
-		return Boolean.valueOf(getProperty(RESTRICT_POS_TAGS_TO_SEEN_COMBINATIONS));
+		return Boolean.parseBoolean(getProperty(RESTRICT_POS_TAGS_TO_SEEN_COMBINATIONS));
 	}
 
 }

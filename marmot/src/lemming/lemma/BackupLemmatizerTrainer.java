@@ -57,14 +57,10 @@ public class BackupLemmatizerTrainer implements LemmatizerGeneratorTrainer {
 			LemmatizerGeneratorTrainer trainer;
 			try {
 				 trainer = (LemmatizerGeneratorTrainer) Class.forName(classname).newInstance();
-			} catch (InstantiationException e) {
-				throw new RuntimeException(e);
-			} catch (IllegalAccessException e) {
-				throw new RuntimeException(e);
-			} catch (ClassNotFoundException e) {
+			} catch (InstantiationException | ClassNotFoundException | IllegalAccessException e) {
 				throw new RuntimeException(e);
 			}
-			for (Map.Entry<String, Object> entry : map.entrySet()) {
+            for (Map.Entry<String, Object> entry : map.entrySet()) {
 				trainer.getOptions().setOption(entry.getKey(), entry.getValue());
 			}
 			

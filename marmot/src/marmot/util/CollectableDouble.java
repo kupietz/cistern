@@ -17,13 +17,11 @@ public class CollectableDouble implements Collectable {
 	
 	@Override
 	public void add(Collectable other) {
-		if (! (other instanceof CollectableDouble)) {
+		if (! (other instanceof CollectableDouble other_integer)) {
 			throw new InvalidParameterException();
 		}
-		
-		CollectableDouble other_integer = (CollectableDouble) other;
-		
-		d_ += other_integer.getValue();
+
+        d_ += other_integer.getValue();
 	}
 	
 	public double getValue() {
@@ -39,9 +37,7 @@ public class CollectableDouble implements Collectable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		long temp;
-		temp = Double.doubleToLongBits(d_);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
+        result = prime * result + Double.hashCode(d_);
 		return result;
 	}
 

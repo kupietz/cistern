@@ -20,7 +20,7 @@ public class Mapping extends AbstractMap<String, String> {
 	}
 	
 	private void init(String filename) {
-		map_ = new HashMap<String, String>();
+		map_ = new HashMap<>();
 		try {
 			BufferedReader reader = FileUtils.openFile(filename);
 			
@@ -50,8 +50,6 @@ public class Mapping extends AbstractMap<String, String> {
 			
 			reader.close();
 			
-		} catch (FileNotFoundException e) {
-			throw new RuntimeException(e);
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}

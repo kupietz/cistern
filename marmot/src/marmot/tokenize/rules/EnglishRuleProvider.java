@@ -12,7 +12,7 @@ public class EnglishRuleProvider extends RuleProvider {
 
 	@Override
 	public Collection<Rule> getTokRules() {
-		List<Rule> rules = new LinkedList<Rule>();
+		List<Rule> rules = new LinkedList<>();
 		rules.add(new Rule(Pattern.compile("(``)") ,"\""));
 		rules.add(new Rule(Pattern.compile("(`)") ,"'"));
 		rules.add(new Rule(Pattern.compile("('')") ,"\""));
@@ -25,7 +25,7 @@ public class EnglishRuleProvider extends RuleProvider {
 
 	@Override
 	public Collection<Rule> getUnTokRules() {
-		List<Rule> rules = new LinkedList<Rule>();	
+		List<Rule> rules = new LinkedList<>();
 		rules.add(new Rule(Pattern.compile("(\\()") ,"-LRB-"));
 		rules.add(new Rule(Pattern.compile("(\\))") ,"-RRB-"));
 		rules.add(new Rule(Pattern.compile("(\\{)") ,"-LCB-"));

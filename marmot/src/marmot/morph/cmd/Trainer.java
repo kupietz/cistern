@@ -23,7 +23,7 @@ public class Trainer {
 	
 	public static MorphTagger train(MorphOptions options) {
 		long time = System.currentTimeMillis();
-		List<Sequence> train_sentences = new LinkedList<Sequence>();
+		List<Sequence> train_sentences = new LinkedList<>();
 
 		SentenceReader reader = new SentenceReader(options.getTrainFile());
 		if (options.getTagMorph())
@@ -42,7 +42,7 @@ public class Trainer {
 				reader.getFileOptions().dieIfPropertyIsEmpty(
 						FileOptions.MORPH_INDEX);
 
-			test_sentences = new LinkedList<Sequence>();
+			test_sentences = new LinkedList<>();
 			for (Sequence sentence : reader) {
 				test_sentences.add(sentence);
 			}
@@ -73,7 +73,7 @@ public class Trainer {
 		MorphModel model = (MorphModel) tagger.getModel();
 
 		if (!options.getTestFile().isEmpty()) {
-			List<Sequence> sentences = new LinkedList<Sequence>();
+			List<Sequence> sentences = new LinkedList<>();
 			
 			SentenceReader reader = new SentenceReader(options.getTestFile());
 			if (options.getTagMorph())

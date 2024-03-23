@@ -63,66 +63,65 @@ public class SimpleTagger implements Tagger {
 	private void addTransitions(List<List<State>> states, int level, int order) {
 		List<State> last_states = Collections.singletonList((State) model_
 				.getBoundaryState(level));
-		for (int index = 0; index < states.size(); index++) {
-			List<State> current_states = states.get(index);
-			Transition[][] transitions = new Transition[last_states.size()][current_states
-					.size()];
+        for (List<State> current_states : states) {
+            Transition[][] transitions = new Transition[last_states.size()][current_states
+                    .size()];
 
-			int from_index = 0;
-			for (State last_state : last_states) {
+            int from_index = 0;
+            for (State last_state : last_states) {
 
-				FeatureVector vector = weight_vector_
-						.extractTransitionFeatures(last_state);
+                FeatureVector vector = weight_vector_
+                        .extractTransitionFeatures(last_state);
 
-				int to_index = 0;
+                int to_index = 0;
 
-				for (State state : current_states) {
+                for (State state : current_states) {
 
-					if (last_state.canTransitionTo(state)) {
-						Transition transition = new Transition(last_state,
-								state, order);
-						transition.setVector(vector);
+                    if (last_state.canTransitionTo(state)) {
+                        Transition transition = new Transition(last_state,
+                                state, order);
+                        transition.setVector(vector);
 
-						double score = 0.0;
-						State run = state;
-						while (run != null) {
-							score += weight_vector_.dotProduct(run, vector);
-							run = run.getSubLevelState();
-						}
+                        double score = 0.0;
+                        State run = state;
+                        while (run != null) {
+                            score += weight_vector_.dotProduct(run, vector);
+                            run = run.getSubLevelState();
+                        }
 
-						transition.setScore(score);
-						transitions[from_index][to_index] = transition;
-					}
+                        transition.setScore(score);
+                        transitions[from_index][to_index] = transition;
+                    }
 
-					to_index++;
-				}
+                    to_index++;
+                }
 
-				from_index++;
-			}
+                from_index++;
+            }
 
-			int to_index = 0;
-			for (State state : current_states) {
-				boolean found_transition = false;
-				Transition[] transition_row = new Transition[last_states.size()];
-				for (from_index = 0; from_index < last_states.size(); from_index++) {
-					transition_row[from_index] = transitions[from_index][to_index];
+            int to_index = 0;
+            for (State state : current_states) {
+                boolean found_transition = false;
+                Transition[] transition_row = new Transition[last_states.size()];
+                for (from_index = 0; from_index < last_states.size(); from_index++) {
+                    transition_row[from_index] = transitions[from_index][to_index];
 
-					if (transition_row[from_index] != null)
-						found_transition = true;
-				}
-				assert (found_transition);
-				state.setTransitions(transition_row);
-				to_index++;
-			}
+                    if (transition_row[from_index] != null)
+                        found_transition = true;
+                }
+                assert (found_transition);
+                state.setTransitions(transition_row);
+                to_index++;
+            }
 
-			last_states = current_states;
-		}
+            last_states = current_states;
+        }
 	}
 
 	protected List<List<State>> increaseOrder(List<List<State>> states,
 			int level) {
-		List<List<State>> new_state_candidates = new ArrayList<List<State>>(
-				states.size() + 1);
+		List<List<State>> new_state_candidates = new ArrayList<>(
+                states.size() + 1);
 
 		for (int index = 0; index < states.size(); index++) {
 			int num_previous_states;
@@ -133,8 +132,8 @@ public class SimpleTagger implements Tagger {
 			}
 
 			List<State> current_states = states.get(index);
-			List<State> new_states = new ArrayList<State>(current_states.size()
-					* num_previous_states);
+			List<State> new_states = new ArrayList<>(current_states.size()
+                    * num_previous_states);
 
 			for (State state : current_states) {
 
@@ -171,8 +170,8 @@ public class SimpleTagger implements Tagger {
 	private Result result_;
 
 	protected List<List<State>> getStates(Sequence sequence, boolean training) {
-		List<List<State>> candidates = new ArrayList<List<State>>(
-				sequence.size() + 1);
+		List<List<State>> candidates = new ArrayList<>(
+                sequence.size() + 1);
 		for (int index = 0; index < sequence.size(); index++) {
 
 			Token token = sequence.get(index);
@@ -186,7 +185,7 @@ public class SimpleTagger implements Tagger {
 			}
 
 			int[] tag_indexes = model_.getTagCandidates(sequence, index, null);
-			List<State> states = new ArrayList<State>(tag_indexes.length);
+			List<State> states = new ArrayList<>(tag_indexes.length);
 			for (int tag_index : tag_indexes) {
 
 				if (tag_index == -1)
@@ -256,15 +255,15 @@ public class SimpleTagger implements Tagger {
 
 	private List<List<State>> increaseLevel(List<List<State>> candidates,
 			Sequence sentence) {
-		List<List<State>> new_candidates = new ArrayList<List<State>>(
-				candidates.size());
+		List<List<State>> new_candidates = new ArrayList<>(
+                candidates.size());
 		final int average_size = AVERAGE_NUMBER_OF_CANDIDATES;
 		int index = 0;
 		for (List<State> current_states : candidates) {
 			List<State> new_current_states;
 			if (index < candidates.size() - 1) {
-				new_current_states = new ArrayList<State>(current_states.size()
-						* average_size);
+				new_current_states = new ArrayList<>(current_states.size()
+                        * average_size);
 				for (State state : current_states) {
 					FeatureVector vector = weight_vector_
 							.extractStateFeatures(state);
@@ -445,13 +444,13 @@ public class SimpleTagger implements Tagger {
 	public List<Integer> getGoldIndexes(Sequence sequence,
 			List<List<State>> candidates) {
 
-		List<Integer> list = new ArrayList<Integer>(candidates.size());
+		List<Integer> list = new ArrayList<>(candidates.size());
 
 		int last_candidate_index = 0;
 		for (int index = 0; index < candidates.size(); index++) {
 			List<State> current_candidates = candidates.get(index);
-			List<Integer> current_candidate_indexes = new ArrayList<Integer>(
-					current_candidates.size());
+			List<Integer> current_candidate_indexes = new ArrayList<>(
+                    current_candidates.size());
 			for (int candidate_index = 0; candidate_index < current_candidates
 					.size(); candidate_index++) {
 				current_candidate_indexes.add(candidate_index);
@@ -461,8 +460,8 @@ public class SimpleTagger implements Tagger {
 					.getLevel();
 
 			for (int level = max_level; level >= 0; level--) {
-				List<Integer> new_current_candidate_indexes = new ArrayList<Integer>(
-						current_candidate_indexes.size());
+				List<Integer> new_current_candidate_indexes = new ArrayList<>(
+                        current_candidate_indexes.size());
 
 				int gold_tag_index;
 				if (index < sequence.size()) {
@@ -471,30 +470,27 @@ public class SimpleTagger implements Tagger {
 					gold_tag_index = model_.getBoundaryIndex();
 				}
 
-				for (int state_index = 0; state_index < current_candidate_indexes
-						.size(); state_index++) {
-					int candidate_index = current_candidate_indexes
-							.get(state_index);
-					State state = current_candidates.get(candidate_index);
+                for (int candidate_index : current_candidate_indexes) {
+                    State state = current_candidates.get(candidate_index);
 
-					if (level == max_level) {
-						// check transition!
+                    if (level == max_level) {
+                        // check transition!
 
-						boolean valid = (state.getTransitions() == null || state
-								.getTransition(last_candidate_index) != null);
+                        boolean valid = (state.getTransitions() == null || state
+                                .getTransition(last_candidate_index) != null);
 
-						if (!valid) {
-							continue;
-						}
+                        if (!valid) {
+                            continue;
+                        }
 
-					}
+                    }
 
-					if (gold_tag_index == state.getZeroOrderState()
-							.getSubLevel(max_level - level).getIndex()) {
-						new_current_candidate_indexes.add(candidate_index);
-					}
+                    if (gold_tag_index == state.getZeroOrderState()
+                            .getSubLevel(max_level - level).getIndex()) {
+                        new_current_candidate_indexes.add(candidate_index);
+                    }
 
-				}
+                }
 
 				current_candidate_indexes = new_current_candidate_indexes;
 				if (current_candidate_indexes.isEmpty()) {
@@ -526,7 +522,7 @@ public class SimpleTagger implements Tagger {
 	public List<List<String>> tag(Sequence sentence) {
 		List<int[]> indexes = tag_(sentence);
 
-		List<List<String>> strings = new ArrayList<List<String>>(indexes.size());
+		List<List<String>> strings = new ArrayList<>(indexes.size());
 
 		for (int[] array : indexes) {
 			strings.add(indexesToStrings(array));
@@ -536,7 +532,7 @@ public class SimpleTagger implements Tagger {
 	}
 
 	protected List<String> indexesToStrings(int[] indexes) {
-		List<String> sarray = new ArrayList<String>(indexes.length);
+		List<String> sarray = new ArrayList<>(indexes.length);
 
 		int level = 0;
 		for (int index : indexes) {
@@ -562,7 +558,7 @@ public class SimpleTagger implements Tagger {
 	}
 
 	protected List<State> tag_states(Sequence sequence) {
-		List<State> list = new ArrayList<State>(sequence.size());
+		List<State> list = new ArrayList<>(sequence.size());
 		SumLattice sum_lattice = getSumLattice(false, sequence);
 
 		List<List<State>> candidates = sum_lattice.getCandidates();
@@ -601,7 +597,7 @@ public class SimpleTagger implements Tagger {
 	}
 
 	protected List<int[]> tag_(Sequence sequence) {
-		List<int[]> list = new ArrayList<int[]>(sequence.size());
+		List<int[]> list = new ArrayList<>(sequence.size());
 
 		List<State> states = tag_states(sequence);
 

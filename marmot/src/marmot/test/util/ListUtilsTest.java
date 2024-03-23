@@ -21,7 +21,7 @@ public class ListUtilsTest {
 		List<List<Integer>> items; 
 		List<Integer> expected, actual;
 		
-		items = new LinkedList<List<Integer>>();
+		items = new LinkedList<>();
 		items.add(Arrays.asList(1, 2));
 		items.add(Arrays.asList(3, 4));
 		items.add(Arrays.asList(5, 6));
@@ -46,7 +46,7 @@ public class ListUtilsTest {
 		
 		List<Integer> items = Arrays.asList(1, 2, 3, 4, 5, 6 , 7, 8);
 		
-		expected = new LinkedList<List<Integer>>();
+		expected = new LinkedList<>();
 		expected.add(Arrays.asList(1, 2));
 		expected.add(Arrays.asList(3, 4));
 		expected.add(Arrays.asList(5, 6));
@@ -55,7 +55,7 @@ public class ListUtilsTest {
 		actual = ListUtils.chunk(items, 4);
 		assertEquals(expected, actual);
 		
-		expected = new LinkedList<List<Integer>>();
+		expected = new LinkedList<>();
 		expected.add(Arrays.asList(1));
 		expected.add(Arrays.asList(2));
 		expected.add(Arrays.asList(3));
@@ -64,7 +64,7 @@ public class ListUtilsTest {
 		actual = ListUtils.chunk(items, 5);
 		assertEquals(expected, actual);
 		
-		expected = new LinkedList<List<Integer>>();
+		expected = new LinkedList<>();
 		expected.add(Arrays.asList(1));
 		expected.add(Arrays.asList(2));
 		expected.add(Arrays.asList(3));
@@ -76,7 +76,7 @@ public class ListUtilsTest {
 		actual = ListUtils.chunk(items, 8);
 		assertEquals(expected, actual);
 		
-		expected = new LinkedList<List<Integer>>();
+		expected = new LinkedList<>();
 		expected.add(Arrays.asList(1));
 		expected.add(Arrays.asList(2));
 		expected.add(Arrays.asList(3));

@@ -20,7 +20,7 @@ public class Stats {
 		options.setPropertiesFromStrings(args);
 
 		int train_tokens = 0;
-		List<Sequence> train_sentences = new LinkedList<Sequence>();
+		List<Sequence> train_sentences = new LinkedList<>();
 		for (Sequence sequence : new SentenceReader(options.getTrainFile())) {
 			train_sentences.add(sequence);
 			train_tokens += sequence.size();
@@ -42,7 +42,7 @@ public class Stats {
 		if (has_test_file) {
 			int test_tokens = 0;
 			int oov_test_tokens = 0;
-			List<Sequence> test_sentences = new LinkedList<Sequence>();
+			List<Sequence> test_sentences = new LinkedList<>();
 			for (Sequence sequence : new SentenceReader(options.getTestFile())) {
 				test_sentences.add(sequence);
 

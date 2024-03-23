@@ -10,15 +10,11 @@ public class TrainerFactory {
 		Trainer trainer;
 		try {
 			trainer = (Trainer)(Class.forName(options.getTrainer()).newInstance());
-		} catch (InstantiationException e) {
-			throw new RuntimeException(e);
-		} catch (IllegalAccessException e) {
-			throw new RuntimeException(e);
-		} catch (ClassNotFoundException e) {
+		} catch (InstantiationException | ClassNotFoundException | IllegalAccessException e) {
 			throw new RuntimeException(e);
 		}
-		
-		trainer.setOptions(options);
+
+        trainer.setOptions(options);
 		return trainer;
 		
 	}

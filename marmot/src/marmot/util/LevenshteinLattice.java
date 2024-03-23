@@ -172,15 +172,7 @@ public class LevenshteinLattice {
 				output_index);
 
 		if (remove_redundant) {
-			ListIterator<List<Character>> iter = lists.listIterator();
-			while (iter.hasNext()) {
-				List<Character> next = iter.next();
-
-				if (redundant(next)) {
-					iter.remove();
-				}
-
-			}
+            lists.removeIf(this::redundant);
 		}
 
 		return lists;
@@ -195,11 +187,11 @@ public class LevenshteinLattice {
 		init();
 		short op = op_lattice_[input_index][output_index];
 
-		List<List<Character>> lists = new LinkedList<List<Character>>();
+		List<List<Character>> lists = new LinkedList<>();
 
 		if ((op & START) > 0) {
 			assert op == START;
-			lists.add(new LinkedList<Character>());
+			lists.add(new LinkedList<>());
 		} else {
 
 			if ((op & COPY) > 0) {

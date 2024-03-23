@@ -18,7 +18,7 @@ public abstract class MorphDictionary implements Serializable {
 	public MorphDictionary(SymbolTable<String> table) {
 		table_ = table;
 		if (table_ == null) {
-			table_ = new SymbolTable<String>(true);
+			table_ = new SymbolTable<>(true);
 		}
 	}
 	
@@ -37,20 +37,13 @@ public abstract class MorphDictionary implements Serializable {
 	abstract public int[] getIndexes(String word_form);
 	
 	public static MorphDictionary create(MorphDictionaryOptions options) {
-		MorphDictionary dict;
-		
-		switch (options.getDictType()) {
-		case hash:
-			dict = new HashDictionary();
-			break;
-		case suffix:
-			dict = new SuffixDictionary();
-			break;
-		default:
-			throw new UnsupportedOperationException();
-		}
-		
-		dict.init(options);
+		MorphDictionary dict = switch (options.getDictType()) {
+            case hash -> new HashDictionary();
+            case suffix -> new SuffixDictionary();
+            default -> throw new UnsupportedOperationException();
+        };
+
+        dict.init(options);
 		return dict;
 	}
 	

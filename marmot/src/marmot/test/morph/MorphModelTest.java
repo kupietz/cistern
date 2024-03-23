@@ -24,7 +24,7 @@ public class MorphModelTest {
 	public void testFormExtraction(String inform, String expected_form,
 			Collection<Character> expected_chars, MorphOptions options) {
 		MorphModel model = new MorphModel();
-		model.init(options, new LinkedList<Sequence>());
+		model.init(options, new LinkedList<>());
 		Word word = new Word(inform);
 		model.addIndexes(word, true);
 
@@ -60,7 +60,7 @@ public class MorphModelTest {
 	public void testShapeExtraction(String inform, int expected,
 			MorphOptions options) {
 		MorphModel model = new MorphModel();
-		model.init(options, new LinkedList<Sequence>());
+		model.init(options, new LinkedList<>());
 		Word word = new Word(inform);
 		model.addIndexes(word, true);
 		assertEquals(expected, word.getWordSignature());

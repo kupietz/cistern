@@ -26,7 +26,7 @@ public class LevenshteinAlignerTest {
 		assertEquals(expected, actual.pairs);
 		
 		// Reverse problem
-		List<Pair> expected_reversed = new LinkedList<Pair>();
+		List<Pair> expected_reversed = new LinkedList<>();
 		for (Pair pair : expected) {
 			expected_reversed.add(new Pair(pair.b, pair.a));
 		}
@@ -45,7 +45,7 @@ public class LevenshteinAlignerTest {
 		
 		tok = "A -LRB- B";
 		untok = "A (B";
-		expected = new LinkedList<Pair>();
+		expected = new LinkedList<>();
 		expected.add(new Pair(0, 0));
 		expected.add(new Pair(1, 1));
 		expected.add(new Pair(2, 2));
@@ -59,7 +59,7 @@ public class LevenshteinAlignerTest {
 		
 		tok = "A -- C -- B";
 		untok = "A (C) B";
-		expected = new LinkedList<Pair>();
+		expected = new LinkedList<>();
 		expected.add(new Pair(0, 0));
 		expected.add(new Pair(1, 1));
 		expected.add(new Pair(2, 2));
@@ -75,7 +75,7 @@ public class LevenshteinAlignerTest {
 
 		tok = "A L B";
 		untok = "A (B";
-		expected = new LinkedList<Pair>();
+		expected = new LinkedList<>();
 		expected.add(new Pair(0, 0));
 		expected.add(new Pair(1, 1));
 		expected.add(new Pair(2, 2));
@@ -91,7 +91,7 @@ public class LevenshteinAlignerTest {
 
 		tok = "A -- -- B";
 		untok = "A () B";
-		expected = new LinkedList<Pair>();
+		expected = new LinkedList<>();
 		expected.add(new Pair(0, 0));
 		expected.add(new Pair(1, 1));
 		expected.add(new Pair(2, 2));
@@ -105,7 +105,7 @@ public class LevenshteinAlignerTest {
 	}
 	
 	public List<Pair> getParanExpected(String tok) {
-		List<Pair> expected = new LinkedList<Pair>();
+		List<Pair> expected = new LinkedList<>();
 		int untok_index = 0;
 		for (int i=0; i<tok.length(); i++) {
 			if (i % 3 == 2) {
@@ -125,7 +125,7 @@ public class LevenshteinAlignerTest {
 		
 		tok = "-- --";
 		untok = "()";
-		expected = new LinkedList<Pair>();
+		expected = new LinkedList<>();
 		expected.add(new Pair(0, 0));
 		expected.add(new Pair(0, 1));
 		expected.add(new Pair(-1, 2));
@@ -183,7 +183,7 @@ public class LevenshteinAlignerTest {
 		
 		tok = "„ „ AAA “ “";
 		untok = "\"\"AAA\"\"";
-		expected = new LinkedList<Pair>();
+		expected = new LinkedList<>();
 		expected.add(new Pair(0, 0));
 		expected.add(new Pair(-1, 1));
 		expected.add(new Pair(1, 2));
@@ -199,7 +199,7 @@ public class LevenshteinAlignerTest {
 		
 		tok = "B BBB B";
 		untok = "B(B";
-		expected = new LinkedList<Pair>();
+		expected = new LinkedList<>();
 		expected.add(new Pair(0, 0));
 		expected.add(new Pair(-1, 1));
 		expected.add(new Pair(1, 2));

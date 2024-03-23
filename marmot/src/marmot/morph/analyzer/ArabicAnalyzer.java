@@ -36,7 +36,7 @@ public class ArabicAnalyzer extends Analyzer {
 
 		StringBuilder sb = new StringBuilder();
 
-		Set<String> set = new HashSet<String>();
+		Set<String> set = new HashSet<>();
 		
 		for (Solution solution : solutions) {
 			sb.setLength(0);
@@ -71,6 +71,6 @@ public class ArabicAnalyzer extends Analyzer {
 			return null;
 		}
 		
-		return new ArrayList<String>(set);
+		return new ArrayList<>(set);
 	}
 }

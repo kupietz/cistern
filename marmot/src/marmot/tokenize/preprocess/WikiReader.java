@@ -37,8 +37,6 @@ public class WikiReader implements Iterator<Pair> {
 			return new BufferedReaderWrapper(new BufferedReader(
 					new InputStreamReader(new BZip2CompressorInputStream(
 							new FileInputStream(file)), "UTF-8")));
-		} catch (FileNotFoundException e) {
-			throw new RuntimeException(e);
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
@@ -166,7 +164,7 @@ public class WikiReader implements Iterator<Pair> {
 	}
 
 	public List<Pair> readAll() {
-		List<Pair> pairs = new LinkedList<Pair>();
+		List<Pair> pairs = new LinkedList<>();
 		while (hasNext()) {
 			pairs.add(next());
 		}

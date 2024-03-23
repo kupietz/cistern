@@ -35,10 +35,10 @@ public abstract class Model implements Serializable {
 		order_ = options.getOrder();
 		catgegory_table_ = category_tables;
 		
-		tag_tables_ = new ArrayList<SymbolTable<String>>(
-				catgegory_table_.size());
+		tag_tables_ = new ArrayList<>(
+                catgegory_table_.size());
 		for (int index = 0; index < catgegory_table_.size(); index++) {
-			SymbolTable<String> tag_table = new SymbolTable<String>(true);
+			SymbolTable<String> tag_table = new SymbolTable<>(true);
 			tag_table.toIndex(BORDER_SYMBOL_, true);
 			tag_tables_.add(tag_table);
 		}

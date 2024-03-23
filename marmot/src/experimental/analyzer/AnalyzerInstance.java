@@ -56,18 +56,10 @@ public class AnalyzerInstance implements Serializable {
 		for (Sequence sequence : new SentenceReader(filename)) {
 			for (Token token : sequence) {
 				Word word = (Word) token;
-				Map<AnalyzerReading, Mutable<Integer>> instance = map.get(word.getWordForm());
-				if (instance == null) {
-					instance = new HashMap<>();
-					map.put(word.getWordForm(), instance);
-				}
-				AnalyzerReading reading = new AnalyzerReading(word);
-				Mutable<Integer> i = instance.get(reading);
-				if (i == null) {
-					i = new Mutable<Integer>(0);
-					instance.put(reading, i);
-				}
-				i.set(i.get() + 1);
+                Map<AnalyzerReading, Mutable<Integer>> instance = map.computeIfAbsent(word.getWordForm(), k -> new HashMap<>());
+                AnalyzerReading reading = new AnalyzerReading(word);
+                Mutable<Integer> i = instance.computeIfAbsent(reading, k -> new Mutable<>(0));
+                i.set(i.get() + 1);
 			}	
 		}
 

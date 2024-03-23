@@ -151,10 +151,10 @@ public class SimpleAnalyzer implements Analyzer {
 	private void classifierScore(double[] scores) {
 		
 		double sum = Double.NEGATIVE_INFINITY;
-		for (int tag_index=0; tag_index < scores.length; tag_index++) {
-			
-			sum = Numerics.sumLogProb(scores[tag_index], sum);
-		}
+        for (double v : scores) {
+
+            sum = Numerics.sumLogProb(v, sum);
+        }
 		
 		for (int tag_index=0; tag_index < scores.length; tag_index++) {
 			double score = scores[tag_index];

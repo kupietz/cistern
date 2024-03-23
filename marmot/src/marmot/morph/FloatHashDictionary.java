@@ -30,8 +30,8 @@ public class FloatHashDictionary implements Serializable {
 
 			if (!line.isEmpty()) {
 				String form = line.get(0);
-				List<Integer> indexes = new LinkedList<Integer>();
-				List<Double> values = new LinkedList<Double>();
+				List<Integer> indexes = new LinkedList<>();
+				List<Double> values = new LinkedList<>();
 
 				for (int i = 1; i < line.size(); i++) {
 
@@ -127,8 +127,8 @@ public class FloatHashDictionary implements Serializable {
 		options_ = options;
 		
 		LineIterator iterator = new LineIterator(options_.getFilename());
-		column_table_ = new SymbolTable<String>();
-		index_map_ = new HashMap<String, FloatFeatureVector>();
+		column_table_ = new SymbolTable<>();
+		index_map_ = new HashMap<>();
 
 		if (options_.getDense()) {
 			readDenseVector(iterator);
@@ -138,12 +138,9 @@ public class FloatHashDictionary implements Serializable {
 			for (Map.Entry<String, FloatFeatureVector> entry : index_map_
 					.entrySet()) {
 
-				if (entry.getValue() instanceof ArrayFloatFeatureVector) {
+				if (entry.getValue() instanceof ArrayFloatFeatureVector vec) {
 
-					ArrayFloatFeatureVector vec = (ArrayFloatFeatureVector) entry
-							.getValue();
-
-					if (column_table_.size() == vec.getWeights().length) {
+                    if (column_table_.size() == vec.getWeights().length) {
 						entry.setValue(new DenseArrayFloatFeatureVector(vec
 								.getWeights()));
 					} else {

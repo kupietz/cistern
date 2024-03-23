@@ -22,7 +22,7 @@ public class LevenshteinAligner implements Aligner {
 	}
 	
 	private static final String TIMEOUT_STRING = "<TIMEOUT>";
-	private static final List<Character> TIMEOUT_LIST = new LinkedList<Character>();
+	private static final List<Character> TIMEOUT_LIST = new LinkedList<>();
 	static {
 		for (int i=TIMEOUT_STRING.length()- 1; i>=0; i--) {
 			TIMEOUT_LIST.add(TIMEOUT_STRING.charAt(i));
@@ -60,7 +60,7 @@ public class LevenshteinAligner implements Aligner {
 
 				state.input_index = input_index + input_diff;
 				state.output_index = output_index + output_diff;
-				state.current_path = new LinkedList<Character>(current_path);
+				state.current_path = new LinkedList<>(current_path);
 				state.current_path.add(op);
 
 				return state;
@@ -75,9 +75,9 @@ public class LevenshteinAligner implements Aligner {
 			State state = new State();
 			state.input_index = input_.length();
 			state.output_index = output_.length();
-			state.current_path = new LinkedList<Character>();
+			state.current_path = new LinkedList<>();
 
-			List<State> states = new LinkedList<State>();
+			List<State> states = new LinkedList<>();
 			states.add(state);
 
 			List<Character> seq = searchOperationSequence(states);
@@ -191,7 +191,7 @@ public class LevenshteinAligner implements Aligner {
 			return new Result(ResultType.Timeout);
 		}
 
-		List<Pair> pairs = new LinkedList<Pair>();
+		List<Pair> pairs = new LinkedList<>();
 
 		int input_index = 0;
 		int output_index = 0;

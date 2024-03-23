@@ -41,7 +41,7 @@ public class PipelineTest {
 	}
 
 	public static List<Sequence> getSentences(String filename, int number) {
-		List<Sequence> list = new LinkedList<Sequence>();
+		List<Sequence> list = new LinkedList<>();
 		for (Sequence sentence : new SentenceReader(filename)) {
 			list.add(sentence);
 			if (number >= 0 && list.size() >= number) {
@@ -52,10 +52,10 @@ public class PipelineTest {
 	}
 
 	public List<Sequence> getTrainSentences() {
-		List<Sequence> sentences = new LinkedList<Sequence>();
+		List<Sequence> sentences = new LinkedList<>();
 		List<Word> tokens;
 
-		tokens = new LinkedList<Word>();
+		tokens = new LinkedList<>();
 		tokens.add(new Word("das", "A", "c=N|n=S"));
 		tokens.add(new Word("ist", "V", "n=S"));
 		tokens.add(new Word("ein", "A", "c=N|n=S"));
@@ -63,7 +63,7 @@ public class PipelineTest {
 		tokens.add(new Word(".", ".", "_"));
 		sentences.add(new Sentence(tokens));
 
-		tokens = new LinkedList<Word>();
+		tokens = new LinkedList<>();
 		tokens.add(new Word("die", "A", "c=N|n=P"));
 		tokens.add(new Word("Rüben", "N", "c=N|n=P"));
 		tokens.add(new Word("sind", "V", "n=P"));
@@ -76,7 +76,7 @@ public class PipelineTest {
 
 	public List<Sequence> getTestSentences() {
 		List<Word> tokens;
-		tokens = new LinkedList<Word>();
+		tokens = new LinkedList<>();
 		tokens.add(new Word("das", "A", "c=N|n=S"));
 		tokens.add(new Word("ist", "V", "n=S"));
 		tokens.add(new Word("mein", "A", "c=N|n=S"));

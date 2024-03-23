@@ -46,13 +46,11 @@ public interface Aligner {
 		
 		@Override
 		public boolean equals(Object other) {
-			if (!(other instanceof Pair)) {
+			if (!(other instanceof Pair other_pair)) {
 				return false;
 			}
-			
-			Pair other_pair = (Pair) other;
-			
-			return a == other_pair.a && b == other_pair.b;
+
+            return a == other_pair.a && b == other_pair.b;
 		}
 				
 	}
