@@ -7,7 +7,7 @@
     <artifactId>cistern</artifactId>
     <version>1.0.3</version>
     <properties>
-        <gradle.version>7.4.2</gradle.version>
+        <gradle.version>7.</gradle.version>
         <marmot.dir>${project.basedir}/marmot</marmot.dir>
     </properties>
 
@@ -26,7 +26,7 @@
                             <goal>exec</goal>
                         </goals>
                         <configuration>
-                            <executable>gradle</executable>
+                            <executable>./marmot/gradlew</executable>
                             <workingDirectory>${marmot.dir}</workingDirectory>
                             <arguments>
                                 <argument>build</argument>
@@ -36,22 +36,34 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-install-plugin</artifactId>
-                <version>3.0.0-M1</version>
+                <groupId>org.apache.maven.plugins</groupId>
+                <version>3.1.1</version>
+
+                <configuration>
+                    <allowIncompleteProjects>true</allowIncompleteProjects>
+                </configuration>
+              </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>install-marmot-jar</id>
+                        <id>copy-artifact</id>
                         <phase>install</phase>
                         <goals>
-                            <goal>install-file</goal>
+                            <goal>copy</goal>
                         </goals>
                         <configuration>
-                            <file>${project.basedir}/marmot/cistern-snapshot.jar</file>
-                            <groupId>cistern</groupId>
-                            <artifactId>cistern</artifactId>
-                            <version>snapshot</version>
-                            <packaging>jar</packaging>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>cistern</groupId>
+                                    <artifactId>cistern</artifactId>
+                                    <version>snapshot</version>
+                                    <type>${project.packaging}</type>
+                                </artifactItem>
+                            </artifactItems>
+                            <outputDirectory>target</outputDirectory>
                         </configuration>
                     </execution>
                 </executions>

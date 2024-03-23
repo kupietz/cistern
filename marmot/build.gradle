@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'application'
     id 'com.github.johnrengelman.shadow' version '7.1.2'
+    id 'maven-publish'
 }
 
 repositories {
@@ -26,6 +27,20 @@ dependencies {
     implementation 'org.javatuples:javatuples:1.2'
 }
 
+afterEvaluate {
+    publishing {
+        publications {
+            installShadowDistPublicationToMavenLocal(MavenPublication) {
+                artifact jar
+                artifactId = 'cistern'
+                groupId = 'cistern'
+                version = '1.0.4'
+            }
+// Creates a Maven publication called "release".
+        }
+    }
+}
+
 application {
     // Define the main class for the application.
     mainClass = 'marmot.morph.cmd'
@@ -47,3 +62,4 @@ jar {
         archiveVersion.set('snapshot')
     }
 }
+
