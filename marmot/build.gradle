@@ -1,0 +1,49 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
+}
+
+repositories {
+    mavenCentral()
+}
+
+tasks.wrapper {
+    gradleVersion = "8.0"
+    // You can either download the binary-only version of Gradle (BIN) or
+    // the full version (with sources and documentation) of Gradle (ALL)
+    distributionType = Wrapper.DistributionType.ALL
+}
+
+dependencies {
+    implementation files(fileTree(dir: 'lib', include: '*.jar'))
+    implementation 'org.apache.opennlp:opennlp-tools:2.3.2'
+    implementation 'org.apache.opennlp:opennlp-maxent:3.0.3'
+    //implementation 'trove4j:trove4j:3.0.3'
+    implementation 'org.apache.commons:commons-compress:1.26.1'
+    implementation 'com.martiansoftware:jsap:2.1'
+    implementation 'cc.mallet:mallet:2.0.8'
+    implementation 'org.javatuples:javatuples:1.2'
+}
+
+application {
+    // Define the main class for the application.
+    mainClass = 'marmot.morph.cmd'
+}
+
+jar {
+    archiveBaseName = 'cistern-snapshot'
+    archiveVersion = '1.0.3'
+     // destinationDir = file("${projectDir}")
+     //  from file(classesDir)
+    manifest.attributes(
+        'Class-Path': configurations.compileClasspath.collect { it.getName() }.join(' '),
+        'Main-Class': 'marmot.morph.cmd'
+    )
+    shadowJar {
+        destinationDir = file("${projectDir}")
+        archiveBaseName.set("cistern")
+        archiveClassifier.set('')
+        archiveVersion.set('snapshot')
+    }
+}

@@ -5,26 +5,32 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>cistern</groupId>
     <artifactId>cistern</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.3</version>
+    <properties>
+        <gradle.version>7.4.2</gradle.version>
+        <marmot.dir>${project.basedir}/marmot</marmot.dir>
+    </properties>
 
     <build>
         <plugins>
 
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <version>1.8</version>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.0.0</version>
                 <executions>
                     <execution>
-                        <id>run-ant-script</id>
-                        <phase>compile</phase>
+                        <id>gradle-build</id>
+                        <phase>package</phase>
                         <goals>
-                            <goal>run</goal>
+                            <goal>exec</goal>
                         </goals>
                         <configuration>
-                            <target>
-                                <ant antfile="marmot/build.xml" inheritAll="false" />
-                            </target>
+                            <executable>gradle</executable>
+                            <workingDirectory>${marmot.dir}</workingDirectory>
+                            <arguments>
+                                <argument>build</argument>
+                            </arguments>
                         </configuration>
                     </execution>
                 </executions>
