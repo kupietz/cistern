@@ -9,7 +9,7 @@ import marmot.morph.mapper.Names;
 public class MsdTag implements MorphTag {
 
 	enum Pos {
-		v, a, c, n, m, s, r, q, p, x, y, i, z, _,
+		v, a, c, n, m, s, r, q, p, x, y, i, z, _x,
 	}
 
 	enum Type {
@@ -27,7 +27,7 @@ public class MsdTag implements MorphTag {
 		r, // relative
 		x, // reflexive
 		z, // negative
-		_
+		_x
 	}
 
 	enum Mood {
@@ -37,56 +37,56 @@ public class MsdTag implements MorphTag {
 		n, // infinitive n
 		p, // participle
 		t, // transgressive t
-		_,
+		_x,
 	}
 
 	enum Tense {
 		p, // Tense present p
 		f, // future f
 		s, // past s
-		_,
+		_x,
 	}
 
 	enum Person {
 		fst, // first 1
 		snd, // second 2
 		thd, // third 3
-		_,
+		_x,
 	}
 
 	enum Number {
 		s, // singular s
 		p, // plural p
 		d, // dual d
-		_,
+		_x,
 	}
 
 	enum Gender {
 		m, // masculine m
 		f, // feminine f
 		n, // neuter n
-		_;
+		_x;
 	}
 
 	enum Voice {
 		a, // active a
 		p, // passive p
-		_;
+		_x;
 	}
 
 	// enum Negative {
-	// n, y, _,
+	// n, y, _x,
 	// }
 
 	// enum Animate {
-	// n, y, _,
+	// n, y, _x,
 	// }
 
 	enum Degree {
 		p, // positive p
 		c, // comparative c
 		s, // superlative s
-		_,
+		_x,
 	}
 
 	enum Case {
@@ -97,13 +97,13 @@ public class MsdTag implements MorphTag {
 		v, // vocative v
 		l, // locative l
 		i, // instrumental i
-		_
+		_x
 	}
 
 	// enum Formation {
 	// n, //nominal,
 	// c, //compound,
-	// _
+	// _x
 	// }
 
 	public Pos pos_;
@@ -126,32 +126,32 @@ public class MsdTag implements MorphTag {
 	}
 
 	void reset() {
-		pos_ = Pos._;
-		type_ = Type._;
-		mood_ = Mood._;
-		tense_ = Tense._;
-		person_ = Person._;
-		number_ = Number._;
-		gender_ = Gender._;
-		voice_ = Voice._;
-		// negative_ = Negative._;
-		// animate_ = Animate._;
-		degree_ = Degree._;
-		case_ = Case._;
-		// formation_ = Formation._;
+		pos_ = Pos._x;
+		type_ = Type._x;
+		mood_ = Mood._x;
+		tense_ = Tense._x;
+		person_ = Person._x;
+		number_ = Number._x;
+		gender_ = Gender._x;
+		voice_ = Voice._x;
+		// negative_ = Negative._x;
+		// animate_ = Animate._x;
+		degree_ = Degree._x;
+		case_ = Case._x;
+		// formation_ = Formation._x;
 	}
 
 	@Override
 	public String toHumanMorphString() {
 		StringBuilder sb = new StringBuilder();
 
-		addFeature(sb, Names.Tense, tense_ == Tense._, tense_.toString());
-		addFeature(sb, Names.Person, person_ == Person._, person_.toString());
-		addFeature(sb, Names.Number, number_ == Number._, number_.toString());
-		addFeature(sb, Names.Gender, gender_ == Gender._, gender_.toString());
-		addFeature(sb, Names.Voice, voice_ == Voice._, voice_.toString());
-		addFeature(sb, Names.Degree, degree_ == Degree._, degree_.toString());
-		addFeature(sb, Names.Case, case_ == Case._, case_.toString());
+		addFeature(sb, Names.Tense, tense_ == Tense._x, tense_.toString());
+		addFeature(sb, Names.Person, person_ == Person._x, person_.toString());
+		addFeature(sb, Names.Number, number_ == Number._x, number_.toString());
+		addFeature(sb, Names.Gender, gender_ == Gender._x, gender_.toString());
+		addFeature(sb, Names.Voice, voice_ == Voice._x, voice_.toString());
+		addFeature(sb, Names.Degree, degree_ == Degree._x, degree_.toString());
+		addFeature(sb, Names.Case, case_ == Case._x, case_.toString());
 
 		if (sb.length() == 0) {
 			return "_";

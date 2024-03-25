@@ -14,7 +14,7 @@ public class SpanishRuleProvider extends RuleProvider {
 	public Collection<Rule> getTokRules() {
 		List<Rule> rules = new LinkedList<>();
 		rules.add(new Rule(Pattern.compile("\\S( Fz)") ,""));
-		rules.add(new Rule(Pattern.compile("\\S(_)\\S") ," "));
+		rules.add(new Rule(Pattern.compile("\\S(_x)\\S") ," "));
 		rules.add(new Rule(Pattern.compile("( ̃)") , ""));
 		return rules;
 	}

@@ -16,6 +16,7 @@ import opennlp.tools.tokenize.TokenSampleStream;
 import opennlp.tools.tokenize.TokenizerFactory;
 import opennlp.tools.tokenize.TokenizerME;
 import opennlp.tools.tokenize.TokenizerModel;
+import opennlp.tools.util.InputStreamFactory;
 import opennlp.tools.util.ObjectStream;
 import opennlp.tools.util.PlainTextByLineStream;
 import opennlp.tools.util.TrainingParameters;
@@ -27,8 +28,8 @@ public class OpenNlpTokenizerTrainer {
 	public Tokenizer train(String path) throws IOException {
 		TokenizerModel model;
 
-		ObjectStream<String> line_stream = new PlainTextByLineStream(
-				new FileInputStream(path), Charset.forName("UTF-8"));
+		ObjectStream<String> line_stream = new PlainTextByLineStream	(
+                (InputStreamFactory) new FileInputStream(path), Charset.forName("UTF-8"));
 		ObjectStream<TokenSample> samples = new TokenSampleStream(line_stream);
 
 		String lang_code = "";

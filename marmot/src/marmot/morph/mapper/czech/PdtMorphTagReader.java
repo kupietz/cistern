@@ -186,7 +186,7 @@ public class PdtMorphTagReader {
 	private void setGender(String value, PdtMorphTag tag) {
 		
 		if (value.equals("x")) {
-			tag.gender_ = Gender._;
+			tag.gender_ = Gender._x;
 			return;
 		}
 		

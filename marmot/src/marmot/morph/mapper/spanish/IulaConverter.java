@@ -93,7 +93,7 @@ public class IulaConverter {
 		case f:
 			setPunctFeatures(freeling_pos, tag);
 			break;
-		case _:
+		case _x:
 			break;
 
 		}

@@ -358,9 +358,9 @@ public class AraMorph {
 //			// -> yaa' + hamza-on-the-line
 //			temp = temp.replaceAll("Y", "y"); // y_w'_y'
 //			// final yaa' + hamza-on-the-line -> hamza-on-yaa'
-//			temp = temp.replaceFirst("y'$", "}"); // y_w'_}
+//			temp = temp.replaceFirst("y'$", "}"); // y_w'_x}
 //
-//			wordAlternativeSpellings.add(temp); // y_w'_} -- pushed
+//			wordAlternativeSpellings.add(temp); // y_w'_x} -- pushed
 //			// medial waaw + hamza-on-the-line -> hamza-on-waaw
 //			temp2 = temp.replaceFirst("w'", "&"); // y_&__}
 //			if (!temp.equals(temp2)) {
@@ -386,8 +386,8 @@ public class AraMorph {
 //			// 'alif maqSuura -> yaa'
 //			temp = temp.replaceAll("Y", "y"); // y_w'_y'
 //			// final yaa' + hamza-on-the-line -> 'alif maqSuura
-//			temp = temp.replaceFirst("y'$", "}"); // y_w'_}
-//			wordAlternativeSpellings.add(temp); // y_w'_} -- pushed
+//			temp = temp.replaceFirst("y'$", "}"); // y_w'_x}
+//			wordAlternativeSpellings.add(temp); // y_w'_x} -- pushed
 //			// medial waaw + hamza-on-the-line -> hamza-on-waaw
 //			temp2 = temp.replaceFirst("w'", "&"); // y_&__}
 //			if (!temp.equals(temp2)) {

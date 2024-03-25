@@ -138,7 +138,7 @@ public class Annotator {
 
 			if(tagger.getFormat() == 1) {
 				// 0	1		2		3	4	5			6	7	8	9
-				// 1	Komissio	komissio	NOUN	N	Case=Nom|Number=Sing	3	nsubj	5:nsubj	_
+				// 1	Komissio	komissio	NOUN	N	Case=Nom|Number=Sing	3	nsubj	5:nsubj	_x
 
 				writer.append(Integer.toString(i + 1));		// 0
 				writer.append(SEPARATOR_);

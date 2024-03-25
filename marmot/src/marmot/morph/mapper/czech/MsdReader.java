@@ -593,7 +593,7 @@ public class MsdReader {
 			tag.person_ = MsdTag.Person.thd;
 			break;
 		case '_':
-			tag.person_ = MsdTag.Person._;
+			tag.person_ = MsdTag.Person._x;
 			break;
 		default:
 			throw new RuntimeException("Unknown value: " + c);

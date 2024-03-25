@@ -21,7 +21,7 @@ public class PdtMorphTag implements MorphTag {
 		t, // Particle
 		z, //Punctuation (also used for the Sentence Boundary token)
 		x,
-		_,
+		_x,
 	};
 
 	enum Type {
@@ -192,7 +192,7 @@ public class PdtMorphTag implements MorphTag {
 		y, // {M, I} - Masculine (either animate or inanimate)
 		z, // {M, I, N} - Not fenimine (i.e., Masculine animate/inanimate or
 			// Neuter); only for (some) pronoun forms and certain numerals
-		_,
+		_x,
 	}
 
 	enum Number {
@@ -201,7 +201,7 @@ public class PdtMorphTag implements MorphTag {
 		s, // Singular, e.g. noha
 		w, // Singular for feminine gender, plural with neuter; can only appear
 			// in participle or nominal adjective form with gender value Q
-		_,
+		_x,
 	}
 
 	enum Case {
@@ -212,7 +212,7 @@ public class PdtMorphTag implements MorphTag {
 		voc, // Vocative, e.g. ženo
 		loc, // Locative, e.g. ženě
 		ins, // Instrumental, e.g. ženou
-		_
+		_x
 	}
 
 //	enum PossGender {
@@ -230,7 +230,7 @@ public class PdtMorphTag implements MorphTag {
 		fst,//	1st person, e.g. píšu, píšeme
 		snd,//	2nd person, e.g. píšeš, píšete
 		thd,//	3rd person, e.g. píše, píšou
-		_,
+		_x,
 	}
 	
 	enum Tense {
@@ -238,26 +238,26 @@ public class PdtMorphTag implements MorphTag {
 		h,//	{R, P} - Past or Present
 		p,//	Present
 		r,//	Past
-		_,
+		_x,
 	}
 	
 	enum Degree {
 		pos, //	Positive, e.g. velký
 		comp, //	Comparative, e.g. větší
 		sup,//	Superlative, e.g. největší
-		_,
+		_x,
 	}
 	
 	enum Negation {
 		a,//	Affirmative (not negated), e.g. možný
 		n,//	Negated, e.g. nemožný
-		_,
+		_x,
 	}
 	
 	enum Voice {
 		a,//	Active, e.g. píšící
 		p,//	Passive, e.g. psaný
-		_,
+		_x,
 	}
 	
 	public Pos pos_;
@@ -276,16 +276,16 @@ public class PdtMorphTag implements MorphTag {
 	}
 	
 	void reset() {
-		pos_ = Pos._;
+		pos_ = Pos._x;
 		type_ = Type.X;
-		tense_ = Tense._;
-		person_ = Person._;
-		number_ = Number._;
-		gender_ = Gender._;
-		case_ = Case._;
-		degree_ = Degree._;
-		negation_ = Negation._;
-		voice_ = Voice._;
+		tense_ = Tense._x;
+		person_ = Person._x;
+		number_ = Number._x;
+		gender_ = Gender._x;
+		case_ = Case._x;
+		degree_ = Degree._x;
+		negation_ = Negation._x;
+		voice_ = Voice._x;
 	}
 
 	@Override

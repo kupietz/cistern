@@ -48,7 +48,7 @@ public class PdTMsdMapper {
 		case ins:
 			msd_tag.case_ = MsdTag.Case.i;
 			break;
-		case _:
+		case _x:
 			break;
 		}
 	}
@@ -64,7 +64,7 @@ public class PdTMsdMapper {
 		case sup:
 			msd_tag.degree_ = MsdTag.Degree.s;
 			break;
-		case _:
+		case _x:
 			break;
 		}
 	}
@@ -77,7 +77,7 @@ public class PdTMsdMapper {
 		case p:
 			msd_tag.voice_ = MsdTag.Voice.p;
 			break;
-		case _:
+		case _x:
 			break;
 		}
 	}
@@ -122,7 +122,7 @@ public class PdTMsdMapper {
 
 		case z:
 		case h:
-		case _:
+		case _x:
 			break;
 		}
 	}
@@ -152,7 +152,7 @@ public class PdTMsdMapper {
 			}
 
 			break;
-		case _:
+		case _x:
 			break;
 		}
 	}
@@ -168,7 +168,7 @@ public class PdTMsdMapper {
 		case thd:
 			msd_tag.person_ = MsdTag.Person.thd;
 			break;
-		case _:
+		case _x:
 			break;
 		}
 	}
@@ -186,7 +186,7 @@ public class PdTMsdMapper {
 		case r:
 			msd_tag.tense_ = MsdTag.Tense.s;
 			break;
-		case _:
+		case _x:
 			break;
 		}
 	}
@@ -228,7 +228,7 @@ public class PdTMsdMapper {
 			break;
 		case x:
 			break;
-		case _:
+		case _x:
 			break;
 		}
 	}

@@ -8,7 +8,7 @@ import marmot.morph.mapper.MorphTag;
 public class SttsTag implements MorphTag {
 
 //	enum Pos {
-//		_,
+//		_x,
 //		ADJ,
 //		ADV,
 //		ART,
@@ -39,7 +39,7 @@ public class SttsTag implements MorphTag {
 //	}
 	
 //	enum Type {
-//		_,
+//		_x,
 //		Comma, // $,
 //		Period, // $.
 //		Bracket, // $(
@@ -97,7 +97,7 @@ public class SttsTag implements MorphTag {
 //	}
 	
 	enum Case {
-		_,
+		_x,
 		amb,
 		acc,
 		dat,
@@ -106,7 +106,7 @@ public class SttsTag implements MorphTag {
 	}
 	
 	enum Degree {
-		_,
+		_x,
 		amb,
 		comp,
 		pos,
@@ -114,7 +114,7 @@ public class SttsTag implements MorphTag {
 	}
 	
 	enum Gender {
-		_,
+		_x,
 		amb,
 		fem,
 		masc,
@@ -122,28 +122,28 @@ public class SttsTag implements MorphTag {
 	}
 	
 	enum Mood {
-		_,
+		_x,
 		imp,
 		ind,
 		subj,		
 	}
 	
 	enum Number {
-		_,
+		_x,
 		amb,
 		pl,
 		sg,
 	}
 	
 	enum Person {
-		_,
+		_x,
 		fst,
 		snd,
 		thd,
 	}
 	
 	enum Tense {
-		_,
+		_x,
 		past,
 		pres,
 	}
@@ -168,15 +168,15 @@ public class SttsTag implements MorphTag {
 	}
 	
 	void reset() {
-		//pos_ = Pos._;
-		//type_ = Type._;
-		case_ = Case._;
-		number_ = Number._;
-		gender_ = Gender._;
-		degree_ = Degree._;
-		person_ = Person._;
-		tense_ = Tense._;
-		mood_ = Mood._;
+		//pos_ = Pos._x;
+		//type_ = Type._x;
+		case_ = Case._x;
+		number_ = Number._x;
+		gender_ = Gender._x;
+		degree_ = Degree._x;
+		person_ = Person._x;
+		tense_ = Tense._x;
+		mood_ = Mood._x;
 	}
 	
 	@Override 
@@ -239,31 +239,31 @@ public class SttsTag implements MorphTag {
 		
 		StringBuilder sb = new StringBuilder();
 		
-		if (case_ != Case._) {
+		if (case_ != Case._x) {
 			sb.append(case_);
 		}
 
-		if (gender_ != Gender._) {
+		if (gender_ != Gender._x) {
 			sb.append(gender_);
 		}
 		
-		if (number_ != Number._) { 
+		if (number_ != Number._x) { 
 			sb.append(number_);
 		}
 		
-		if (person_ != Person._) { 
+		if (person_ != Person._x) { 
 			sb.append(person_);
 		}
 		
-		if (tense_ != Tense._) { 
+		if (tense_ != Tense._x) { 
 			sb.append(tense_);
 		}
 
-		if (mood_ != Mood._) { 
+		if (mood_ != Mood._x) { 
 			sb.append(mood_);
 		}
 
-		if (degree_ != Degree._) {
+		if (degree_ != Degree._x) {
 			sb.append(degree_);
 		}
 

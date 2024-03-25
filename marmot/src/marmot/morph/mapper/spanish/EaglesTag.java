@@ -57,7 +57,7 @@ public class EaglesTag implements MorphTag {
 		v, // Verb
 		w, // Date
 		z, // Numeral
-		_, // Undef
+		_x, // Undef
 	}
 
 	enum Type {
@@ -79,13 +79,13 @@ public class EaglesTag implements MorphTag {
 		s, // semiauxiliary, subordinating, etc
 		x, // possesive (pronoun) , semicolon
 		z, // mathsign
-		_, // undef,
+		_x, // undef,
 	}
 
 	enum Degree {
 		c, // dimunitive
 		s, // superlative
-		_, // undef
+		_x, // undef
 	}
 
 	enum Gender {
@@ -93,19 +93,19 @@ public class EaglesTag implements MorphTag {
 		f, // femine
 		n, // neuter
 		c, // common
-		_, // undef
+		_x, // undef
 	}
 
 	enum Number {
 		s, // singular
 		p, // plural
 		n, // invariable
-		_, // undef
+		_x, // undef
 	}
 
 	enum Function {
 		p, // participle
-		_, // undef
+		_x, // undef
 	}
 
 	enum Mood {
@@ -115,7 +115,7 @@ public class EaglesTag implements MorphTag {
 		n, // Infinitivo
 		g, // Gerundio
 		p, // Participio
-		_, // Undef
+		_x, // Undef
 	};
 
 	enum Tense {
@@ -124,11 +124,11 @@ public class EaglesTag implements MorphTag {
 		f, // Futuro
 		s, // Pasado
 		c, // Condicional
-		_, // Undef
+		_x, // Undef
 	}
 
 	enum Person {
-		first, second, third, _
+		first, second, third, _x
 	}
 
 	enum Case {
@@ -136,36 +136,36 @@ public class EaglesTag implements MorphTag {
 		a, // accusative
 		d, // dative
 		o, // oblicuo
-		_, // undef
+		_x, // undef
 	}
 
 	enum OwnerNumber {
 		s, // Singular
 		p, // Plural
-		_, // undef
+		_x, // undef
 	}
 
 	enum Politeness {
 		p, // Polite
-		_, // Undef
+		_x, // Undef
 	}
 
 	enum Form {
 		s, // simple
 		c, // contracted
-		_, // undef
+		_x, // undef
 	}
 
 	enum Closing {
 		a, // opening
 		t, // closing
-		_
+		_x
 	}
 
 	enum NounDegree {
 		d, // dimunitive
 		a, // aumentative
-		_, // undef
+		_x, // undef
 	}
 
 	public EaglesTag() {
@@ -173,21 +173,21 @@ public class EaglesTag implements MorphTag {
 	}
 
 	public void reset() {
-		pos_ = Pos._;
-		type_ = Type._;
-		degree_ = Degree._;
-		gender_ = Gender._;
-		number_ = Number._;
-		function_ = Function._;
-		mood_ = Mood._;
-		tense_ = Tense._;
-		person_ = Person._;
-		case_ = Case._;
-		owner_ = OwnerNumber._;
-		politeness_ = Politeness._;
-		form_ = Form._;
-		closing_ = Closing._;
-		noun_degree_ = NounDegree._;
+		pos_ = Pos._x;
+		type_ = Type._x;
+		degree_ = Degree._x;
+		gender_ = Gender._x;
+		number_ = Number._x;
+		function_ = Function._x;
+		mood_ = Mood._x;
+		tense_ = Tense._x;
+		person_ = Person._x;
+		case_ = Case._x;
+		owner_ = OwnerNumber._x;
+		politeness_ = Politeness._x;
+		form_ = Form._x;
+		closing_ = Closing._x;
+		noun_degree_ = NounDegree._x;
 	}
 
 	@Override
@@ -216,25 +216,25 @@ public class EaglesTag implements MorphTag {
 	public String toHumanMorphString() {
 		StringBuilder sb = new StringBuilder();
 
-		addFeature(sb, Names.Type, type_ == Type._,
+		addFeature(sb, Names.Type, type_ == Type._x,
 				type_.toString());
-		addFeature(sb, Names.Degree, degree_ == Degree._,
+		addFeature(sb, Names.Degree, degree_ == Degree._x,
 				degree_.toString());
-		addFeature(sb, Names.Number, number_ == Number._, number_.toString());
-		addFeature(sb, Names.Gender, gender_ == Gender._, gender_.toString());
-		addFeature(sb, Names.Function, function_ == Function._, function_.toString());
-		addFeature(sb, Names.Mood, mood_ == Mood._,
+		addFeature(sb, Names.Number, number_ == Number._x, number_.toString());
+		addFeature(sb, Names.Gender, gender_ == Gender._x, gender_.toString());
+		addFeature(sb, Names.Function, function_ == Function._x, function_.toString());
+		addFeature(sb, Names.Mood, mood_ == Mood._x,
 				mood_.toString());
-		addFeature(sb, Names.Tense, tense_ == Tense._,
+		addFeature(sb, Names.Tense, tense_ == Tense._x,
 				tense_.toString());
-		addFeature(sb, Names.Person, person_ == Person._, person_.toString());
-		addFeature(sb, Names.Case, case_ == Case._, case_.toString());
-		addFeature(sb, Names.OwnerNumber, owner_ == OwnerNumber._, owner_.toString());
-		addFeature(sb, Names.Politeness, politeness_ == Politeness._, politeness_.toString());
-		addFeature(sb, Names.Form, form_ == Form._,
+		addFeature(sb, Names.Person, person_ == Person._x, person_.toString());
+		addFeature(sb, Names.Case, case_ == Case._x, case_.toString());
+		addFeature(sb, Names.OwnerNumber, owner_ == OwnerNumber._x, owner_.toString());
+		addFeature(sb, Names.Politeness, politeness_ == Politeness._x, politeness_.toString());
+		addFeature(sb, Names.Form, form_ == Form._x,
 				form_.toString());
-		addFeature(sb, Names.Closing, closing_ == Closing._, closing_.toString());
-		addFeature(sb, Names.NounDegree, noun_degree_ == NounDegree._, noun_degree_.toString());
+		addFeature(sb, Names.Closing, closing_ == Closing._x, closing_.toString());
+		addFeature(sb, Names.NounDegree, noun_degree_ == NounDegree._x, noun_degree_.toString());
 
 		if (sb.length() == 0) {
 			return "_";
@@ -396,8 +396,8 @@ public class EaglesTag implements MorphTag {
 	public void normalize(Node node, boolean iula) {
 		String form = node.getForm();
 
-		degree_ = EaglesTag.Degree._;
-		noun_degree_ = EaglesTag.NounDegree._;
+		degree_ = EaglesTag.Degree._x;
+		noun_degree_ = EaglesTag.NounDegree._x;
 
 		if (form.equals("se")) {
 			reset();
@@ -413,7 +413,7 @@ public class EaglesTag implements MorphTag {
 		case a:
 			if (function_ == Function.p) {
 				pos_ = Pos.v;
-				function_ = Function._;
+				function_ = Function._x;
 				mood_ = Mood.p;
 				type_ = Type.m;
 			}
@@ -440,10 +440,10 @@ public class EaglesTag implements MorphTag {
 			break;
 		case v:
 			if (gender_ == Gender.c) {
-				gender_ = Gender._;
+				gender_ = Gender._x;
 			}
 			if (number_ == Number.n) {
-				number_ = Number._;
+				number_ = Number._x;
 			}
 
 			if (node.getLemma().equals("ser")) {
