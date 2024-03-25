@@ -9,6 +9,7 @@ repositories {
     mavenCentral()
 }
 
+
 tasks.wrapper {
     gradleVersion = "8.0"
     // You can either download the binary-only version of Gradle (BIN) or
@@ -16,6 +17,13 @@ tasks.wrapper {
     distributionType = Wrapper.DistributionType.ALL
 }
 
+sourceSets {
+    main {
+        java {
+            srcDirs 'src'
+        }
+    }
+}
 dependencies {
     implementation files(fileTree(dir: 'lib', include: '*.jar'))
     implementation 'org.apache.opennlp:opennlp-tools:2.3.2'
@@ -43,17 +51,17 @@ afterEvaluate {
 
 application {
     // Define the main class for the application.
-    mainClass = 'marmot.morph.cmd'
+    mainClass = 'marmot.morph.cmd.Annotator'
 }
 
 jar {
     archiveBaseName = 'cistern-snapshot'
     archiveVersion = '1.0.3'
-     // destinationDir = file("${projectDir}")
-     //  from file(classesDir)
+    destinationDir = file("${projectDir}")
+    // from file(classesDir)
     manifest.attributes(
         'Class-Path': configurations.compileClasspath.collect { it.getName() }.join(' '),
-        'Main-Class': 'marmot.morph.cmd'
+        'Main-Class': 'marmot.morph.cmd.Annotator'
     )
     shadowJar {
         destinationDir = file("${projectDir}")
